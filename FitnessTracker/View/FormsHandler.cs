@@ -87,15 +87,6 @@ namespace FitnessTracker.View
            Color.DimGray, 2, ButtonBorderStyle.Solid);// bottom
         }
 
-        public static void PopulateDropDownListByCmrfCode(ComboBox comboBox, string cmrfCode)
-        {
-            /*CommonRefference commonRefference = new CommonRefference();
-            DropDownListPopulator.polulateComboboxFromCommonRefrence(commonRefference.GetCommonRefferencesByCode(cmrfCode), comboBox);
-
-            if (commonRefference != null)
-                commonRefference = null;*/
-        }
-
         public static void ChnageTextBoxBackColor(TextBox textBox, Color color)
         {
             if (textBox.Enabled == false)

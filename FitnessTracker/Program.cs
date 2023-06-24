@@ -36,6 +36,32 @@ namespace FitnessTracker
 
             UsersController usersController = new();
             usersController.RegisterUser(user);
+
+            WorkoutTypeController workoutTypeController = new();
+
+            WorkoutType runningWorkoutType = new()
+            {
+                Name = "Running"            
+            };
+            workoutTypeController.InsertWorkoutType(runningWorkoutType);
+
+            WorkoutType cyclingWorkoutType = new()
+            {
+                Name = "Cycling"
+            };
+            workoutTypeController.InsertWorkoutType(cyclingWorkoutType);
+
+            WorkoutType walkingWorkoutType = new()
+            {
+                Name = "Walking"
+            };
+            workoutTypeController.InsertWorkoutType(walkingWorkoutType);
+
+            WorkoutType swimmingWorkoutType = new()
+            {
+                Name = "Swimming"
+            };
+            workoutTypeController.InsertWorkoutType(swimmingWorkoutType);
         }
     }
 }

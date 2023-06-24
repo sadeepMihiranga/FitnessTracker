@@ -85,7 +85,6 @@
             this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDashboard.UseVisualStyleBackColor = false;
-            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // btnNavMyProfile
             // 
@@ -107,7 +106,6 @@
             this.btnNavMyProfile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNavMyProfile.UseVisualStyleBackColor = false;
-            this.btnNavMyProfile.Click += new System.EventHandler(this.btnCarPart_Click);
             // 
             // btnNavReport
             // 
@@ -129,7 +127,6 @@
             this.btnNavReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNavReport.UseVisualStyleBackColor = false;
-            this.btnNavReport.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnNavPredictions
             // 
@@ -151,7 +148,6 @@
             this.btnNavPredictions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavPredictions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNavPredictions.UseVisualStyleBackColor = false;
-            this.btnNavPredictions.Click += new System.EventHandler(this.btnCarOrder_Click);
             // 
             // btnNavCheatMeals
             // 
@@ -173,7 +169,6 @@
             this.btnNavCheatMeals.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavCheatMeals.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNavCheatMeals.UseVisualStyleBackColor = false;
-            this.btnNavCheatMeals.Click += new System.EventHandler(this.btnPartOrder_Click);
             // 
             // btnNavWorkout
             // 
@@ -195,6 +190,7 @@
             this.btnNavWorkout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavWorkout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNavWorkout.UseVisualStyleBackColor = false;
+            this.btnNavWorkout.Click += new System.EventHandler(this.btnNavWorkout_Click);
             // 
             // panelLogo
             // 
