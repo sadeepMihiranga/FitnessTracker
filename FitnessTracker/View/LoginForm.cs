@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FitnessTracker.Model;
+using FitnessTracker.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FitnessTracker
+namespace FitnessTracker.View
 {
     public partial class LoginForm : Form
     {
@@ -44,79 +46,56 @@ namespace FitnessTracker
             label.ForeColor = Color.FromArgb(160, 160, 160); //lightercolor
         }
 
-        /* open the customer registration form */
+        /* open the user registration form */
         private void lblRegister_Click(object sender, EventArgs e)
         {
-            /*CustomerRegister customerRegister = new CustomerRegister();
-            customerRegister.Show();
-            this.Hide();*/
+            RegisterForm registerForm = new();
+            registerForm.Show();
+            this.Hide();
         }
 
         /** login button click event */
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            /*User user = null;
-            List<Role> roles = null;
-            List<string> roleNameList = null;
-
             string Username = txtUsername.Text;
             string Password = txtPassword.Text;
 
             if (String.IsNullOrEmpty(Username) || String.IsNullOrEmpty(Password))
             {
-                MessageBox.Show("Username and Password required", "Missing Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                FormsHandler.InfoRequiredErrorMessage("Username and Password");
                 return;
             }
 
             try
             {
-                user = new User();
-                user = user.FetchUserByUsernameAndPassword(Username, Password);
-
-                roles = user.GetRolesByUserId(user.Id);
-                roleNameList = new List<string>();
-
-                foreach (Role role in roles)
-                    roleNameList.Add(role.RoleName);
+                UserModel user = new();
+                user = UserRepository.FetchUserByUsernameAndPassword(Username, Password);
 
                 if (user != null && user.Id > 0)
                 {
-                    MainMenuForm adminMenuForm = new MainMenuForm(roleNameList, user.PartyId);
+                    MainMenuForm adminMenuForm = new(user.Id);
                     adminMenuForm.Show();
                     this.Hide();
                 }
                 else
                 {
-                    MessageBox.Show("Username or Password invalid", "Operation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    FormsHandler.OperationFailedErrorMessage("Username or Password invalid");
                     return;
                 }
             }
             catch (Exception ex)
             {
-                FormsHandler.ShowOperationFailedErrorMessage(ex.Message);
+                FormsHandler.OperationFailedErrorMessage(ex.Message);
             }
             finally
             {
-                if (roles != null)
-                    roles = null;
 
-                if (user != null)
-                    user = null;
-            }*/
+            }
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-            DrawBorder(panel3, e);
-        }
-
-        public static void DrawBorder(Panel panel, PaintEventArgs e)
-        {
-            ControlPaint.DrawBorder(e.Graphics, panel.ClientRectangle,
-            Color.DimGray, 2, ButtonBorderStyle.Solid, // left
-            Color.DimGray, 2, ButtonBorderStyle.Solid, // top
-            Color.DimGray, 2, ButtonBorderStyle.Solid, // right
-            Color.DimGray, 2, ButtonBorderStyle.Solid);// bottom
+            FormsHandler.DrawBorder(mainPanel, e);
         }
     }
 }
