@@ -2,7 +2,7 @@
 
 namespace FitnessTracker.Model
 {
-    internal class WorkoutType
+    public class WorkoutTypeModel
     {
         #region Attributes of WorkoutType
         public long Id { get; set; }

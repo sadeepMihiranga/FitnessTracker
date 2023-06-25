@@ -47,7 +47,7 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.btnAddWorkout = new System.Windows.Forms.Button();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanelVehicelList = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelWorkoutList = new System.Windows.Forms.FlowLayoutPanel();
             this.panelVehiclesMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).BeginInit();
@@ -65,7 +65,7 @@
             this.panelVehiclesMain.Controls.Add(this.pictureBoxNext);
             this.panelVehiclesMain.Controls.Add(this.pictureBoxBack);
             this.panelVehiclesMain.Controls.Add(this.panelVehicleHeader);
-            this.panelVehiclesMain.Controls.Add(this.flowLayoutPanelVehicelList);
+            this.panelVehiclesMain.Controls.Add(this.flowLayoutPanelWorkoutList);
             this.panelVehiclesMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelVehiclesMain.Location = new System.Drawing.Point(0, 0);
             this.panelVehiclesMain.Name = "panelVehiclesMain";
@@ -82,6 +82,8 @@
             // 
             // pictureBoxNext
             // 
+            this.pictureBoxNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxNext.Image = global::FitnessTracker.Properties.Resources.next;
             this.pictureBoxNext.Location = new System.Drawing.Point(584, 692);
             this.pictureBoxNext.Name = "pictureBoxNext";
             this.pictureBoxNext.Size = new System.Drawing.Size(25, 25);
@@ -92,6 +94,8 @@
             // 
             // pictureBoxBack
             // 
+            this.pictureBoxBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxBack.Image = global::FitnessTracker.Properties.Resources.previous;
             this.pictureBoxBack.Location = new System.Drawing.Point(541, 692);
             this.pictureBoxBack.Name = "pictureBoxBack";
             this.pictureBoxBack.Size = new System.Drawing.Size(25, 25);
@@ -125,6 +129,7 @@
             // 
             // pictureBoxMinimize
             // 
+            this.pictureBoxMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxMinimize.Image = global::FitnessTracker.Properties.Resources.minus;
             this.pictureBoxMinimize.Location = new System.Drawing.Point(1086, 6);
             this.pictureBoxMinimize.Name = "pictureBoxMinimize";
@@ -136,9 +141,11 @@
             // 
             // pictureBoxVehicleClearFilter
             // 
-            this.pictureBoxVehicleClearFilter.Location = new System.Drawing.Point(843, 26);
+            this.pictureBoxVehicleClearFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxVehicleClearFilter.Image = global::FitnessTracker.Properties.Resources.clear_filter;
+            this.pictureBoxVehicleClearFilter.Location = new System.Drawing.Point(843, 25);
             this.pictureBoxVehicleClearFilter.Name = "pictureBoxVehicleClearFilter";
-            this.pictureBoxVehicleClearFilter.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxVehicleClearFilter.Size = new System.Drawing.Size(28, 28);
             this.pictureBoxVehicleClearFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxVehicleClearFilter.TabIndex = 86;
             this.pictureBoxVehicleClearFilter.TabStop = false;
@@ -146,6 +153,8 @@
             // 
             // pictureBoxVehicleFilter
             // 
+            this.pictureBoxVehicleFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxVehicleFilter.Image = global::FitnessTracker.Properties.Resources.filter;
             this.pictureBoxVehicleFilter.Location = new System.Drawing.Point(802, 26);
             this.pictureBoxVehicleFilter.Name = "pictureBoxVehicleFilter";
             this.pictureBoxVehicleFilter.Size = new System.Drawing.Size(25, 25);
@@ -241,6 +250,7 @@
             // btnAddWorkout
             // 
             this.btnAddWorkout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.btnAddWorkout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddWorkout.FlatAppearance.BorderSize = 0;
             this.btnAddWorkout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddWorkout.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -255,6 +265,7 @@
             // 
             // pictureBoxClose
             // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxClose.Image = global::FitnessTracker.Properties.Resources.icons8_close_128;
             this.pictureBoxClose.Location = new System.Drawing.Point(1118, 6);
             this.pictureBoxClose.Name = "pictureBoxClose";
@@ -264,13 +275,13 @@
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
-            // flowLayoutPanelVehicelList
+            // flowLayoutPanelWorkoutList
             // 
-            this.flowLayoutPanelVehicelList.BackColor = System.Drawing.SystemColors.Control;
-            this.flowLayoutPanelVehicelList.Location = new System.Drawing.Point(0, 85);
-            this.flowLayoutPanelVehicelList.Name = "flowLayoutPanelVehicelList";
-            this.flowLayoutPanelVehicelList.Size = new System.Drawing.Size(1150, 586);
-            this.flowLayoutPanelVehicelList.TabIndex = 0;
+            this.flowLayoutPanelWorkoutList.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanelWorkoutList.Location = new System.Drawing.Point(0, 85);
+            this.flowLayoutPanelWorkoutList.Name = "flowLayoutPanelWorkoutList";
+            this.flowLayoutPanelWorkoutList.Size = new System.Drawing.Size(1150, 586);
+            this.flowLayoutPanelWorkoutList.TabIndex = 0;
             // 
             // WorkoutForm
             // 
@@ -296,7 +307,7 @@
 
         #endregion
         private System.Windows.Forms.Panel panelVehiclesMain;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelVehicelList;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelWorkoutList;
         private System.Windows.Forms.Panel panelVehicleHeader;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAddWorkout;

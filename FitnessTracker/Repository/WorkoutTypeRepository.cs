@@ -4,11 +4,11 @@ namespace FitnessTracker.Repository
 {
     internal class WorkoutTypeRepository
     {
-        private static List<WorkoutType> workoutTypes = new();
+        private static List<WorkoutTypeModel> workoutTypes = new();
         private static readonly object workoutTypeSyncLock = new();
 
         #region Insert WorkoutType
-        public static WorkoutType Save(WorkoutType workoutType)
+        public static WorkoutTypeModel Save(WorkoutTypeModel workoutType)
         {
             workoutTypes.Add(workoutType);
             return workoutType;
@@ -16,7 +16,7 @@ namespace FitnessTracker.Repository
         #endregion
 
         #region Get All WorkoutTypes
-        public static List<WorkoutType> GetALL()
+        public static List<WorkoutTypeModel> GetALL()
         {
             return workoutTypes.Where(u => u.Status == Enum.CommonStatusEnum.ACTIVE).ToList();
         }
@@ -33,7 +33,7 @@ namespace FitnessTracker.Repository
                     return newWorkoutTypeId;
                 }
 
-                WorkoutType workoutTypeWithMaxId = workoutTypes.Aggregate((i1, i2) => i1.Id > i2.Id ? i1 : i2);
+                WorkoutTypeModel workoutTypeWithMaxId = workoutTypes.Aggregate((i1, i2) => i1.Id > i2.Id ? i1 : i2);
 
                 if (workoutTypeWithMaxId != null)
                 {

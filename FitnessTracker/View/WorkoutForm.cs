@@ -1,5 +1,7 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.Model;
 using FitnessTracker.Repository;
+using FitnessTracker.View.CustomUserControl;
 using FitnessTracker.View.Util;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace FitnessTracker.View
 {
     public partial class WorkoutForm : Form
     {
-        int currentPage = 1;
+        int currentPage = 0;
         public int pageSize = 7;
         long LoggedUserId;
 
@@ -30,7 +32,7 @@ namespace FitnessTracker.View
             WorkoutTypeController workoutTypeController = new();
             DropDownListPopulator.PopulateCombobox(workoutTypeController.ToComboboxList(), cmbWorkoutTypeSearch);
 
-            //LoadVehicles(0, pageSize, new Vehicle());
+            LoadWorkouts(0, pageSize, new WorkoutModel());
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -54,35 +56,21 @@ namespace FitnessTracker.View
             //FormsHandler.LoadForm(new ManageVehicleForm("Add", 0), panelVehiclesMain);
         }
 
-        /*public void LoadVehicles(int page, int size, Vehicle vehicleSearch)
+        public void LoadWorkouts(int page, int size, WorkoutModel workoutSearch)
         {
-            if (flowLayoutPanelVehicelList.Controls.Count > 0)
-                flowLayoutPanelVehicelList.Controls.Clear();
+            if (flowLayoutPanelWorkoutList.Controls.Count > 0)
+                flowLayoutPanelWorkoutList.Controls.Clear();
 
-            List<VehicleCardUserControl> vehicleCards = new List<VehicleCardUserControl>();
-            Vehicle vehicleObj = new Vehicle();
+            List<WorkoutCardUserControl> workoutCards = new List<WorkoutCardUserControl>();
 
-            List<Vehicle> vehicleList = vehicleObj.GetAllVehicleForCards(page, size, vehicleSearch);
+            List<WorkoutModel> workoutList = WorkoutRepository.Search(workoutSearch, page, size);
 
-            if (vehicleList.Count == 0)
+            if (workoutList.Count == 0)
                 pictureBoxNext.Visible = false;
 
-            foreach (var vehicle in vehicleList)
+            foreach (var workout in workoutList)
             {
-                string timeLabel = " hours";
-                double time = 0;
-
-                double hoursBack = Math.Round((DateTime.Now - vehicle.CreatedDateTime).TotalHours);
-
-                if (hoursBack > 23)
-                {
-                    timeLabel = " days";
-                    time = Math.Round(hoursBack / 24);
-                }
-                else
-                    time = hoursBack;
-
-                string imageUrl = ConfigurationManager.AppSettings.Get("ImageSavedLocation") + @"\no-image-96.png";
+                /*string imageUrl = ConfigurationManager.AppSettings.Get("ImageSavedLocation") + @"\no-image-96.png";
                 Image vehicleImage = null;
 
                 vehicleImage = Image.FromFile(imageUrl);
@@ -92,27 +80,27 @@ namespace FitnessTracker.View
                     if (!String.IsNullOrEmpty(vehicle.ImageUrl))
                         vehicleImage = Image.FromFile(vehicle.ImageUrl);
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { }*/
 
-                vehicleCards.Add(new VehicleCardUserControl(this.Roles, vehicle.VehicleId, this.LoggedUserId)
+                workoutCards.Add(new WorkoutCardUserControl(this.LoggedUserId, workout.Id)
                 {
-                    Title = vehicle.Make + " " + vehicle.Model + " " + vehicle.YearOfManufacture,
-                    Mileage = vehicle.Mileage + " KM",
-                    Price = "Rs " + vehicle.Price,
-                    AddedTime = time + timeLabel,
-                    Image = vehicleImage
+                    Title = workout.Type.Name,
+                    Weigth = workout.Weight + " KG",
+                    Description = workout.Name,
+                    AddedTime = workout.Date.ToString()
+                    //Image = vehicleImage
                 });
             }
 
-            foreach (VehicleCardUserControl vehicleCard in vehicleCards)
+            foreach (WorkoutCardUserControl workoutCard in workoutCards)
             {
-                flowLayoutPanelVehicelList.Controls.Add(vehicleCard);
+                flowLayoutPanelWorkoutList.Controls.Add(workoutCard);
             }
-        }*/
+        }
 
         private void pictureBoxNext_Click(object sender, EventArgs e)
         {
-            /*currentPage++;
+            currentPage++;
             pictureBoxBack.Visible = true;
 
             if (currentPage < 0)
@@ -123,12 +111,12 @@ namespace FitnessTracker.View
             else
                 pictureBoxNext.Visible = true;
 
-            LoadVehicles(currentPage * pageSize, pageSize, new Vehicle());*/
+            LoadWorkouts(currentPage, pageSize, new WorkoutModel());
         }
 
         private void pictureBoxBack_Click(object sender, EventArgs e)
         {
-            /*currentPage--;
+            currentPage--;
             pictureBoxNext.Visible = true;
 
             if (currentPage < 0)
@@ -139,7 +127,7 @@ namespace FitnessTracker.View
             else
                 pictureBoxBack.Visible = true;
 
-            LoadVehicles(currentPage * pageSize, pageSize, new Vehicle());*/
+            LoadWorkouts(currentPage, pageSize, new WorkoutModel());
         }
 
         private void pictureBoxVehicleFilter_Click(object sender, EventArgs e)

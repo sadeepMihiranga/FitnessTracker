@@ -2,7 +2,7 @@
 
 namespace FitnessTracker.Model
 {
-    internal class UserModel
+    public class UserModel
     {
         #region Attributes of User
         public long Id { get; set; }

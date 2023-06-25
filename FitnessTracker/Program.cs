@@ -39,29 +39,128 @@ namespace FitnessTracker
 
             WorkoutTypeController workoutTypeController = new();
 
-            WorkoutType runningWorkoutType = new()
+            WorkoutTypeModel runningWorkoutType = new()
             {
                 Name = "Running"            
             };
             workoutTypeController.InsertWorkoutType(runningWorkoutType);
 
-            WorkoutType cyclingWorkoutType = new()
+            WorkoutTypeModel cyclingWorkoutType = new()
             {
                 Name = "Cycling"
             };
             workoutTypeController.InsertWorkoutType(cyclingWorkoutType);
 
-            WorkoutType walkingWorkoutType = new()
+            WorkoutTypeModel walkingWorkoutType = new()
             {
                 Name = "Walking"
             };
             workoutTypeController.InsertWorkoutType(walkingWorkoutType);
 
-            WorkoutType swimmingWorkoutType = new()
+            WorkoutTypeModel swimmingWorkoutType = new()
             {
                 Name = "Swimming"
             };
             workoutTypeController.InsertWorkoutType(swimmingWorkoutType);
+
+
+            WorkoutController workoutController = new();
+
+            WorkoutModel workout1 = new()
+            {
+                Name = "Running 01",
+                Type = runningWorkoutType,
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                IsRecurring = false,
+                Weight = 70
+            };
+            workoutController.LogWorkout(workout1);
+
+            WorkoutModel workout2 = new()
+            {
+                Name = "Running 02",
+                Type = runningWorkoutType,
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                IsRecurring = false,
+                Weight = 70
+            };
+            workoutController.LogWorkout(workout2);
+
+            WorkoutModel workout3 = new()
+            {
+                Name = "Running 03",
+                Type = runningWorkoutType,
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                IsRecurring = false,
+                Weight = 70
+            };
+            workoutController.LogWorkout(workout3);
+
+            WorkoutModel workout4 = new()
+            {
+                Name = "Running 04",
+                Type = runningWorkoutType,
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                IsRecurring = false,
+                Weight = 70
+            };
+            workoutController.LogWorkout(workout4);
+
+            WorkoutModel workout5 = new()
+            {
+                Name = "Running 05",
+                Type = runningWorkoutType,
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                IsRecurring = false,
+                Weight = 70
+            };
+            workoutController.LogWorkout(workout5);
+
+            WorkoutModel workout6 = new()
+            {
+                Name = "Running 06",
+                Type = runningWorkoutType,
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                IsRecurring = false,
+                Weight = 70
+            };
+            workoutController.LogWorkout(workout6);
+
+            WorkoutModel workout7 = new()
+            {
+                Name = "Running 07",
+                Type = runningWorkoutType,
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                IsRecurring = false,
+                Weight = 70
+            };
+            workoutController.LogWorkout(workout7);
+
+            WorkoutModel workout8 = new()
+            {
+                Name = "Running 08",
+                Type = runningWorkoutType,
+                Date = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                IsRecurring = false,
+                Weight = 70
+            };
+            workoutController.LogWorkout(workout8);
         }
     }
 }
