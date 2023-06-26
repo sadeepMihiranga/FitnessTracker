@@ -51,11 +51,6 @@ namespace FitnessTracker.View
             //FormsHandler.LoadForm(new ManageVehicleForm("Edit", vehicleId), panelVehiclesMain);
         }
 
-        private void btnAddVehicle_Click(object sender, EventArgs e)
-        {
-            //FormsHandler.LoadForm(new ManageVehicleForm("Add", 0), panelVehiclesMain);
-        }
-
         public void LoadWorkouts(int page, int size, WorkoutModel workoutSearch)
         {
             if (flowLayoutPanelWorkoutList.Controls.Count > 0)
@@ -86,7 +81,7 @@ namespace FitnessTracker.View
                 {
                     Title = workout.Type.Name,
                     Weigth = workout.Weight + " KG",
-                    Description = workout.Name,
+                    LoggingType = workout.IsRecurring == true ? "Recurring" : "One-Off",
                     AddedTime = workout.Date.ToString()
                     //Image = vehicleImage
                 });
@@ -159,6 +154,11 @@ namespace FitnessTracker.View
         private void txtYomSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             FormsHandler.AllowOnlyNumber(e);
+        }
+
+        private void btnLogWorkout_Click(object sender, EventArgs e)
+        {
+            FormsHandler.LoadForm(new LogWorkoutForm("Add", 0), panelWorkoutMain);
         }
     }
 }

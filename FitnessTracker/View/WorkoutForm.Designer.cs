@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelVehiclesMain = new System.Windows.Forms.Panel();
+            this.panelWorkoutMain = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxNext = new System.Windows.Forms.PictureBox();
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
-            this.panelVehicleHeader = new System.Windows.Forms.Panel();
+            this.panelWorkoutHeader = new System.Windows.Forms.Panel();
             this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
             this.pictureBoxVehicleClearFilter = new System.Windows.Forms.PictureBox();
             this.pictureBoxVehicleFilter = new System.Windows.Forms.PictureBox();
@@ -48,29 +48,29 @@
             this.btnAddWorkout = new System.Windows.Forms.Button();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanelWorkoutList = new System.Windows.Forms.FlowLayoutPanel();
-            this.panelVehiclesMain.SuspendLayout();
+            this.panelWorkoutMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).BeginInit();
-            this.panelVehicleHeader.SuspendLayout();
+            this.panelWorkoutHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVehicleClearFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVehicleFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
             // 
-            // panelVehiclesMain
+            // panelWorkoutMain
             // 
-            this.panelVehiclesMain.BackColor = System.Drawing.SystemColors.Control;
-            this.panelVehiclesMain.Controls.Add(this.panel1);
-            this.panelVehiclesMain.Controls.Add(this.pictureBoxNext);
-            this.panelVehiclesMain.Controls.Add(this.pictureBoxBack);
-            this.panelVehiclesMain.Controls.Add(this.panelVehicleHeader);
-            this.panelVehiclesMain.Controls.Add(this.flowLayoutPanelWorkoutList);
-            this.panelVehiclesMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelVehiclesMain.Location = new System.Drawing.Point(0, 0);
-            this.panelVehiclesMain.Name = "panelVehiclesMain";
-            this.panelVehiclesMain.Size = new System.Drawing.Size(1150, 729);
-            this.panelVehiclesMain.TabIndex = 0;
+            this.panelWorkoutMain.BackColor = System.Drawing.SystemColors.Control;
+            this.panelWorkoutMain.Controls.Add(this.panel1);
+            this.panelWorkoutMain.Controls.Add(this.pictureBoxNext);
+            this.panelWorkoutMain.Controls.Add(this.pictureBoxBack);
+            this.panelWorkoutMain.Controls.Add(this.panelWorkoutHeader);
+            this.panelWorkoutMain.Controls.Add(this.flowLayoutPanelWorkoutList);
+            this.panelWorkoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelWorkoutMain.Location = new System.Drawing.Point(0, 0);
+            this.panelWorkoutMain.Name = "panelWorkoutMain";
+            this.panelWorkoutMain.Size = new System.Drawing.Size(1150, 729);
+            this.panelWorkoutMain.TabIndex = 0;
             // 
             // panel1
             // 
@@ -104,28 +104,28 @@
             this.pictureBoxBack.TabStop = false;
             this.pictureBoxBack.Click += new System.EventHandler(this.pictureBoxBack_Click);
             // 
-            // panelVehicleHeader
+            // panelWorkoutHeader
             // 
-            this.panelVehicleHeader.BackColor = System.Drawing.SystemColors.Control;
-            this.panelVehicleHeader.Controls.Add(this.pictureBoxMinimize);
-            this.panelVehicleHeader.Controls.Add(this.pictureBoxVehicleClearFilter);
-            this.panelVehicleHeader.Controls.Add(this.pictureBoxVehicleFilter);
-            this.panelVehicleHeader.Controls.Add(this.label10);
-            this.panelVehicleHeader.Controls.Add(this.txtYomSearch);
-            this.panelVehicleHeader.Controls.Add(this.panel11);
-            this.panelVehicleHeader.Controls.Add(this.cmbVehicleConditionSearch);
-            this.panelVehicleHeader.Controls.Add(this.label1);
-            this.panelVehicleHeader.Controls.Add(this.panel2);
-            this.panelVehicleHeader.Controls.Add(this.cmbWorkoutTypeSearch);
-            this.panelVehicleHeader.Controls.Add(this.label12);
-            this.panelVehicleHeader.Controls.Add(this.panel13);
-            this.panelVehicleHeader.Controls.Add(this.btnAddWorkout);
-            this.panelVehicleHeader.Controls.Add(this.pictureBoxClose);
-            this.panelVehicleHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelVehicleHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelVehicleHeader.Name = "panelVehicleHeader";
-            this.panelVehicleHeader.Size = new System.Drawing.Size(1150, 74);
-            this.panelVehicleHeader.TabIndex = 3;
+            this.panelWorkoutHeader.BackColor = System.Drawing.SystemColors.Control;
+            this.panelWorkoutHeader.Controls.Add(this.pictureBoxMinimize);
+            this.panelWorkoutHeader.Controls.Add(this.pictureBoxVehicleClearFilter);
+            this.panelWorkoutHeader.Controls.Add(this.pictureBoxVehicleFilter);
+            this.panelWorkoutHeader.Controls.Add(this.label10);
+            this.panelWorkoutHeader.Controls.Add(this.txtYomSearch);
+            this.panelWorkoutHeader.Controls.Add(this.panel11);
+            this.panelWorkoutHeader.Controls.Add(this.cmbVehicleConditionSearch);
+            this.panelWorkoutHeader.Controls.Add(this.label1);
+            this.panelWorkoutHeader.Controls.Add(this.panel2);
+            this.panelWorkoutHeader.Controls.Add(this.cmbWorkoutTypeSearch);
+            this.panelWorkoutHeader.Controls.Add(this.label12);
+            this.panelWorkoutHeader.Controls.Add(this.panel13);
+            this.panelWorkoutHeader.Controls.Add(this.btnAddWorkout);
+            this.panelWorkoutHeader.Controls.Add(this.pictureBoxClose);
+            this.panelWorkoutHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelWorkoutHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelWorkoutHeader.Name = "panelWorkoutHeader";
+            this.panelWorkoutHeader.Size = new System.Drawing.Size(1150, 74);
+            this.panelWorkoutHeader.TabIndex = 3;
             // 
             // pictureBoxMinimize
             // 
@@ -259,9 +259,9 @@
             this.btnAddWorkout.Name = "btnAddWorkout";
             this.btnAddWorkout.Size = new System.Drawing.Size(122, 33);
             this.btnAddWorkout.TabIndex = 75;
-            this.btnAddWorkout.Text = "Add Workout";
+            this.btnAddWorkout.Text = "Log Workout";
             this.btnAddWorkout.UseVisualStyleBackColor = false;
-            this.btnAddWorkout.Click += new System.EventHandler(this.btnAddVehicle_Click);
+            this.btnAddWorkout.Click += new System.EventHandler(this.btnLogWorkout_Click);
             // 
             // pictureBoxClose
             // 
@@ -288,15 +288,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1150, 729);
-            this.Controls.Add(this.panelVehiclesMain);
+            this.Controls.Add(this.panelWorkoutMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WorkoutForm";
             this.Text = "VehicleForm";
-            this.panelVehiclesMain.ResumeLayout(false);
+            this.panelWorkoutMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).EndInit();
-            this.panelVehicleHeader.ResumeLayout(false);
-            this.panelVehicleHeader.PerformLayout();
+            this.panelWorkoutHeader.ResumeLayout(false);
+            this.panelWorkoutHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVehicleClearFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVehicleFilter)).EndInit();
@@ -306,9 +306,9 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel panelVehiclesMain;
+        private System.Windows.Forms.Panel panelWorkoutMain;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelWorkoutList;
-        private System.Windows.Forms.Panel panelVehicleHeader;
+        private System.Windows.Forms.Panel panelWorkoutHeader;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAddWorkout;
         private System.Windows.Forms.PictureBox pictureBoxBack;

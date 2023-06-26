@@ -17,7 +17,7 @@ namespace FitnessTracker.View.CustomUserControl
 
         private string _title;
         private string _weight;
-        private string _description;
+        private string _loggingType;
         private string _addedTime;
         private Image _image;
 
@@ -36,10 +36,10 @@ namespace FitnessTracker.View.CustomUserControl
         }
 
         [Category("Custom Props")]
-        public string Description
+        public string LoggingType
         {
-            get { return _description; }
-            set { _description = value; lblPrice.Text = value; }
+            get { return _loggingType; }
+            set { _loggingType = value; lblPrice.Text = value; }
         }
 
         [Category("Custom Props")]
