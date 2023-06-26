@@ -34,37 +34,37 @@
             this.lblManageVehicleTitle = new System.Windows.Forms.Label();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panelLogWorkout = new System.Windows.Forms.Panel();
+            this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartTime = new System.Windows.Forms.DateTimePicker();
+            this.dtpWorkoutDate = new System.Windows.Forms.DateTimePicker();
+            this.chbIsRecurring = new System.Windows.Forms.CheckBox();
+            this.txtWeigth = new System.Windows.Forms.TextBox();
+            this.txtWorkoutName = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnClearWorkoutInfo = new System.Windows.Forms.Button();
             this.btnSaveWorkout = new System.Windows.Forms.Button();
-            this.cmbVehicleType = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtVehicleVin = new System.Windows.Forms.TextBox();
+            this.txtReps = new System.Windows.Forms.TextBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtVehicleMileage = new System.Windows.Forms.TextBox();
+            this.txtSets = new System.Windows.Forms.TextBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.cmbVehicleCondition = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.cmbVehicleFuelType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.cmbVehicleTransmission = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.cmbVehicleBodyType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.cmbVehicleColor = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtVehicleYom = new System.Windows.Forms.TextBox();
+            this.txtComment = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.cmbVehicleMake = new System.Windows.Forms.ComboBox();
+            this.cmbWorkoutType = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -101,6 +101,7 @@
             // 
             // pictureBoxMinimize
             // 
+            this.pictureBoxMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxMinimize.Image = global::FitnessTracker.Properties.Resources.minus;
             this.pictureBoxMinimize.Location = new System.Drawing.Point(1086, 6);
             this.pictureBoxMinimize.Name = "pictureBoxMinimize";
@@ -123,6 +124,7 @@
             // 
             // pictureBoxClose
             // 
+            this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxClose.Image = global::FitnessTracker.Properties.Resources.icons8_close_128;
             this.pictureBoxClose.Location = new System.Drawing.Point(1118, 6);
             this.pictureBoxClose.Name = "pictureBoxClose";
@@ -135,37 +137,37 @@
             // panelLogWorkout
             // 
             this.panelLogWorkout.BackColor = System.Drawing.Color.White;
+            this.panelLogWorkout.Controls.Add(this.dtpEndTime);
+            this.panelLogWorkout.Controls.Add(this.dtpStartTime);
+            this.panelLogWorkout.Controls.Add(this.dtpWorkoutDate);
+            this.panelLogWorkout.Controls.Add(this.chbIsRecurring);
+            this.panelLogWorkout.Controls.Add(this.txtWeigth);
+            this.panelLogWorkout.Controls.Add(this.txtWorkoutName);
             this.panelLogWorkout.Controls.Add(this.pictureBox1);
             this.panelLogWorkout.Controls.Add(this.btnClearWorkoutInfo);
             this.panelLogWorkout.Controls.Add(this.btnSaveWorkout);
-            this.panelLogWorkout.Controls.Add(this.cmbVehicleType);
             this.panelLogWorkout.Controls.Add(this.label12);
             this.panelLogWorkout.Controls.Add(this.panel13);
             this.panelLogWorkout.Controls.Add(this.label11);
-            this.panelLogWorkout.Controls.Add(this.txtVehicleVin);
+            this.panelLogWorkout.Controls.Add(this.txtReps);
             this.panelLogWorkout.Controls.Add(this.panel12);
             this.panelLogWorkout.Controls.Add(this.label9);
-            this.panelLogWorkout.Controls.Add(this.txtVehicleMileage);
+            this.panelLogWorkout.Controls.Add(this.txtSets);
             this.panelLogWorkout.Controls.Add(this.panel10);
-            this.panelLogWorkout.Controls.Add(this.cmbVehicleCondition);
             this.panelLogWorkout.Controls.Add(this.label8);
             this.panelLogWorkout.Controls.Add(this.panel9);
-            this.panelLogWorkout.Controls.Add(this.cmbVehicleFuelType);
             this.panelLogWorkout.Controls.Add(this.label6);
             this.panelLogWorkout.Controls.Add(this.panel8);
-            this.panelLogWorkout.Controls.Add(this.cmbVehicleTransmission);
             this.panelLogWorkout.Controls.Add(this.label5);
             this.panelLogWorkout.Controls.Add(this.panel7);
-            this.panelLogWorkout.Controls.Add(this.cmbVehicleBodyType);
             this.panelLogWorkout.Controls.Add(this.label4);
             this.panelLogWorkout.Controls.Add(this.panel5);
-            this.panelLogWorkout.Controls.Add(this.cmbVehicleColor);
             this.panelLogWorkout.Controls.Add(this.label2);
             this.panelLogWorkout.Controls.Add(this.panel4);
             this.panelLogWorkout.Controls.Add(this.label3);
-            this.panelLogWorkout.Controls.Add(this.txtVehicleYom);
+            this.panelLogWorkout.Controls.Add(this.txtComment);
             this.panelLogWorkout.Controls.Add(this.panel3);
-            this.panelLogWorkout.Controls.Add(this.cmbVehicleMake);
+            this.panelLogWorkout.Controls.Add(this.cmbWorkoutType);
             this.panelLogWorkout.Controls.Add(this.label7);
             this.panelLogWorkout.Controls.Add(this.panel6);
             this.panelLogWorkout.Controls.Add(this.panel1);
@@ -174,6 +176,57 @@
             this.panelLogWorkout.Name = "panelLogWorkout";
             this.panelLogWorkout.Size = new System.Drawing.Size(1150, 652);
             this.panelLogWorkout.TabIndex = 0;
+            // 
+            // dtpEndTime
+            // 
+            this.dtpEndTime.Location = new System.Drawing.Point(991, 108);
+            this.dtpEndTime.Name = "dtpEndTime";
+            this.dtpEndTime.Size = new System.Drawing.Size(124, 23);
+            this.dtpEndTime.TabIndex = 80;
+            // 
+            // dtpStartTime
+            // 
+            this.dtpStartTime.Location = new System.Drawing.Point(697, 108);
+            this.dtpStartTime.Name = "dtpStartTime";
+            this.dtpStartTime.Size = new System.Drawing.Size(124, 23);
+            this.dtpStartTime.TabIndex = 79;
+            // 
+            // dtpWorkoutDate
+            // 
+            this.dtpWorkoutDate.Location = new System.Drawing.Point(367, 109);
+            this.dtpWorkoutDate.Name = "dtpWorkoutDate";
+            this.dtpWorkoutDate.Size = new System.Drawing.Size(152, 23);
+            this.dtpWorkoutDate.TabIndex = 78;
+            // 
+            // chbIsRecurring
+            // 
+            this.chbIsRecurring.AutoSize = true;
+            this.chbIsRecurring.Location = new System.Drawing.Point(1096, 304);
+            this.chbIsRecurring.Name = "chbIsRecurring";
+            this.chbIsRecurring.Size = new System.Drawing.Size(15, 14);
+            this.chbIsRecurring.TabIndex = 77;
+            this.chbIsRecurring.UseVisualStyleBackColor = true;
+            // 
+            // txtWeigth
+            // 
+            this.txtWeigth.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtWeigth.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtWeigth.Location = new System.Drawing.Point(400, 192);
+            this.txtWeigth.Multiline = true;
+            this.txtWeigth.Name = "txtWeigth";
+            this.txtWeigth.Size = new System.Drawing.Size(119, 23);
+            this.txtWeigth.TabIndex = 76;
+            this.txtWeigth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWeigth_KeyPress);
+            // 
+            // txtWorkoutName
+            // 
+            this.txtWorkoutName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtWorkoutName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtWorkoutName.Location = new System.Drawing.Point(367, 29);
+            this.txtWorkoutName.Multiline = true;
+            this.txtWorkoutName.Name = "txtWorkoutName";
+            this.txtWorkoutName.Size = new System.Drawing.Size(152, 23);
+            this.txtWorkoutName.TabIndex = 75;
             // 
             // pictureBox1
             // 
@@ -187,6 +240,7 @@
             // btnClearWorkoutInfo
             // 
             this.btnClearWorkoutInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.btnClearWorkoutInfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClearWorkoutInfo.FlatAppearance.BorderSize = 0;
             this.btnClearWorkoutInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearWorkoutInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -197,11 +251,12 @@
             this.btnClearWorkoutInfo.TabIndex = 73;
             this.btnClearWorkoutInfo.Text = "Clear";
             this.btnClearWorkoutInfo.UseVisualStyleBackColor = false;
-            this.btnClearWorkoutInfo.Click += new System.EventHandler(this.btnClearVehicleInfo_Click);
+            this.btnClearWorkoutInfo.Click += new System.EventHandler(this.btnClearWorkoutInfo_Click);
             // 
             // btnSaveWorkout
             // 
             this.btnSaveWorkout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.btnSaveWorkout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSaveWorkout.FlatAppearance.BorderSize = 0;
             this.btnSaveWorkout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveWorkout.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -212,16 +267,7 @@
             this.btnSaveWorkout.TabIndex = 72;
             this.btnSaveWorkout.Text = "Save";
             this.btnSaveWorkout.UseVisualStyleBackColor = false;
-            this.btnSaveWorkout.Click += new System.EventHandler(this.btnSaveVehicle_Click);
-            // 
-            // cmbVehicleType
-            // 
-            this.cmbVehicleType.FormattingEnabled = true;
-            this.cmbVehicleType.Location = new System.Drawing.Point(402, 29);
-            this.cmbVehicleType.Name = "cmbVehicleType";
-            this.cmbVehicleType.Size = new System.Drawing.Size(117, 23);
-            this.cmbVehicleType.TabIndex = 69;
-            this.cmbVehicleType.SelectedIndexChanged += new System.EventHandler(this.VehicleType_Changed);
+            this.btnSaveWorkout.Click += new System.EventHandler(this.btnSaveWorkout_Click);
             // 
             // label12
             // 
@@ -251,15 +297,16 @@
             this.label11.TabIndex = 66;
             this.label11.Text = "Reps";
             // 
-            // txtVehicleVin
+            // txtReps
             // 
-            this.txtVehicleVin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtVehicleVin.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtVehicleVin.Location = new System.Drawing.Point(360, 296);
-            this.txtVehicleVin.Multiline = true;
-            this.txtVehicleVin.Name = "txtVehicleVin";
-            this.txtVehicleVin.Size = new System.Drawing.Size(149, 23);
-            this.txtVehicleVin.TabIndex = 65;
+            this.txtReps.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtReps.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtReps.Location = new System.Drawing.Point(360, 296);
+            this.txtReps.Multiline = true;
+            this.txtReps.Name = "txtReps";
+            this.txtReps.Size = new System.Drawing.Size(149, 23);
+            this.txtReps.TabIndex = 65;
+            this.txtReps.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReps_KeyPress);
             // 
             // panel12
             // 
@@ -279,16 +326,16 @@
             this.label9.TabIndex = 60;
             this.label9.Text = "Sets";
             // 
-            // txtVehicleMileage
+            // txtSets
             // 
-            this.txtVehicleMileage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtVehicleMileage.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtVehicleMileage.Location = new System.Drawing.Point(683, 296);
-            this.txtVehicleMileage.Multiline = true;
-            this.txtVehicleMileage.Name = "txtVehicleMileage";
-            this.txtVehicleMileage.Size = new System.Drawing.Size(119, 23);
-            this.txtVehicleMileage.TabIndex = 59;
-            this.txtVehicleMileage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVehicleMileage_KeyPress);
+            this.txtSets.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSets.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtSets.Location = new System.Drawing.Point(683, 296);
+            this.txtSets.Multiline = true;
+            this.txtSets.Name = "txtSets";
+            this.txtSets.Size = new System.Drawing.Size(136, 23);
+            this.txtSets.TabIndex = 59;
+            this.txtSets.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSets_KeyPress);
             // 
             // panel10
             // 
@@ -297,14 +344,6 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(210, 1);
             this.panel10.TabIndex = 58;
-            // 
-            // cmbVehicleCondition
-            // 
-            this.cmbVehicleCondition.FormattingEnabled = true;
-            this.cmbVehicleCondition.Location = new System.Drawing.Point(998, 297);
-            this.cmbVehicleCondition.Name = "cmbVehicleCondition";
-            this.cmbVehicleCondition.Size = new System.Drawing.Size(117, 23);
-            this.cmbVehicleCondition.TabIndex = 57;
             // 
             // label8
             // 
@@ -324,14 +363,6 @@
             this.panel9.Size = new System.Drawing.Size(210, 1);
             this.panel9.TabIndex = 55;
             // 
-            // cmbVehicleFuelType
-            // 
-            this.cmbVehicleFuelType.FormattingEnabled = true;
-            this.cmbVehicleFuelType.Location = new System.Drawing.Point(998, 109);
-            this.cmbVehicleFuelType.Name = "cmbVehicleFuelType";
-            this.cmbVehicleFuelType.Size = new System.Drawing.Size(117, 23);
-            this.cmbVehicleFuelType.TabIndex = 54;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -350,14 +381,6 @@
             this.panel8.Size = new System.Drawing.Size(210, 1);
             this.panel8.TabIndex = 52;
             // 
-            // cmbVehicleTransmission
-            // 
-            this.cmbVehicleTransmission.FormattingEnabled = true;
-            this.cmbVehicleTransmission.Location = new System.Drawing.Point(438, 192);
-            this.cmbVehicleTransmission.Name = "cmbVehicleTransmission";
-            this.cmbVehicleTransmission.Size = new System.Drawing.Size(117, 23);
-            this.cmbVehicleTransmission.TabIndex = 51;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -373,16 +396,8 @@
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
             this.panel7.Location = new System.Drawing.Point(307, 220);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(250, 1);
+            this.panel7.Size = new System.Drawing.Size(210, 1);
             this.panel7.TabIndex = 49;
-            // 
-            // cmbVehicleBodyType
-            // 
-            this.cmbVehicleBodyType.FormattingEnabled = true;
-            this.cmbVehicleBodyType.Location = new System.Drawing.Point(704, 109);
-            this.cmbVehicleBodyType.Name = "cmbVehicleBodyType";
-            this.cmbVehicleBodyType.Size = new System.Drawing.Size(117, 23);
-            this.cmbVehicleBodyType.TabIndex = 48;
             // 
             // label4
             // 
@@ -401,14 +416,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(210, 1);
             this.panel5.TabIndex = 46;
-            // 
-            // cmbVehicleColor
-            // 
-            this.cmbVehicleColor.FormattingEnabled = true;
-            this.cmbVehicleColor.Location = new System.Drawing.Point(402, 109);
-            this.cmbVehicleColor.Name = "cmbVehicleColor";
-            this.cmbVehicleColor.Size = new System.Drawing.Size(117, 23);
-            this.cmbVehicleColor.TabIndex = 45;
             // 
             // label2
             // 
@@ -438,33 +445,31 @@
             this.label3.TabIndex = 42;
             this.label3.Text = "Comment";
             // 
-            // txtVehicleYom
+            // txtComment
             // 
-            this.txtVehicleYom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtVehicleYom.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtVehicleYom.Location = new System.Drawing.Point(474, 363);
-            this.txtVehicleYom.Multiline = true;
-            this.txtVehicleYom.Name = "txtVehicleYom";
-            this.txtVehicleYom.Size = new System.Drawing.Size(107, 23);
-            this.txtVehicleYom.TabIndex = 41;
-            this.txtVehicleYom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVehicleYom_KeyPress);
+            this.txtComment.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtComment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtComment.Location = new System.Drawing.Point(400, 363);
+            this.txtComment.Multiline = true;
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(715, 23);
+            this.txtComment.TabIndex = 41;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
             this.panel3.Location = new System.Drawing.Point(301, 392);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(280, 1);
+            this.panel3.Size = new System.Drawing.Size(812, 1);
             this.panel3.TabIndex = 40;
             // 
-            // cmbVehicleMake
+            // cmbWorkoutType
             // 
-            this.cmbVehicleMake.FormattingEnabled = true;
-            this.cmbVehicleMake.Location = new System.Drawing.Point(702, 29);
-            this.cmbVehicleMake.Name = "cmbVehicleMake";
-            this.cmbVehicleMake.Size = new System.Drawing.Size(117, 23);
-            this.cmbVehicleMake.TabIndex = 36;
-            this.cmbVehicleMake.SelectedIndexChanged += new System.EventHandler(this.VehicleMake_Changed);
+            this.cmbWorkoutType.FormattingEnabled = true;
+            this.cmbWorkoutType.Location = new System.Drawing.Point(702, 29);
+            this.cmbWorkoutType.Name = "cmbWorkoutType";
+            this.cmbWorkoutType.Size = new System.Drawing.Size(117, 23);
+            this.cmbWorkoutType.TabIndex = 36;
             // 
             // label7
             // 
@@ -501,7 +506,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LogWorkoutForm";
             this.Text = "AddVehicleForm";
-            this.Load += new System.EventHandler(this.AddVehicle_Load);
+            this.Load += new System.EventHandler(this.AddWorkout_Load);
             this.panelAddVehicleMain.ResumeLayout(false);
             this.panelAddVehicleHeader.ResumeLayout(false);
             this.panelAddVehicleHeader.PerformLayout();
@@ -520,34 +525,28 @@
         private System.Windows.Forms.Panel panelAddVehicleHeader;
         private System.Windows.Forms.PictureBox pictureBoxClose;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cmbVehicleMake;
+        private System.Windows.Forms.ComboBox cmbWorkoutType;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtVehicleYom;
+        private System.Windows.Forms.TextBox txtComment;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ComboBox cmbVehicleColor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ComboBox cmbVehicleBodyType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.ComboBox cmbVehicleTransmission;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.ComboBox cmbVehicleFuelType;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.ComboBox cmbVehicleCondition;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtVehicleMileage;
+        private System.Windows.Forms.TextBox txtSets;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtVehicleVin;
+        private System.Windows.Forms.TextBox txtReps;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.ComboBox cmbVehicleType;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Button btnClearWorkoutInfo;
@@ -555,5 +554,11 @@
         private System.Windows.Forms.Label lblManageVehicleTitle;
         private System.Windows.Forms.PictureBox pictureBoxMinimize;
         private PictureBox pictureBox1;
+        private TextBox txtWorkoutName;
+        private TextBox txtWeigth;
+        private CheckBox chbIsRecurring;
+        private DateTimePicker dtpWorkoutDate;
+        private DateTimePicker dtpEndTime;
+        private DateTimePicker dtpStartTime;
     }
 }

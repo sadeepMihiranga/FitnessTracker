@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FitnessTracker.Controller;
+using FitnessTracker.Model;
+using FitnessTracker.View.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +15,21 @@ namespace FitnessTracker.View
 {
     public partial class LogWorkoutForm : Form
     {
+        string EventToHandle = "Add";
+
         public LogWorkoutForm(string evenToHandle, long workoutId)
         {
             InitializeComponent();
+
+            this.EventToHandle = evenToHandle;
+
+            if (evenToHandle.Equals("Edit") && workoutId > 0)
+            {
+                lblManageVehicleTitle.Text = "Edit Vehicle Details";
+                btnSaveWorkout.Text = "Update";
+
+                //LoadVehicleDataToForm(vehicleId);
+            }
         }
 
         private void pictureBoxMinimize_Click(object sender, EventArgs e)
@@ -26,68 +41,22 @@ namespace FitnessTracker.View
         {
             this.Close();
             Environment.Exit(0);
-        }
+        } 
 
-        /* handle image selection */
-        private void btnAddVehicleImage_Click(object sender, EventArgs e)
+        private void btnSaveWorkout_Click(object sender, EventArgs e)
         {
-            /*OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = @"Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.gif;*.png;*.jpg";
+            string name = txtWorkoutName.Text;
+            string type = (string)cmbWorkoutType.SelectedValue;
+            DateTime date = dtpWorkoutDate.Value;
+            DateTime start = dtpStartTime.Value;
+            DateTime end = dtpEndTime.Value;
+            string weigth = txtWeigth.Text;
+            string reps = txtReps.Text;
+            string sets = txtSets.Text;
+            string comment = txtComment.Text;
+            bool isRecurring = chbIsRecurring.Checked;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                txtVehicleImageUrl.Text = openFileDialog.FileName;
-                pictureBoxVehicleImage.Image = new Bitmap(openFileDialog.FileName);
-            }*/
-        }
-
-        /* populate vehicle body type according to the vehicle type */
-        private void VehicleType_Changed(object sender, EventArgs e)
-        {
-            /*var selectedValue = Convert.ToString(cmbVehicleType.SelectedValue);
-
-            if (selectedValue.Split(',').Length > 1)
-                return;
-
-            if (selectedValue.Equals("VTCAR"))
-            {
-                cmbVehicleBodyType.Enabled = true;
-                FormsHandler.PopulateDropDownListByCmrfCode(cmbVehicleBodyType, CommonRefference.VHBDTP);
-            }
-            else
-            {
-                cmbVehicleBodyType.DataSource = null;
-                cmbVehicleBodyType.Items.Clear();
-                cmbVehicleBodyType.Enabled = false;
-            }*/
-        }
-
-        /* populate vehicle model type according to the vehicle make */
-        private void VehicleMake_Changed(object sender, EventArgs e)
-        {
-            /*var selectedValue = Convert.ToString(cmbVehicleMake.SelectedValue);
-
-            if (selectedValue.Split(',').Length > 1)
-                return;
-
-            CommonRefference commonRefference = new CommonRefference();
-            DropDownListPopulator.polulateComboboxFromCommonRefrence(commonRefference.GetCommonRefferencesByCodeAndParentCode(CommonRefference.VHMDL, selectedValue), cmbVehicleModel);*/
-        }
-
-        private void btnSaveVehicle_Click(object sender, EventArgs e)
-        {
-            /*string vehicleType = (string)cmbVehicleType.SelectedValue;
-            string vehicleMake = (string)cmbVehicleMake.SelectedValue;
-            string vehicleModel = (string)cmbVehicleModel.SelectedValue;
-            string vehicleColor = (string)cmbVehicleColor.SelectedValue;
-            string vehicleBodyType = (string)cmbVehicleBodyType.SelectedValue;
-            string vehicleFuelType = (string)cmbVehicleFuelType.SelectedValue;
-            string vehicleTransmission = (string)cmbVehicleTransmission.SelectedValue;
-            string vehicleCondition = (string)cmbVehicleCondition.SelectedValue;
-            string vin = txtVehicleVin.Text;
-            string yom = txtVehicleYom.Text;
-
-            int mileage = 0;
+            /*int mileage = 0;
             double price = 0;
             Vehicle vehicle = null;
             String imageSavedLocation = null;
@@ -126,74 +95,93 @@ namespace FitnessTracker.View
                 price = Convert.ToDouble(txtVehiclePrice.Text);
 
             if (!String.IsNullOrEmpty(txtVehicleMileage.Text))
-                mileage = Convert.ToInt32(txtVehicleMileage.Text);
+                mileage = Convert.ToInt32(txtVehicleMileage.Text);*/
 
-            if (SubmitButtonStatus.Equals("Save"))
+            if (EventToHandle.Equals("Add"))
             {
                 try
                 {
-                    vehicle = new Vehicle(vin, vehicleMake, vehicleModel, yom, vehicleColor, vehicleBodyType, vehicleTransmission,
-                    vehicleFuelType, vehicleCondition, mileage, price, 1, 1, vehicleType);
-                    long CreatedVehicleId = vehicle.InsertAVehicle(vehicle);
+                    WorkoutController workoutController = new();
+                    WorkoutTypeController workoutTypeController = new();
 
-                    if (!String.IsNullOrEmpty(txtVehicleImageUrl.Text))
-                        vehicle.InsertVehicleImage(CreatedVehicleId, imageSavedLocation);
+                    WorkoutTypeModel workoutType = workoutTypeController.GetById(long.Parse(type));
 
-                    MessageBox.Show("Vehicle Inserted. Id : " + CreatedVehicleId, "Opertation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (workoutType == null)
+                    {
+                        FormsHandler.InvalidValueMessage("Workout type is invalid.");
+                        return;
+                    }
+
+                    WorkoutModel workout = new()
+                    {
+                        Name = name,
+                        Type = workoutType,
+                        Date = date,
+                        StartTime = start,
+                        EndTime = end,
+                        Weight = int.Parse(weigth),
+                        Reps = int.Parse(reps),
+                        Sets = int.Parse(sets),
+                        IsRecurring = isRecurring
+                    };
+
+                    workoutController.LogWorkout(workout);
+
+                    FormsHandler.OperationSuccessMessage("Workout logged.");
                 }
                 catch (Exception ex)
                 {
-                    FormsHandler.ShowOperationFailedErrorMessage(ex.Message);
+                    FormsHandler.OperationFailedErrorMessage(ex.Message);
                 }
                 finally
                 {
-                    if (vehicle != null)
-                        vehicle = null;
+                    
                 }
             }
-            else if (SubmitButtonStatus.Equals("Edit"))
+            else if (EventToHandle.Equals("Edit"))
             {
-                // handle vehicle details edit
-            }*/
+                // handle workout details edit
+            }
         }
 
-        private void txtVehicleMileage_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtSets_KeyPress(object sender, KeyPressEventArgs e)
         {
             FormsHandler.AllowOnlyNumber(e);
         }
 
-        private void txtVehicleYom_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtReps_KeyPress(object sender, KeyPressEventArgs e)
         {
             FormsHandler.AllowOnlyNumber(e);
         }
 
-        private void txtVehiclePrice_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtWeigth_KeyPress(object sender, KeyPressEventArgs e)
         {
             FormsHandler.AllowOnlyNumber(e);
         }
 
-        private void btnClearVehicleInfo_Click(object sender, EventArgs e)
+        private void btnClearWorkoutInfo_Click(object sender, EventArgs e)
         {
-            cmbVehicleBodyType.SelectedValue = "NA";
-            cmbVehicleColor.SelectedValue = "NA";
-            cmbVehicleCondition.SelectedValue = "NA";
-            cmbVehicleFuelType.SelectedValue = "NA";
-            cmbVehicleMake.SelectedValue = "NA";
-            cmbVehicleTransmission.SelectedValue = "NA";
-            cmbVehicleType.SelectedValue = "NA";
-            txtVehicleMileage.Text = "";
-            txtVehicleVin.Text = "";
-            txtVehicleYom.Text = "";
+            cmbWorkoutType.SelectedValue = "NA";
+            txtSets.Text = "";
+            txtReps.Text = "";
+            txtComment.Text = "";
+            txtWeigth.Text = "";
+            txtWorkoutName.Text = "";
         }
 
-        private void AddVehicle_Load(object sender, EventArgs e)
+        private void AddWorkout_Load(object sender, EventArgs e)
         {
-            /*FormsHandler.PopulateDropDownListByCmrfCode(cmbVehicleType, CommonRefference.VHTPE);
-            FormsHandler.PopulateDropDownListByCmrfCode(cmbVehicleMake, CommonRefference.VHMKE);
-            FormsHandler.PopulateDropDownListByCmrfCode(cmbVehicleColor, CommonRefference.VHCLR);
-            FormsHandler.PopulateDropDownListByCmrfCode(cmbVehicleFuelType, CommonRefference.VHFLTP);
-            FormsHandler.PopulateDropDownListByCmrfCode(cmbVehicleTransmission, CommonRefference.VHTRNS);
-            FormsHandler.PopulateDropDownListByCmrfCode(cmbVehicleCondition, CommonRefference.VHCDN);*/
+            dtpWorkoutDate.Format = DateTimePickerFormat.Custom;
+            dtpWorkoutDate.CustomFormat = "ddd dd MMM yyyy"; // display the date as "Mon 27 Feb 2023". 
+
+            dtpStartTime.Format = DateTimePickerFormat.Time;
+            dtpStartTime.ShowUpDown = true;
+
+            dtpEndTime.Format = DateTimePickerFormat.Time;
+            dtpEndTime.ShowUpDown = true;
+
+            WorkoutTypeController workoutTypeController = new();
+            DropDownListPopulator.PopulateCombobox(workoutTypeController.ToComboboxList(), cmbWorkoutType);
         }
     }
 }

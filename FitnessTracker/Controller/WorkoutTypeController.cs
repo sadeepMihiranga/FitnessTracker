@@ -18,5 +18,10 @@ namespace FitnessTracker.Controller
             List<WorkoutTypeModel> workoutTypes = WorkoutTypeRepository.GetALL();
             return workoutTypes.Select(i => new ComboboxModel(i.Id, i.Name)).ToList();
         }
+
+        public WorkoutTypeModel GetById(long id)
+        {
+            return WorkoutTypeRepository.GetById(id);
+        }
     }
 }

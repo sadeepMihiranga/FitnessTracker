@@ -22,6 +22,16 @@ namespace FitnessTracker.Repository
         }
         #endregion
 
+        #region Get by Id
+        public static WorkoutTypeModel GetById(long id)
+        {
+            return workoutTypes
+                .Where(wt => wt.Id == id)
+                .Where(wt => wt.Status == Enum.CommonStatusEnum.ACTIVE)
+                .First();
+        }
+        #endregion
+
         public static long GetNextAvailableId()
         {
             lock (workoutTypeSyncLock)

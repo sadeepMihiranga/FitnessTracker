@@ -72,6 +72,12 @@ namespace FitnessTracker.View
             return;
         }
 
+        public static void InvalidValueMessage(string message)
+        {
+            MessageBox.Show(message, "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
         public static void AllowOnlyNumber(KeyPressEventArgs e)
         {
             if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
