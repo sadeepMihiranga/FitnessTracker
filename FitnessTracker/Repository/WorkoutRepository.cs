@@ -27,6 +27,22 @@ namespace FitnessTracker.Repository
         }
         #endregion
 
+        #region Remove Workout
+        public static void Remove(WorkoutModel workout)
+        {
+            workouts.Remove(workout);
+        }
+        #endregion
+
+        #region Get Workout by ID
+        public static WorkoutModel GetById(long workoutId)
+        {
+            return workouts
+                 .Where(w => w.Id == workoutId)
+                 .Where(w => w.Status == Enum.CommonStatusEnum.ACTIVE).First();
+        }
+        #endregion
+
         public static long GetNextAvailableId()
         {
             lock (workoutsSyncLock)

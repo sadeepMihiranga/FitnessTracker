@@ -1,17 +1,9 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.Enum;
 using FitnessTracker.Model;
 using FitnessTracker.Repository;
 using FitnessTracker.View.CustomUserControl;
 using FitnessTracker.View.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FitnessTracker.View
 {
@@ -20,10 +12,14 @@ namespace FitnessTracker.View
         int currentPage = 0;
         public int pageSize = 7;
         long LoggedUserId;
+        private Panel panelMain;
 
-        public WorkoutForm(long loggedUserId)
+        internal EventType WorkoutType { get; private set; }
+
+        public WorkoutForm(long loggedUserId, Panel panelMain)
         {
             this.LoggedUserId = loggedUserId;
+            this.panelMain = panelMain;
 
             InitializeComponent();
 
@@ -77,7 +73,7 @@ namespace FitnessTracker.View
                 }
                 catch (Exception ex) { }*/
 
-                workoutCards.Add(new WorkoutCardUserControl(this.LoggedUserId, workout.Id)
+                workoutCards.Add(new WorkoutCardUserControl(this.LoggedUserId, workout.Id, panelMain)
                 {
                     Title = workout.Type.Name,
                     Weigth = workout.Weight + " KG",
@@ -158,7 +154,7 @@ namespace FitnessTracker.View
 
         private void btnLogWorkout_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new LogWorkoutForm("Add", 0), panelWorkoutMain);
+            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.SAVE, 0), panelWorkoutMain);
         }
     }
 }

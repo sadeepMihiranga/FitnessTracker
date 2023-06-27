@@ -81,7 +81,7 @@ namespace FitnessTracker
             WorkoutModel workout2 = new()
             {
                 Name = "Running 02",
-                Type = runningWorkoutType,
+                Type = cyclingWorkoutType,
                 Date = DateTime.Now,
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
@@ -93,7 +93,7 @@ namespace FitnessTracker
             WorkoutModel workout3 = new()
             {
                 Name = "Running 03",
-                Type = runningWorkoutType,
+                Type = walkingWorkoutType,
                 Date = DateTime.Now,
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
@@ -105,7 +105,7 @@ namespace FitnessTracker
             WorkoutModel workout4 = new()
             {
                 Name = "Running 04",
-                Type = runningWorkoutType,
+                Type = swimmingWorkoutType,
                 Date = DateTime.Now,
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
@@ -141,7 +141,7 @@ namespace FitnessTracker
             WorkoutModel workout7 = new()
             {
                 Name = "Running 07",
-                Type = runningWorkoutType,
+                Type = swimmingWorkoutType,
                 Date = DateTime.Now,
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
@@ -153,7 +153,7 @@ namespace FitnessTracker
             WorkoutModel workout8 = new()
             {
                 Name = "Running 08",
-                Type = runningWorkoutType,
+                Type = cyclingWorkoutType,
                 Date = DateTime.Now,
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,

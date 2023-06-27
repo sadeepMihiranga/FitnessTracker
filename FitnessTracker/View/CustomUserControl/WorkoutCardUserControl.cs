@@ -1,18 +1,22 @@
-﻿using System.ComponentModel;
+﻿using FitnessTracker.Controller;
+using FitnessTracker.Enum;
+using System.ComponentModel;
 
 namespace FitnessTracker.View.CustomUserControl
 {
     public partial class WorkoutCardUserControl : UserControl
     {
-        long LogedUserId;
+        private long LoggedUserId;
+        private Panel PanelMain;
+        private long WorkoutId;
 
-        public WorkoutCardUserControl(long logedUserId, long workoutId)
+        public WorkoutCardUserControl(long logedUserId, long workoutId, Panel panelMain)
         {
-            InitializeComponent();
-            this.LogedUserId = logedUserId;
+            this.LoggedUserId = logedUserId;
+            this.PanelMain = panelMain;
+            this.WorkoutId = workoutId;
 
-            txtHiddenVehicleId.Text = Convert.ToString(workoutId);
-            txtHiddenVehicleId.Visible = false;
+            InitializeComponent();
         }
 
         private string _title;
@@ -58,20 +62,18 @@ namespace FitnessTracker.View.CustomUserControl
 
         private void pictureBoxEdit_Click(object sender, EventArgs e)
         {
-            /*VehicleForm vehicleForm = new VehicleForm(this.Roles, this.LogedUserId);
-            vehicleForm.OpenEditView(Convert.ToInt64(txtHiddenVehicleId.Text));*/
+            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.EDIT, WorkoutId), PanelMain);
         }
 
         private void pictureBoxRemove_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure want to remove this Vehicle ?", "Message",
+            if (MessageBox.Show("Are you sure want to remove this Workout ?", "Message",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                /*Vehicle vehicle = new Vehicle();
-                vehicle.RemoveVehicle(Convert.ToInt64(txtHiddenVehicleId.Text));
+                WorkoutController workoutController = new();
+                workoutController.RemoveWorkout(WorkoutId);
 
-                VehicleForm vehicleForm = new VehicleForm(this.Roles, this.LogedUserId);*/
-                // need to check refresh form after removing a vehicle
+                FormsHandler.LoadForm(new WorkoutForm(this.LoggedUserId, PanelMain), PanelMain);
             }
         }
 
@@ -84,9 +86,7 @@ namespace FitnessTracker.View.CustomUserControl
 
         private void pictureBoxView_Click(object sender, EventArgs e)
         {
-            /*OrderVehicleDialogForm orderCarDialogForm =
-                new OrderVehicleDialogForm(this.Roles, Convert.ToInt64(txtHiddenVehicleId.Text), this.LogedUserId, "View");
-            orderCarDialogForm.Show();*/
+            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.VIEW, WorkoutId), PanelMain);
         }
     }
 }

@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FitnessTracker.View
+﻿namespace FitnessTracker.View
 {
     public partial class MainMenuForm : Form
     {
@@ -33,7 +23,7 @@ namespace FitnessTracker.View
 
         private void btnNavWorkout_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new WorkoutForm(this.LoggedUserId), panelMain);
+            FormsHandler.LoadForm(new WorkoutForm(this.LoggedUserId, panelMain), panelMain);
         }
     }
 }

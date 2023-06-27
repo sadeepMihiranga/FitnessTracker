@@ -12,5 +12,17 @@ namespace FitnessTracker.Controller
 
             return WorkoutRepository.Save(workout).Id;
         }
+
+        public void RemoveWorkout(long workoutId)
+        {
+            WorkoutModel workout = WorkoutRepository.GetById(workoutId);
+
+            if (workout == null)
+            {
+                
+            }
+
+            WorkoutRepository.Remove(workout);
+        }
     }
 }

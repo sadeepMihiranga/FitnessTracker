@@ -35,7 +35,7 @@
             this.lblWorkoutDateTime = new System.Windows.Forms.Label();
             this.pictureBoxEdit = new System.Windows.Forms.PictureBox();
             this.pictureBoxView = new System.Windows.Forms.PictureBox();
-            this.txtHiddenVehicleId = new System.Windows.Forms.TextBox();
+            this.txtHiddenWorkoutId = new System.Windows.Forms.TextBox();
             this.pictureBoxRemove = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxVehicleImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEdit)).BeginInit();
@@ -112,13 +112,13 @@
             this.pictureBoxView.TabStop = false;
             this.pictureBoxView.Click += new System.EventHandler(this.pictureBoxView_Click);
             // 
-            // txtHiddenVehicleId
+            // txtHiddenWorkoutId
             // 
-            this.txtHiddenVehicleId.Location = new System.Drawing.Point(315, 48);
-            this.txtHiddenVehicleId.Name = "txtHiddenVehicleId";
-            this.txtHiddenVehicleId.Size = new System.Drawing.Size(56, 23);
-            this.txtHiddenVehicleId.TabIndex = 13;
-            this.txtHiddenVehicleId.Visible = false;
+            this.txtHiddenWorkoutId.Location = new System.Drawing.Point(315, 48);
+            this.txtHiddenWorkoutId.Name = "txtHiddenWorkoutId";
+            this.txtHiddenWorkoutId.Size = new System.Drawing.Size(56, 23);
+            this.txtHiddenWorkoutId.TabIndex = 13;
+            this.txtHiddenWorkoutId.Visible = false;
             // 
             // pictureBoxRemove
             // 
@@ -138,7 +138,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.Controls.Add(this.pictureBoxRemove);
-            this.Controls.Add(this.txtHiddenVehicleId);
+            this.Controls.Add(this.txtHiddenWorkoutId);
             this.Controls.Add(this.pictureBoxView);
             this.Controls.Add(this.pictureBoxEdit);
             this.Controls.Add(this.lblWorkoutDateTime);
@@ -165,7 +165,7 @@
         private System.Windows.Forms.Label lblWorkoutDateTime;
         private System.Windows.Forms.PictureBox pictureBoxEdit;
         private System.Windows.Forms.PictureBox pictureBoxView;
-        private System.Windows.Forms.TextBox txtHiddenVehicleId;
+        private System.Windows.Forms.TextBox txtHiddenWorkoutId;
         private System.Windows.Forms.PictureBox pictureBoxRemove;
     }
 }

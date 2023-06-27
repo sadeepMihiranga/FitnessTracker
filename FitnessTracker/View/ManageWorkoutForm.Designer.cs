@@ -1,6 +1,6 @@
 ﻿namespace FitnessTracker.View
 {
-    partial class LogWorkoutForm
+    partial class ManageWorkoutForm
     {
         /// <summary>
         /// Required designer variable.
