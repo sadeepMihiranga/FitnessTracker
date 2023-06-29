@@ -34,6 +34,12 @@
             this.lblManageVehicleTitle = new System.Windows.Forms.Label();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panelLogWorkout = new System.Windows.Forms.Panel();
+            this.cmbRecursionDate = new System.Windows.Forms.ComboBox();
+            this.lblRecursionDate = new System.Windows.Forms.Label();
+            this.panelRecursionDate = new System.Windows.Forms.Panel();
+            this.cmbRecursionType = new System.Windows.Forms.ComboBox();
+            this.lblRecursionType = new System.Windows.Forms.Label();
+            this.panelLineRecursionType = new System.Windows.Forms.Panel();
             this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
             this.dtpStartTime = new System.Windows.Forms.DateTimePicker();
             this.dtpWorkoutDate = new System.Windows.Forms.DateTimePicker();
@@ -137,6 +143,12 @@
             // panelLogWorkout
             // 
             this.panelLogWorkout.BackColor = System.Drawing.Color.White;
+            this.panelLogWorkout.Controls.Add(this.cmbRecursionDate);
+            this.panelLogWorkout.Controls.Add(this.lblRecursionDate);
+            this.panelLogWorkout.Controls.Add(this.panelRecursionDate);
+            this.panelLogWorkout.Controls.Add(this.cmbRecursionType);
+            this.panelLogWorkout.Controls.Add(this.lblRecursionType);
+            this.panelLogWorkout.Controls.Add(this.panelLineRecursionType);
             this.panelLogWorkout.Controls.Add(this.dtpEndTime);
             this.panelLogWorkout.Controls.Add(this.dtpStartTime);
             this.panelLogWorkout.Controls.Add(this.dtpWorkoutDate);
@@ -177,6 +189,59 @@
             this.panelLogWorkout.Size = new System.Drawing.Size(1150, 652);
             this.panelLogWorkout.TabIndex = 0;
             // 
+            // cmbRecursionDate
+            // 
+            this.cmbRecursionDate.FormattingEnabled = true;
+            this.cmbRecursionDate.Location = new System.Drawing.Point(979, 341);
+            this.cmbRecursionDate.Name = "cmbRecursionDate";
+            this.cmbRecursionDate.Size = new System.Drawing.Size(134, 23);
+            this.cmbRecursionDate.TabIndex = 86;
+            // 
+            // lblRecursionDate
+            // 
+            this.lblRecursionDate.AutoSize = true;
+            this.lblRecursionDate.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblRecursionDate.Location = new System.Drawing.Point(861, 343);
+            this.lblRecursionDate.Name = "lblRecursionDate";
+            this.lblRecursionDate.Size = new System.Drawing.Size(112, 20);
+            this.lblRecursionDate.TabIndex = 85;
+            this.lblRecursionDate.Text = "Recursion Date";
+            // 
+            // panelRecursionDate
+            // 
+            this.panelRecursionDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.panelRecursionDate.Location = new System.Drawing.Point(864, 369);
+            this.panelRecursionDate.Name = "panelRecursionDate";
+            this.panelRecursionDate.Size = new System.Drawing.Size(250, 1);
+            this.panelRecursionDate.TabIndex = 84;
+            // 
+            // cmbRecursionType
+            // 
+            this.cmbRecursionType.FormattingEnabled = true;
+            this.cmbRecursionType.Location = new System.Drawing.Point(611, 341);
+            this.cmbRecursionType.Name = "cmbRecursionType";
+            this.cmbRecursionType.Size = new System.Drawing.Size(174, 23);
+            this.cmbRecursionType.TabIndex = 83;
+            this.cmbRecursionType.SelectedIndexChanged += new System.EventHandler(this.cmbRecursionType_SelectedIndexChanged);
+            // 
+            // lblRecursionType
+            // 
+            this.lblRecursionType.AutoSize = true;
+            this.lblRecursionType.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblRecursionType.Location = new System.Drawing.Point(493, 343);
+            this.lblRecursionType.Name = "lblRecursionType";
+            this.lblRecursionType.Size = new System.Drawing.Size(112, 20);
+            this.lblRecursionType.TabIndex = 82;
+            this.lblRecursionType.Text = "Recursion Type";
+            // 
+            // panelLineRecursionType
+            // 
+            this.panelLineRecursionType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.panelLineRecursionType.Location = new System.Drawing.Point(495, 369);
+            this.panelLineRecursionType.Name = "panelLineRecursionType";
+            this.panelLineRecursionType.Size = new System.Drawing.Size(290, 1);
+            this.panelLineRecursionType.TabIndex = 81;
+            // 
             // dtpEndTime
             // 
             this.dtpEndTime.Location = new System.Drawing.Point(991, 108);
@@ -193,7 +258,7 @@
             // 
             // dtpWorkoutDate
             // 
-            this.dtpWorkoutDate.Location = new System.Drawing.Point(367, 109);
+            this.dtpWorkoutDate.Location = new System.Drawing.Point(360, 109);
             this.dtpWorkoutDate.Name = "dtpWorkoutDate";
             this.dtpWorkoutDate.Size = new System.Drawing.Size(152, 23);
             this.dtpWorkoutDate.TabIndex = 78;
@@ -201,20 +266,21 @@
             // chbIsRecurring
             // 
             this.chbIsRecurring.AutoSize = true;
-            this.chbIsRecurring.Location = new System.Drawing.Point(1096, 304);
+            this.chbIsRecurring.Location = new System.Drawing.Point(406, 350);
             this.chbIsRecurring.Name = "chbIsRecurring";
             this.chbIsRecurring.Size = new System.Drawing.Size(15, 14);
             this.chbIsRecurring.TabIndex = 77;
             this.chbIsRecurring.UseVisualStyleBackColor = true;
+            this.chbIsRecurring.CheckedChanged += new System.EventHandler(this.chbIsRecurring_CheckedChanged);
             // 
             // txtWeigth
             // 
             this.txtWeigth.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtWeigth.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtWeigth.Location = new System.Drawing.Point(400, 192);
+            this.txtWeigth.Location = new System.Drawing.Point(368, 186);
             this.txtWeigth.Multiline = true;
             this.txtWeigth.Name = "txtWeigth";
-            this.txtWeigth.Size = new System.Drawing.Size(119, 23);
+            this.txtWeigth.Size = new System.Drawing.Size(146, 23);
             this.txtWeigth.TabIndex = 76;
             this.txtWeigth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWeigth_KeyPress);
             // 
@@ -222,7 +288,7 @@
             // 
             this.txtWorkoutName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtWorkoutName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtWorkoutName.Location = new System.Drawing.Point(367, 29);
+            this.txtWorkoutName.Location = new System.Drawing.Point(359, 29);
             this.txtWorkoutName.Multiline = true;
             this.txtWorkoutName.Name = "txtWorkoutName";
             this.txtWorkoutName.Size = new System.Drawing.Size(152, 23);
@@ -231,9 +297,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::FitnessTracker.Properties.Resources.quote;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 29);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 57);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(253, 364);
+            this.pictureBox1.Size = new System.Drawing.Size(253, 347);
             this.pictureBox1.TabIndex = 74;
             this.pictureBox1.TabStop = false;
             // 
@@ -273,7 +339,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(311, 31);
+            this.label12.Location = new System.Drawing.Point(303, 31);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(50, 20);
             this.label12.TabIndex = 68;
@@ -282,7 +348,7 @@
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            this.panel13.Location = new System.Drawing.Point(309, 57);
+            this.panel13.Location = new System.Drawing.Point(301, 57);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(210, 1);
             this.panel13.TabIndex = 67;
@@ -291,7 +357,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(305, 299);
+            this.label11.Location = new System.Drawing.Point(305, 266);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(41, 20);
             this.label11.TabIndex = 66;
@@ -301,17 +367,17 @@
             // 
             this.txtReps.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtReps.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtReps.Location = new System.Drawing.Point(360, 296);
+            this.txtReps.Location = new System.Drawing.Point(352, 263);
             this.txtReps.Multiline = true;
             this.txtReps.Name = "txtReps";
-            this.txtReps.Size = new System.Drawing.Size(149, 23);
+            this.txtReps.Size = new System.Drawing.Size(157, 23);
             this.txtReps.TabIndex = 65;
             this.txtReps.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReps_KeyPress);
             // 
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            this.panel12.Location = new System.Drawing.Point(303, 325);
+            this.panel12.Location = new System.Drawing.Point(303, 292);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(210, 1);
             this.panel12.TabIndex = 64;
@@ -320,7 +386,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(613, 299);
+            this.label9.Location = new System.Drawing.Point(613, 266);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 20);
             this.label9.TabIndex = 60;
@@ -330,17 +396,17 @@
             // 
             this.txtSets.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSets.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSets.Location = new System.Drawing.Point(683, 296);
+            this.txtSets.Location = new System.Drawing.Point(655, 263);
             this.txtSets.Multiline = true;
             this.txtSets.Name = "txtSets";
-            this.txtSets.Size = new System.Drawing.Size(136, 23);
+            this.txtSets.Size = new System.Drawing.Size(164, 23);
             this.txtSets.TabIndex = 59;
             this.txtSets.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSets_KeyPress);
             // 
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            this.panel10.Location = new System.Drawing.Point(611, 325);
+            this.panel10.Location = new System.Drawing.Point(611, 292);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(210, 1);
             this.panel10.TabIndex = 58;
@@ -349,7 +415,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(907, 299);
+            this.label8.Location = new System.Drawing.Point(305, 344);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 20);
             this.label8.TabIndex = 56;
@@ -358,9 +424,9 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            this.panel9.Location = new System.Drawing.Point(905, 325);
+            this.panel9.Location = new System.Drawing.Point(303, 370);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(210, 1);
+            this.panel9.Size = new System.Drawing.Size(115, 1);
             this.panel9.TabIndex = 55;
             // 
             // label6
@@ -385,7 +451,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(309, 194);
+            this.label5.Location = new System.Drawing.Point(304, 188);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 20);
             this.label5.TabIndex = 50;
@@ -394,7 +460,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            this.panel7.Location = new System.Drawing.Point(307, 220);
+            this.panel7.Location = new System.Drawing.Point(302, 214);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(210, 1);
             this.panel7.TabIndex = 49;
@@ -421,7 +487,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(311, 111);
+            this.label2.Location = new System.Drawing.Point(304, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 20);
             this.label2.TabIndex = 44;
@@ -430,7 +496,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            this.panel4.Location = new System.Drawing.Point(309, 137);
+            this.panel4.Location = new System.Drawing.Point(302, 137);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(210, 1);
             this.panel4.TabIndex = 43;
@@ -439,7 +505,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(303, 366);
+            this.label3.Location = new System.Drawing.Point(303, 416);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 20);
             this.label3.TabIndex = 42;
@@ -449,16 +515,16 @@
             // 
             this.txtComment.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtComment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtComment.Location = new System.Drawing.Point(400, 363);
+            this.txtComment.Location = new System.Drawing.Point(384, 413);
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(715, 23);
+            this.txtComment.Size = new System.Drawing.Size(731, 23);
             this.txtComment.TabIndex = 41;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            this.panel3.Location = new System.Drawing.Point(301, 392);
+            this.panel3.Location = new System.Drawing.Point(301, 442);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(812, 1);
             this.panel3.TabIndex = 40;
@@ -466,9 +532,9 @@
             // cmbWorkoutType
             // 
             this.cmbWorkoutType.FormattingEnabled = true;
-            this.cmbWorkoutType.Location = new System.Drawing.Point(702, 29);
+            this.cmbWorkoutType.Location = new System.Drawing.Point(658, 29);
             this.cmbWorkoutType.Name = "cmbWorkoutType";
-            this.cmbWorkoutType.Size = new System.Drawing.Size(117, 23);
+            this.cmbWorkoutType.Size = new System.Drawing.Size(161, 23);
             this.cmbWorkoutType.TabIndex = 36;
             // 
             // label7
@@ -497,16 +563,15 @@
             this.panel1.Size = new System.Drawing.Size(1146, 5);
             this.panel1.TabIndex = 3;
             // 
-            // LogWorkoutForm
+            // ManageWorkoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1150, 729);
             this.Controls.Add(this.panelAddVehicleMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "LogWorkoutForm";
+            this.Name = "ManageWorkoutForm";
             this.Text = "AddVehicleForm";
-            this.Load += new System.EventHandler(this.AddWorkout_Load);
             this.panelAddVehicleMain.ResumeLayout(false);
             this.panelAddVehicleHeader.ResumeLayout(false);
             this.panelAddVehicleHeader.PerformLayout();
@@ -560,5 +625,11 @@
         private DateTimePicker dtpWorkoutDate;
         private DateTimePicker dtpEndTime;
         private DateTimePicker dtpStartTime;
+        private ComboBox cmbRecursionType;
+        private Label lblRecursionType;
+        private Panel panelLineRecursionType;
+        private ComboBox cmbRecursionDate;
+        private Label lblRecursionDate;
+        private Panel panelRecursionDate;
     }
 }

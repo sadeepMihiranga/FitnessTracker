@@ -8,17 +8,20 @@ namespace FitnessTracker.View.Util
         {
             if (listItems.Count > 0)
             {
+                comboBox.DataSource = null;
+                comboBox.Items.Clear();
+
                 Dictionary<string, string> dictionary = new()
                 {
-                    { "Select a option", "NA" }
+                    { "NA", "Select a option" }
                 };
 
                 foreach (var item in listItems)
-                    dictionary.Add(item.Value, Convert.ToString(item.Id));
+                    dictionary.Add(Convert.ToString(item.Key), item.Value);
 
+                comboBox.DisplayMember = "Value";
+                comboBox.ValueMember = "Key";
                 comboBox.DataSource = new BindingSource(dictionary, null);
-                comboBox.DisplayMember = "Key";
-                comboBox.ValueMember = "Value";
                 comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             }
         }

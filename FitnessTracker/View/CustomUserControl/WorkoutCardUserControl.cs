@@ -77,13 +77,6 @@ namespace FitnessTracker.View.CustomUserControl
             }
         }
 
-        private void pictureBoxOrder_Click(object sender, EventArgs e)
-        {
-            /*OrderVehicleDialogForm orderCarDialogForm =
-                new OrderVehicleDialogForm(this.Roles, Convert.ToInt64(txtHiddenVehicleId.Text), this.LogedUserId, "Order");
-            orderCarDialogForm.Show();*/
-        }
-
         private void pictureBoxView_Click(object sender, EventArgs e)
         {
             FormsHandler.LoadForm(new ManageWorkoutForm(EventType.VIEW, WorkoutId), PanelMain);

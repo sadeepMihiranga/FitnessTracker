@@ -70,11 +70,14 @@ namespace FitnessTracker
             {
                 Name = "Running 01",
                 Type = runningWorkoutType,
-                Date = DateTime.Now,
+                Date = new DateTime(2023, 01, 23),
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
-                IsRecurring = false,
-                Weight = 70
+                IsRecurring = true,
+                Weight = 70,
+                Reps = 10,
+                Sets = 3,
+                Comment = "Comment"
             };
             workoutController.LogWorkout(workout1);
 
@@ -82,7 +85,7 @@ namespace FitnessTracker
             {
                 Name = "Running 02",
                 Type = cyclingWorkoutType,
-                Date = DateTime.Now,
+                Date = new DateTime(2023, 01, 23),
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
@@ -94,7 +97,7 @@ namespace FitnessTracker
             {
                 Name = "Running 03",
                 Type = walkingWorkoutType,
-                Date = DateTime.Now,
+                Date = new DateTime(2023, 01, 23),
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
@@ -106,7 +109,7 @@ namespace FitnessTracker
             {
                 Name = "Running 04",
                 Type = swimmingWorkoutType,
-                Date = DateTime.Now,
+                Date = new DateTime(2023, 01, 23),
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
@@ -118,7 +121,7 @@ namespace FitnessTracker
             {
                 Name = "Running 05",
                 Type = runningWorkoutType,
-                Date = DateTime.Now,
+                Date = new DateTime(2023, 02, 25),
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
@@ -130,7 +133,7 @@ namespace FitnessTracker
             {
                 Name = "Running 06",
                 Type = runningWorkoutType,
-                Date = DateTime.Now,
+                Date = new DateTime(2023, 01, 13),
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
@@ -142,7 +145,7 @@ namespace FitnessTracker
             {
                 Name = "Running 07",
                 Type = swimmingWorkoutType,
-                Date = DateTime.Now,
+                Date = new DateTime(2023, 03, 23),
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
@@ -154,7 +157,7 @@ namespace FitnessTracker
             {
                 Name = "Running 08",
                 Type = cyclingWorkoutType,
-                Date = DateTime.Now,
+                Date = new DateTime(2023, 02, 23),
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,

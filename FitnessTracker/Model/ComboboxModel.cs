@@ -2,12 +2,12 @@
 {
     public class ComboboxModel
     {
-        public long Id { get; set; }
+        public int Key { get; set; }
         public string Value { get; set; }
 
-        public ComboboxModel(long id, string value)
+        public ComboboxModel(int key, string value)
         {
-            Id = id;
+            Key = key;
             Value = value;
         }
     }
