@@ -280,10 +280,8 @@ namespace FitnessTracker.View
 
         private void PopulateRecursionTypes()
         {
-            List<ComboboxModel> recursionTypes = new();
-
-            recursionTypes.Add(new ComboboxModel(1, "Daily"));
-            recursionTypes.Add(new ComboboxModel(2, "Weekly"));
+            RecursionTypeController recursionTypeController = new();
+            List<ComboboxModel> recursionTypes = recursionTypeController.ToComboboxList();
 
             DropDownListPopulator.PopulateCombobox(recursionTypes, cmbRecursionType);
         }

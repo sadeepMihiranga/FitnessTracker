@@ -21,6 +21,7 @@ namespace FitnessTracker.Controller
             if (workout == null)
             {
                 FormsHandler.OperationFailedErrorMessage("Workout id invalid.");
+                return;
             }
 
             WorkoutRepository.Remove(workout);

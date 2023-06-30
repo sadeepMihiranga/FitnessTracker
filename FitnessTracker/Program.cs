@@ -22,6 +22,15 @@ namespace FitnessTracker
 
         private static void InitData()
         {
+            InsertInitUser();
+
+            InsertWorkoutInfo();
+
+            InsertRecursionType();
+        }
+
+        private static void InsertInitUser()
+        {
             UserModel user = new()
             {
                 Username = "sadeep",
@@ -36,12 +45,15 @@ namespace FitnessTracker
 
             UsersController usersController = new();
             usersController.RegisterUser(user);
+        }
 
+        private static void InsertWorkoutInfo()
+        {
             WorkoutTypeController workoutTypeController = new();
 
             WorkoutTypeModel runningWorkoutType = new()
             {
-                Name = "Running"            
+                Name = "Running"
             };
             workoutTypeController.InsertWorkoutType(runningWorkoutType);
 
@@ -62,7 +74,6 @@ namespace FitnessTracker
                 Name = "Swimming"
             };
             workoutTypeController.InsertWorkoutType(swimmingWorkoutType);
-
 
             WorkoutController workoutController = new();
 
@@ -165,6 +176,23 @@ namespace FitnessTracker
                 Weight = 70
             };
             workoutController.LogWorkout(workout8);
+        }
+
+        private static void InsertRecursionType()
+        {
+            RecursionTypeController recursionTypeController = new();
+
+            RecursionTypeModel daily = new()
+            {
+                Name = "Daily"
+            };
+            recursionTypeController.InsertRecursionType(daily);
+
+            RecursionTypeModel weekly = new()
+            {
+                Name = "Weekly"
+            };
+            recursionTypeController.InsertRecursionType(weekly);
         }
     }
 }

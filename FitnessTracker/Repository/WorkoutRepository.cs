@@ -47,21 +47,21 @@ namespace FitnessTracker.Repository
         {
             lock (workoutsSyncLock)
             {
-                long newWorkoutId = 1;
+                long newId = 1;
 
                 if (!workouts.Any())
                 {
-                    return newWorkoutId;
+                    return newId;
                 }
 
                 WorkoutModel workoutWithMaxId = workouts.Aggregate((i1, i2) => i1.Id > i2.Id ? i1 : i2);
 
                 if (workoutWithMaxId != null)
                 {
-                    newWorkoutId = workoutWithMaxId.Id + 1;
+                    newId = workoutWithMaxId.Id + 1;
                 }
 
-                return newWorkoutId;
+                return newId;
             }
         }
     }

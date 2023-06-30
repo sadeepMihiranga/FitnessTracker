@@ -30,21 +30,21 @@ namespace FitnessTracker.Repository
         {
             lock (usersSyncLock)
             {
-                long newUserId = 1;
+                long newId = 1;
 
                 if (!users.Any())
                 {
-                    return newUserId;
+                    return newId;
                 }
 
                 UserModel userWithMaxId = users.Aggregate((i1, i2) => i1.Id > i2.Id ? i1 : i2);
 
                 if (userWithMaxId != null)
                 {
-                    newUserId = userWithMaxId.Id + 1;
+                    newId = userWithMaxId.Id + 1;
                 }
 
-                return newUserId;
+                return newId;
             }
         }
     }
