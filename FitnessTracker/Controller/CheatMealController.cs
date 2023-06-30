@@ -9,7 +9,7 @@ namespace FitnessTracker.Controller
         public long LogCheatMeal(CheatMealModel cheatMeal)
         {
             cheatMeal.Id = CheatMealRepository.GetNextAvailableId();
-            cheatMeal.Status = Enum.CommonStatusEnum.ACTIVE;
+            cheatMeal.Status = Enums.CommonStatusEnum.ACTIVE;
 
             return CheatMealRepository.Save(cheatMeal).Id;
         }

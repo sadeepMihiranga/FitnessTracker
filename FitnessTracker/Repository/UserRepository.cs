@@ -21,7 +21,7 @@ namespace FitnessTracker.Repository
             return users
                 .Where(u => u.Username.Equals(username))
                 .Where(u => u.Password.Equals(password))
-                .Where(u => u.Status == Enum.CommonStatusEnum.ACTIVE)
+                .Where(u => u.Status == Enums.CommonStatusEnum.ACTIVE)
                 .First();
         }
         #endregion

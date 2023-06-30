@@ -8,7 +8,7 @@ namespace FitnessTracker.Controller
         public long RegisterUser(UserModel user)
         {
             user.Id = UserRepository.GetNextAvailableId();
-            user.Status = Enum.CommonStatusEnum.ACTIVE;
+            user.Status = Enums.CommonStatusEnum.ACTIVE;
 
             return UserRepository.Save(user).Id;
         }

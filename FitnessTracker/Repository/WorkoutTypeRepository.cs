@@ -18,7 +18,7 @@ namespace FitnessTracker.Repository
         #region Get All WorkoutTypes
         public static List<WorkoutTypeModel> GetALL()
         {
-            return workoutTypes.Where(u => u.Status == Enum.CommonStatusEnum.ACTIVE).ToList();
+            return workoutTypes.Where(u => u.Status == Enums.CommonStatusEnum.ACTIVE).ToList();
         }
         #endregion
 
@@ -27,7 +27,7 @@ namespace FitnessTracker.Repository
         {
             return workoutTypes
                 .Where(wt => wt.Id == id)
-                .Where(wt => wt.Status == Enum.CommonStatusEnum.ACTIVE)
+                .Where(wt => wt.Status == Enums.CommonStatusEnum.ACTIVE)
                 .First();
         }
         #endregion

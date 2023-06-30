@@ -1,4 +1,4 @@
-﻿using FitnessTracker.Enum;
+﻿using FitnessTracker.Enums;
 
 namespace FitnessTracker.Model
 {

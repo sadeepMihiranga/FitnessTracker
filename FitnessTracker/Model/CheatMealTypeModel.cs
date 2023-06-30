@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FitnessTracker.Model
+﻿namespace FitnessTracker.Model
 {
-    internal class CheatMealTypeModel
+    public class CheatMealTypeModel
     {
+        public long Id { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace FitnessTracker.Repository
             List<WorkoutModel> filteredWorkouts = workouts
                 .Where(w => searchParams.Type == null || (searchParams.Type != null && w.Type.Name.Equals(searchParams.Type.Name)))
                 //.Where(w => searchParams.Weight != 0 && w.Weight == searchParams.Weight)
-                .Where(w => w.Status == Enum.CommonStatusEnum.ACTIVE).ToList();
+                .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).ToList();
 
             return (List<WorkoutModel>)GetPage(filteredWorkouts, page, size);
         }
@@ -39,7 +39,7 @@ namespace FitnessTracker.Repository
         {
             return workouts
                  .Where(w => w.Id == workoutId)
-                 .Where(w => w.Status == Enum.CommonStatusEnum.ACTIVE).First();
+                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).First();
         }
         #endregion
 

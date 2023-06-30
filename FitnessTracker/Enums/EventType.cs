@@ -1,4 +1,4 @@
-﻿namespace FitnessTracker.Enum
+﻿namespace FitnessTracker.Enums
 {
     public enum EventType
     {

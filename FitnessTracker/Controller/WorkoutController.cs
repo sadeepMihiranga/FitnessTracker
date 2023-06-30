@@ -9,7 +9,7 @@ namespace FitnessTracker.Controller
         public long LogWorkout(WorkoutModel workout)
         {
             workout.Id = WorkoutRepository.GetNextAvailableId();
-            workout.Status = Enum.CommonStatusEnum.ACTIVE;
+            workout.Status = Enums.CommonStatusEnum.ACTIVE;
 
             return WorkoutRepository.Save(workout).Id;
         }

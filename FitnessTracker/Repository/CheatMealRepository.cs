@@ -20,7 +20,7 @@ namespace FitnessTracker.Repository
         {
             List<CheatMealModel> filteredCheatMeals = cheatMeals
                 //.Where(w => searchParams.Weight != 0 && w.Weight == searchParams.Weight)
-                .Where(w => w.Status == Enum.CommonStatusEnum.ACTIVE).ToList();
+                .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).ToList();
 
             return (List<CheatMealModel>)GetPage(filteredCheatMeals, page, size);
         }
@@ -39,7 +39,7 @@ namespace FitnessTracker.Repository
         {
             return cheatMeals
                  .Where(w => w.Id == cheatMealId)
-                 .Where(w => w.Status == Enum.CommonStatusEnum.ACTIVE).First();
+                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).First();
         }
         #endregion
 

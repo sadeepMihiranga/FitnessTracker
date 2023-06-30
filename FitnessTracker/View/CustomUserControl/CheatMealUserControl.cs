@@ -1,27 +1,25 @@
-﻿using FitnessTracker.Controller;
-using FitnessTracker.Enums;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace FitnessTracker.View.CustomUserControl
 {
-    public partial class WorkoutCardUserControl : UserControl
+    public partial class CheatMealUserControl : UserControl
     {
         private long LoggedUserId;
         private Panel PanelMain;
-        private long WorkoutId;
+        private long CheatMealId;
 
-        public WorkoutCardUserControl(long logedUserId, long workoutId, Panel panelMain)
+        public CheatMealUserControl(long logedUserId, long cheatMealId, Panel panelMain)
         {
             this.LoggedUserId = logedUserId;
             this.PanelMain = panelMain;
-            this.WorkoutId = workoutId;
+            this.CheatMealId = cheatMealId;
 
             InitializeComponent();
         }
 
         private string _title;
-        private string _weight;
-        private string _loggingType;
+        private string _mealName;
+        private string _portionSize;
         private string _addedTime;
         private Image _image;
 
@@ -29,57 +27,57 @@ namespace FitnessTracker.View.CustomUserControl
         public string Title
         {
             get { return _title; }
-            set { _title = value; lblWorkoutType.Text = value; }
+            set { _title = value; lblCheatMealType.Text = value; }
         }
 
         [Category("Custom Props")]
-        public string Weigth
+        public string MealName
         {
-            get { return _weight; }
-            set { _weight = value; lbleWeigth.Text = value; }
+            get { return _mealName; }
+            set { _mealName = value; lbleMealName.Text = value; }
         }
 
         [Category("Custom Props")]
-        public string LoggingType
+        public string PortionSize
         {
-            get { return _loggingType; }
-            set { _loggingType = value; lblPrice.Text = value; }
+            get { return _portionSize; }
+            set { _portionSize = value; lblMealPortionSize.Text = value; }
         }
 
         [Category("Custom Props")]
         public string AddedTime
         {
             get { return _addedTime; }
-            set { _addedTime = value; lblWorkoutDateTime.Text = value; }
+            set { _addedTime = value; lblMealTakenDateTime.Text = value; }
         }
 
         [Category("Custom Props")]
         public Image Image
         {
             get { return _image; }
-            set { _image = value; picBoxVehicleImage.Image = value; picBoxVehicleImage.SizeMode = PictureBoxSizeMode.StretchImage; }
+            set { _image = value; picBoxMealSatisfactionImage.Image = value; picBoxMealSatisfactionImage.SizeMode = PictureBoxSizeMode.StretchImage; }
         }
 
         private void pictureBoxEdit_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.EDIT, WorkoutId), PanelMain);
+            //FormsHandler.LoadForm(new ManageWorkoutForm(EventType.EDIT, WorkoutId), PanelMain);
         }
 
         private void pictureBoxRemove_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure want to remove this Workout ?", "Message",
+            /*if (MessageBox.Show("Are you sure want to remove this Workout ?", "Message",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 WorkoutController workoutController = new();
                 workoutController.RemoveWorkout(WorkoutId);
 
                 FormsHandler.LoadForm(new WorkoutForm(this.LoggedUserId, PanelMain), PanelMain);
-            }
+            }*/
         }
 
         private void pictureBoxView_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.VIEW, WorkoutId), PanelMain);
+            //FormsHandler.LoadForm(new ManageWorkoutForm(EventType.VIEW, WorkoutId), PanelMain);
         }
     }
 }

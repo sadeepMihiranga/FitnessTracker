@@ -8,7 +8,7 @@ namespace FitnessTracker.Controller
         public long InsertWorkoutType(WorkoutTypeModel workoutType)
         {
             workoutType.Id = WorkoutTypeRepository.GetNextAvailableId();
-            workoutType.Status = Enum.CommonStatusEnum.ACTIVE;
+            workoutType.Status = Enums.CommonStatusEnum.ACTIVE;
 
             return WorkoutTypeRepository.Save(workoutType).Id;
         }

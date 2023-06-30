@@ -1,5 +1,5 @@
 ﻿using FitnessTracker.Controller;
-using FitnessTracker.Enum;
+using FitnessTracker.Enums;
 using FitnessTracker.Model;
 using FitnessTracker.Repository;
 using FitnessTracker.View.CustomUserControl;

@@ -169,6 +169,7 @@
             this.btnNavCheatMeals.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavCheatMeals.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNavCheatMeals.UseVisualStyleBackColor = false;
+            this.btnNavCheatMeals.Click += new System.EventHandler(this.btnNavCheatMeals_Click);
             // 
             // btnNavWorkout
             // 
