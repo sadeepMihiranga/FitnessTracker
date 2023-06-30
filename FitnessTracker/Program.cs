@@ -74,6 +74,7 @@ namespace FitnessTracker
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = true,
+                RecurringType = "1",
                 Weight = 70,
                 Reps = 10,
                 Sets = 3,

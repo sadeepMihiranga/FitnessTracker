@@ -34,7 +34,7 @@
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
             this.panelWorkoutHeader = new System.Windows.Forms.Panel();
             this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
-            this.pictureBoxVehicleClearFilter = new System.Windows.Forms.PictureBox();
+            this.picborkoutClearFilter = new System.Windows.Forms.PictureBox();
             this.pictureBoxVehicleFilter = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtYomSearch = new System.Windows.Forms.TextBox();
@@ -53,7 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).BeginInit();
             this.panelWorkoutHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVehicleClearFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picborkoutClearFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVehicleFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -108,7 +108,7 @@
             // 
             this.panelWorkoutHeader.BackColor = System.Drawing.SystemColors.Control;
             this.panelWorkoutHeader.Controls.Add(this.pictureBoxMinimize);
-            this.panelWorkoutHeader.Controls.Add(this.pictureBoxVehicleClearFilter);
+            this.panelWorkoutHeader.Controls.Add(this.picborkoutClearFilter);
             this.panelWorkoutHeader.Controls.Add(this.pictureBoxVehicleFilter);
             this.panelWorkoutHeader.Controls.Add(this.label10);
             this.panelWorkoutHeader.Controls.Add(this.txtYomSearch);
@@ -139,17 +139,17 @@
             this.pictureBoxMinimize.TabStop = false;
             this.pictureBoxMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
             // 
-            // pictureBoxVehicleClearFilter
+            // picborkoutClearFilter
             // 
-            this.pictureBoxVehicleClearFilter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxVehicleClearFilter.Image = global::FitnessTracker.Properties.Resources.clear_filter;
-            this.pictureBoxVehicleClearFilter.Location = new System.Drawing.Point(843, 25);
-            this.pictureBoxVehicleClearFilter.Name = "pictureBoxVehicleClearFilter";
-            this.pictureBoxVehicleClearFilter.Size = new System.Drawing.Size(28, 28);
-            this.pictureBoxVehicleClearFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxVehicleClearFilter.TabIndex = 86;
-            this.pictureBoxVehicleClearFilter.TabStop = false;
-            this.pictureBoxVehicleClearFilter.Click += new System.EventHandler(this.pictureBoxVehicleClearFilter_Click);
+            this.picborkoutClearFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picborkoutClearFilter.Image = global::FitnessTracker.Properties.Resources.clear_filter;
+            this.picborkoutClearFilter.Location = new System.Drawing.Point(843, 25);
+            this.picborkoutClearFilter.Name = "picborkoutClearFilter";
+            this.picborkoutClearFilter.Size = new System.Drawing.Size(28, 28);
+            this.picborkoutClearFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picborkoutClearFilter.TabIndex = 86;
+            this.picborkoutClearFilter.TabStop = false;
+            this.picborkoutClearFilter.Click += new System.EventHandler(this.picbWorkoutClearFilter_Click);
             // 
             // pictureBoxVehicleFilter
             // 
@@ -161,7 +161,7 @@
             this.pictureBoxVehicleFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxVehicleFilter.TabIndex = 85;
             this.pictureBoxVehicleFilter.TabStop = false;
-            this.pictureBoxVehicleFilter.Click += new System.EventHandler(this.pictureBoxVehicleFilter_Click);
+            this.pictureBoxVehicleFilter.Click += new System.EventHandler(this.picbWorkoutFilter_Click);
             // 
             // label10
             // 
@@ -298,7 +298,7 @@
             this.panelWorkoutHeader.ResumeLayout(false);
             this.panelWorkoutHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVehicleClearFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picborkoutClearFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVehicleFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.ResumeLayout(false);
@@ -323,7 +323,7 @@
         private System.Windows.Forms.TextBox txtYomSearch;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.PictureBox pictureBoxVehicleFilter;
-        private System.Windows.Forms.PictureBox pictureBoxVehicleClearFilter;
+        private System.Windows.Forms.PictureBox picborkoutClearFilter;
         private System.Windows.Forms.PictureBox pictureBoxMinimize;
         private System.Windows.Forms.PictureBox pictureBoxClose;
     }

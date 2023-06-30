@@ -4,6 +4,7 @@ using FitnessTracker.Model;
 using FitnessTracker.Repository;
 using FitnessTracker.View.CustomUserControl;
 using FitnessTracker.View.Util;
+using System.Configuration;
 
 namespace FitnessTracker.View
 {
@@ -42,11 +43,6 @@ namespace FitnessTracker.View
             MainMenuForm.ActiveForm.WindowState = FormWindowState.Minimized;
         }
 
-        public void OpenEditView(long vehicleId)
-        {
-            //FormsHandler.LoadForm(new ManageVehicleForm("Edit", vehicleId), panelVehiclesMain);
-        }
-
         public void LoadWorkouts(int page, int size, WorkoutModel workoutSearch)
         {
             if (flowLayoutPanelWorkoutList.Controls.Count > 0)
@@ -61,25 +57,16 @@ namespace FitnessTracker.View
 
             foreach (var workout in workoutList)
             {
-                /*string imageUrl = ConfigurationManager.AppSettings.Get("ImageSavedLocation") + @"\no-image-96.png";
-                Image vehicleImage = null;
-
-                vehicleImage = Image.FromFile(imageUrl);
-
-                try
-                {
-                    if (!String.IsNullOrEmpty(vehicle.ImageUrl))
-                        vehicleImage = Image.FromFile(vehicle.ImageUrl);
-                }
-                catch (Exception ex) { }*/
+                string imageUrl = ConfigurationManager.AppSettings.Get("WorkoutTypeImages") + @"\"+ workout.Type.Name.ToLower() + ".png";
+                Image workoutTypeImage = Image.FromFile(imageUrl);
 
                 workoutCards.Add(new WorkoutCardUserControl(this.LoggedUserId, workout.Id, panelMain)
                 {
                     Title = workout.Type.Name,
                     Weigth = workout.Weight + " KG",
                     LoggingType = workout.IsRecurring == true ? "Recurring" : "One-Off",
-                    AddedTime = workout.Date.ToString()
-                    //Image = vehicleImage
+                    AddedTime = workout.Date.ToString(),
+                    Image = workoutTypeImage
                 });
             }
 
@@ -121,32 +108,6 @@ namespace FitnessTracker.View
             LoadWorkouts(currentPage, pageSize, new WorkoutModel());
         }
 
-        private void pictureBoxVehicleFilter_Click(object sender, EventArgs e)
-        {
-            /*string vehicleCondition = (string)cmbVehicleConditionSearch.SelectedValue;
-            string vehicleModel = (string)cmbVehicleModelSearch.SelectedValue;
-            string yom = txtYomSearch.Text;
-
-            if (String.IsNullOrEmpty(vehicleModel) || vehicleModel.Equals("NA"))
-                vehicleModel = null;
-
-            if (String.IsNullOrEmpty(vehicleCondition) || vehicleCondition.Equals("NA"))
-                vehicleCondition = null;
-
-            if (String.IsNullOrEmpty(yom))
-                yom = null;
-
-            LoadVehicles(0, pageSize, new Vehicle(vehicleModel, yom, vehicleCondition));*/
-        }
-        private void pictureBoxVehicleClearFilter_Click(object sender, EventArgs e)
-        {
-            /*cmbVehicleConditionSearch.SelectedValue = "NA";
-            cmbVehicleModelSearch.SelectedValue = "NA";
-            txtYomSearch.Text = "";
-
-            LoadVehicles(0, pageSize, new Vehicle());*/
-        }
-
         private void txtYomSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             FormsHandler.AllowOnlyNumber(e);
@@ -155,6 +116,36 @@ namespace FitnessTracker.View
         private void btnLogWorkout_Click(object sender, EventArgs e)
         {
             FormsHandler.LoadForm(new ManageWorkoutForm(EventType.SAVE, 0), panelWorkoutMain);
+        }
+
+        private void picbWorkoutFilter_Click(object sender, EventArgs e)
+        {
+            string workoutType = (string)cmbWorkoutTypeSearch.SelectedValue;
+
+            WorkoutTypeModel workoutTypeModel = null;
+            WorkoutModel workoutSearch = new();
+
+            if (workoutType != null && !workoutType.Equals("NA"))
+            {
+                WorkoutTypeController workoutTypeController = new();
+
+                workoutTypeModel = workoutTypeController.GetById(long.Parse(workoutType));
+
+                if (workoutTypeModel == null)
+                {
+                    FormsHandler.InvalidValueMessage("Workout type is invalid.");
+                    return;
+                }
+
+                workoutSearch.Type = workoutTypeModel;
+            }
+
+            LoadWorkouts(0, pageSize, workoutSearch);
+        }
+
+        private void picbWorkoutClearFilter_Click(object sender, EventArgs e)
+        {
+            LoadWorkouts(0, pageSize, new WorkoutModel());
         }
     }
 }

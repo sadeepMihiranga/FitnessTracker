@@ -45,19 +45,19 @@
             // 
             // picBoxVehicleImage
             // 
-            this.picBoxVehicleImage.Location = new System.Drawing.Point(7, 9);
+            this.picBoxVehicleImage.Location = new System.Drawing.Point(20, 19);
             this.picBoxVehicleImage.Name = "picBoxVehicleImage";
-            this.picBoxVehicleImage.Size = new System.Drawing.Size(119, 94);
+            this.picBoxVehicleImage.Size = new System.Drawing.Size(87, 72);
             this.picBoxVehicleImage.TabIndex = 0;
             this.picBoxVehicleImage.TabStop = false;
             // 
             // lblWorkoutType
             // 
             this.lblWorkoutType.AutoSize = true;
-            this.lblWorkoutType.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblWorkoutType.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblWorkoutType.Location = new System.Drawing.Point(131, 11);
             this.lblWorkoutType.Name = "lblWorkoutType";
-            this.lblWorkoutType.Size = new System.Drawing.Size(106, 21);
+            this.lblWorkoutType.Size = new System.Drawing.Size(113, 21);
             this.lblWorkoutType.TabIndex = 1;
             this.lblWorkoutType.Text = "Workout Type";
             // 
@@ -136,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.Controls.Add(this.pictureBoxRemove);
             this.Controls.Add(this.txtHiddenWorkoutId);
             this.Controls.Add(this.pictureBoxView);
@@ -146,6 +146,7 @@
             this.Controls.Add(this.lbleWeigth);
             this.Controls.Add(this.lblWorkoutType);
             this.Controls.Add(this.picBoxVehicleImage);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "WorkoutCardUserControl";
             this.Size = new System.Drawing.Size(377, 110);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxVehicleImage)).EndInit();

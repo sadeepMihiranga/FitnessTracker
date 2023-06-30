@@ -19,7 +19,7 @@ namespace FitnessTracker.Repository
         public static List<WorkoutModel> Search(WorkoutModel searchParams, int page, int size)
         {
             List<WorkoutModel> filteredWorkouts = workouts
-                //.Where(w => searchParams.Type != null && w.Type.Name.Equals(searchParams.Type.Name))
+                .Where(w => searchParams.Type == null || (searchParams.Type != null && w.Type.Name.Equals(searchParams.Type.Name)))
                 //.Where(w => searchParams.Weight != 0 && w.Weight == searchParams.Weight)
                 .Where(w => w.Status == Enum.CommonStatusEnum.ACTIVE).ToList();
 
