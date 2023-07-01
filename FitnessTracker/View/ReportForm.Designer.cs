@@ -98,7 +98,7 @@
             this.lblManageVehicleTitle.AutoSize = true;
             this.lblManageVehicleTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblManageVehicleTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            this.lblManageVehicleTitle.Location = new System.Drawing.Point(12, 25);
+            this.lblManageVehicleTitle.Location = new System.Drawing.Point(35, 25);
             this.lblManageVehicleTitle.Name = "lblManageVehicleTitle";
             this.lblManageVehicleTitle.Size = new System.Drawing.Size(90, 30);
             this.lblManageVehicleTitle.TabIndex = 11;

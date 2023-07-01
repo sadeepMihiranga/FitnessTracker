@@ -149,6 +149,7 @@
             this.btnNavPredictions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavPredictions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNavPredictions.UseVisualStyleBackColor = false;
+            this.btnNavPredictions.Click += new System.EventHandler(this.btnNavPredictions_Click);
             // 
             // btnNavCheatMeals
             // 

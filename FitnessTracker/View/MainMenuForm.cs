@@ -35,5 +35,10 @@
         {
             FormsHandler.LoadForm(new ReportForm(), panelMain);
         }
+
+        private void btnNavPredictions_Click(object sender, EventArgs e)
+        {
+            FormsHandler.LoadForm(new PredictionForm(), panelMain);
+        }
     }
 }
