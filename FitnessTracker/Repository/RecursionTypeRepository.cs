@@ -18,6 +18,16 @@ namespace FitnessTracker.Repository
             return recursionType;
         }
 
+        #region Get by Id
+        public static RecursionTypeModel GetById(long id)
+        {
+            return recursionTypes
+                .Where(cm => cm.Id == id)
+                //.Where(wt => wt.Status == Enums.CommonStatusEnum.ACTIVE)
+                .First();
+        }
+        #endregion
+
         public static long GetNextAvailableId()
         {
             lock (recursionTypeSyncLock)

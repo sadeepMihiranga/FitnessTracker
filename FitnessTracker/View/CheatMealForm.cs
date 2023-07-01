@@ -86,7 +86,7 @@ namespace FitnessTracker.View
 
         private void pictureBoxNext_Click(object sender, EventArgs e)
         {
-            /*currentPage++;
+            currentPage++;
             pictureBoxBack.Visible = true;
 
             if (currentPage < 0)
@@ -97,12 +97,12 @@ namespace FitnessTracker.View
             else
                 pictureBoxNext.Visible = true;
 
-            LoadWorkouts(currentPage, pageSize, new WorkoutModel());*/
+            LoadCheatMeals(currentPage, pageSize, new CheatMealModel());
         }
 
         private void pictureBoxBack_Click(object sender, EventArgs e)
         {
-            /*currentPage--;
+            currentPage--;
             pictureBoxNext.Visible = true;
 
             if (currentPage < 0)
@@ -113,7 +113,7 @@ namespace FitnessTracker.View
             else
                 pictureBoxBack.Visible = true;
 
-            LoadWorkouts(currentPage, pageSize, new WorkoutModel());*/
+            LoadCheatMeals(currentPage, pageSize, new CheatMealModel());
         }
 
         private void txtYomSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -123,37 +123,38 @@ namespace FitnessTracker.View
 
         private void btnLogWorkout_Click(object sender, EventArgs e)
         {
-            //FormsHandler.LoadForm(new ManageWorkoutForm(EventType.SAVE, 0), panelWorkoutMain);
+            FormsHandler.LoadForm(new ManageCheatMealForm(EventType.SAVE, 0), panelCheatMealMain);
         }
 
         private void picbWorkoutFilter_Click(object sender, EventArgs e)
         {
-           /* string workoutType = (string)cmbWorkoutTypeSearch.SelectedValue;
+            string mealType = (string)cmbMealTypeSearch.SelectedValue;
 
-            WorkoutTypeModel workoutTypeModel = null;
-            WorkoutModel workoutSearch = new();
+            CheatMealModel cheatMealSearch = new();
 
-            if (workoutType != null && !workoutType.Equals("NA"))
+            CheatMealTypeModel cheatMealType = null;
+
+            if (mealType != null && !mealType.Equals("NA"))
             {
-                WorkoutTypeController workoutTypeController = new();
+                CheatMealTypeController cheatMealTypeController = new();
 
-                workoutTypeModel = workoutTypeController.GetById(long.Parse(workoutType));
+                cheatMealType = cheatMealTypeController.GetById(long.Parse(mealType));
 
-                if (workoutTypeModel == null)
+                if (cheatMealType == null)
                 {
-                    FormsHandler.InvalidValueMessage("Workout type is invalid.");
+                    FormsHandler.InvalidValueMessage("Cheat meal type is invalid.");
                     return;
                 }
 
-                workoutSearch.Type = workoutTypeModel;
+                cheatMealSearch.CheatMealType = cheatMealType;
             }
 
-            LoadWorkouts(0, pageSize, workoutSearch);*/
+            LoadCheatMeals(0, pageSize, cheatMealSearch);
         }
 
         private void picbWorkoutClearFilter_Click(object sender, EventArgs e)
         {
-            //LoadWorkouts(0, pageSize, new WorkoutModel());
+            LoadCheatMeals(0, pageSize, new CheatMealModel());
         }
     }
 }

@@ -16,5 +16,10 @@ namespace FitnessTracker.Controller
             cheatMealType.Id = CheatMealTypeRepository.GetNextAvailableId();
             return CheatMealTypeRepository.Save(cheatMealType).Id;
         }
+
+        public CheatMealTypeModel GetById(long id)
+        {
+            return CheatMealTypeRepository.GetById(id);
+        }
     }
 }

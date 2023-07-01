@@ -18,6 +18,16 @@ namespace FitnessTracker.Repository
             return cheatMealType;
         }
 
+        #region Get by Id
+        public static CheatMealTypeModel GetById(long id)
+        {
+            return cheatMealTypes
+                .Where(cm => cm.Id == id)
+                //.Where(wt => wt.Status == Enums.CommonStatusEnum.ACTIVE)
+                .First();
+        }
+        #endregion
+
         public static long GetNextAvailableId()
         {
             lock (cheatMealTypeSyncLock)

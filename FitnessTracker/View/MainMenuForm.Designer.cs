@@ -127,6 +127,7 @@
             this.btnNavReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNavReport.UseVisualStyleBackColor = false;
+            this.btnNavReport.Click += new System.EventHandler(this.btnNavReport_Click);
             // 
             // btnNavPredictions
             // 

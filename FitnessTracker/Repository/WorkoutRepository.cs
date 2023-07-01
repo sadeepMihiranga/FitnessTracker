@@ -43,6 +43,16 @@ namespace FitnessTracker.Repository
         }
         #endregion
 
+        #region Workouts for Reports
+        public static List<WorkoutModel> SearchForReport(DateTime from, DateTime to)
+        {
+            return workouts
+                .Where(w => w.Date >= from)
+                .Where(w => w.Date < to)
+                .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).ToList();
+        }
+        #endregion
+
         public static long GetNextAvailableId()
         {
             lock (workoutsSyncLock)

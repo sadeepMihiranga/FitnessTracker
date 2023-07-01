@@ -138,9 +138,6 @@ namespace FitnessTracker.View
             }
             else if (SelectedEventType == EventType.EDIT)
             {
-                // handle workout details edit
-                FormsHandler.OperationSuccessMessage(WorkoutId.ToString());
-
                 try
                 {
                     WorkoutModel workout = new()
@@ -172,8 +169,7 @@ namespace FitnessTracker.View
                 {
 
                 }
-            }
-      
+            }     
         }
 
         private void txtSets_KeyPress(object sender, KeyPressEventArgs e)

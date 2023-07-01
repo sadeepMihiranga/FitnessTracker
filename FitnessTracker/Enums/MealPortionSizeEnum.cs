@@ -2,6 +2,7 @@
 {
     public enum MealPortionSizeEnum : int
     {
+        NA = 0,
         Tiny = 1,
         Small = 2,
         Medium = 3,

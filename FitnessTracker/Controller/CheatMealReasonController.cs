@@ -16,5 +16,10 @@ namespace FitnessTracker.Controller
             cheatMealReason.Id = CheatMealReasonRepository.GetNextAvailableId();
             return CheatMealReasonRepository.Save(cheatMealReason).Id;
         }
+
+        public CheatMealReasonModel GetById(long id)
+        {
+            return CheatMealReasonRepository.GetById(id);
+        }
     }
 }

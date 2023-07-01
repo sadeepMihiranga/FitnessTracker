@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using FitnessTracker.Controller;
+using FitnessTracker.Enums;
+using System.ComponentModel;
 
 namespace FitnessTracker.View.CustomUserControl
 {
@@ -60,24 +62,24 @@ namespace FitnessTracker.View.CustomUserControl
 
         private void pictureBoxEdit_Click(object sender, EventArgs e)
         {
-            //FormsHandler.LoadForm(new ManageWorkoutForm(EventType.EDIT, WorkoutId), PanelMain);
+            FormsHandler.LoadForm(new ManageCheatMealForm(EventType.EDIT, CheatMealId), PanelMain);
         }
 
         private void pictureBoxRemove_Click(object sender, EventArgs e)
         {
-            /*if (MessageBox.Show("Are you sure want to remove this Workout ?", "Message",
+            if (MessageBox.Show("Are you sure want to remove this Cheat Meal ?", "Message",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                WorkoutController workoutController = new();
-                workoutController.RemoveWorkout(WorkoutId);
+                CheatMealController cheatMealController = new();
+                cheatMealController.RemoveCheatMeal(CheatMealId);
 
-                FormsHandler.LoadForm(new WorkoutForm(this.LoggedUserId, PanelMain), PanelMain);
-            }*/
+                FormsHandler.LoadForm(new CheatMealForm(this.LoggedUserId, PanelMain), PanelMain);
+            }
         }
 
         private void pictureBoxView_Click(object sender, EventArgs e)
         {
-            //FormsHandler.LoadForm(new ManageWorkoutForm(EventType.VIEW, WorkoutId), PanelMain);
+            FormsHandler.LoadForm(new ManageCheatMealForm(EventType.VIEW, CheatMealId), PanelMain);
         }
     }
 }

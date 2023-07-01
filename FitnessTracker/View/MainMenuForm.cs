@@ -30,5 +30,10 @@
         {
             FormsHandler.LoadForm(new CheatMealForm(this.LoggedUserId, panelMain), panelMain);
         }
+
+        private void btnNavReport_Click(object sender, EventArgs e)
+        {
+            FormsHandler.LoadForm(new ReportForm(), panelMain);
+        }
     }
 }

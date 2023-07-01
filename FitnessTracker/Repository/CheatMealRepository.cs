@@ -19,7 +19,7 @@ namespace FitnessTracker.Repository
         public static List<CheatMealModel> Search(CheatMealModel searchParams, int page, int size)
         {
             List<CheatMealModel> filteredCheatMeals = cheatMeals
-                //.Where(w => searchParams.Weight != 0 && w.Weight == searchParams.Weight)
+                .Where(w => searchParams.CheatMealType == null || (searchParams.CheatMealType != null && w.CheatMealType.Id == searchParams.CheatMealType.Id))
                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).ToList();
 
             return (List<CheatMealModel>)GetPage(filteredCheatMeals, page, size);
@@ -40,6 +40,16 @@ namespace FitnessTracker.Repository
             return cheatMeals
                  .Where(w => w.Id == cheatMealId)
                  .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).First();
+        }
+        #endregion
+
+        #region Cheat Meals for Reports
+        public static List<CheatMealModel> SearchForReport(DateTime from, DateTime to)
+        {
+            return cheatMeals
+                .Where(w => w.DateTimeTaken >= from)
+                .Where(w => w.DateTimeTaken < to)
+                .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).ToList();
         }
         #endregion
 

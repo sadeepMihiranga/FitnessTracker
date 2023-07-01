@@ -27,7 +27,7 @@ namespace FitnessTracker.Controller
             CheatMealRepository.Remove(cheatMeal);
         }
 
-        public CheatMealModel GetCheatMealId(long cheatMealId)
+        public CheatMealModel GetCheatMealById(long cheatMealId)
         {
             return CheatMealRepository.GetById(cheatMealId);
         }

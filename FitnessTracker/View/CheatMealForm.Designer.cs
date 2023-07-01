@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelWorkoutMain = new System.Windows.Forms.Panel();
+            this.panelCheatMealMain = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxNext = new System.Windows.Forms.PictureBox();
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
@@ -48,8 +48,7 @@
             this.btnAddCheatMeal = new System.Windows.Forms.Button();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanelMealList = new System.Windows.Forms.FlowLayoutPanel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.panelWorkoutMain.SuspendLayout();
+            this.panelCheatMealMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).BeginInit();
             this.panelCheatMealHeader.SuspendLayout();
@@ -57,22 +56,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.picbCheatMealClearFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbCheatMealFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
-            this.flowLayoutPanelMealList.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelWorkoutMain
+            // panelCheatMealMain
             // 
-            this.panelWorkoutMain.BackColor = System.Drawing.SystemColors.Control;
-            this.panelWorkoutMain.Controls.Add(this.panel1);
-            this.panelWorkoutMain.Controls.Add(this.pictureBoxNext);
-            this.panelWorkoutMain.Controls.Add(this.pictureBoxBack);
-            this.panelWorkoutMain.Controls.Add(this.panelCheatMealHeader);
-            this.panelWorkoutMain.Controls.Add(this.flowLayoutPanelMealList);
-            this.panelWorkoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelWorkoutMain.Location = new System.Drawing.Point(0, 0);
-            this.panelWorkoutMain.Name = "panelWorkoutMain";
-            this.panelWorkoutMain.Size = new System.Drawing.Size(1150, 729);
-            this.panelWorkoutMain.TabIndex = 0;
+            this.panelCheatMealMain.BackColor = System.Drawing.SystemColors.Control;
+            this.panelCheatMealMain.Controls.Add(this.panel1);
+            this.panelCheatMealMain.Controls.Add(this.pictureBoxNext);
+            this.panelCheatMealMain.Controls.Add(this.pictureBoxBack);
+            this.panelCheatMealMain.Controls.Add(this.panelCheatMealHeader);
+            this.panelCheatMealMain.Controls.Add(this.flowLayoutPanelMealList);
+            this.panelCheatMealMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCheatMealMain.Location = new System.Drawing.Point(0, 0);
+            this.panelCheatMealMain.Name = "panelCheatMealMain";
+            this.panelCheatMealMain.Size = new System.Drawing.Size(1150, 729);
+            this.panelCheatMealMain.TabIndex = 0;
             // 
             // panel1
             // 
@@ -277,32 +275,21 @@
             // flowLayoutPanelMealList
             // 
             this.flowLayoutPanelMealList.BackColor = System.Drawing.SystemColors.Control;
-            this.flowLayoutPanelMealList.Controls.Add(this.checkBox1);
             this.flowLayoutPanelMealList.Location = new System.Drawing.Point(0, 85);
             this.flowLayoutPanelMealList.Name = "flowLayoutPanelMealList";
             this.flowLayoutPanelMealList.Size = new System.Drawing.Size(1150, 586);
             this.flowLayoutPanelMealList.TabIndex = 0;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(3, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(83, 19);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // CheatMealForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1150, 729);
-            this.Controls.Add(this.panelWorkoutMain);
+            this.Controls.Add(this.panelCheatMealMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CheatMealForm";
             this.Text = "CheatMealForm";
-            this.panelWorkoutMain.ResumeLayout(false);
+            this.panelCheatMealMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).EndInit();
             this.panelCheatMealHeader.ResumeLayout(false);
@@ -311,14 +298,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.picbCheatMealClearFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbCheatMealFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
-            this.flowLayoutPanelMealList.ResumeLayout(false);
-            this.flowLayoutPanelMealList.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panelWorkoutMain;
+        private System.Windows.Forms.Panel panelCheatMealMain;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMealList;
         private System.Windows.Forms.Panel panelCheatMealHeader;
         private System.Windows.Forms.Panel panel1;
@@ -338,6 +323,5 @@
         private System.Windows.Forms.PictureBox pictureBoxMinimize;
         private System.Windows.Forms.PictureBox pictureBoxClose;
         private ComboBox cmbPortionSize;
-        private CheckBox checkBox1;
     }
 }
