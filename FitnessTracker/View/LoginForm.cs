@@ -64,7 +64,7 @@ namespace FitnessTracker.View
 
                 if (user != null && user.Id > 0)
                 {
-                    MainMenuForm adminMenuForm = new(user.Id);
+                    MainMenuForm adminMenuForm = new(user);
                     adminMenuForm.Show();
                     this.Hide();
                 }

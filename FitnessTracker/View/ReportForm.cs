@@ -15,9 +15,12 @@ namespace FitnessTracker.View
 {
     public partial class ReportForm : Form
     {
-        public ReportForm()
+        UserModel LoggedUser = null;
+
+        public ReportForm(UserModel user)
         {
             InitializeComponent();
+            this.LoggedUser = user;
         }
 
         private void pictureBoxMinimize_Click(object sender, EventArgs e)
@@ -36,7 +39,7 @@ namespace FitnessTracker.View
             DateTime from = dtpWorkoutFrom.Value;
             DateTime to = dtpWorkoutTo.Value;
 
-            List<WorkoutModel> workouts =  WorkoutRepository.SearchForReport(from, to);
+            List<WorkoutModel> workouts =  WorkoutRepository.SearchForReport(from, to, LoggedUser.Id);
 
             if (workouts.Count == 0) 
             {
@@ -82,7 +85,7 @@ namespace FitnessTracker.View
             DateTime from = dtpCheatMealFrom.Value;
             DateTime to = dtpCheatMealTo.Value;
 
-            List<CheatMealModel> cheatMeals = CheatMealRepository.SearchForReport(from, to);
+            List<CheatMealModel> cheatMeals = CheatMealRepository.SearchForReport(from, to, LoggedUser.Id);
 
             if (cheatMeals.Count == 0)
             {

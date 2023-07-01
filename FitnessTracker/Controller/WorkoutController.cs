@@ -14,9 +14,9 @@ namespace FitnessTracker.Controller
             return WorkoutRepository.Save(workout).Id;
         }
 
-        public void RemoveWorkout(long workoutId)
+        public void RemoveWorkout(long workoutId, long userId)
         {
-            WorkoutModel workout = WorkoutRepository.GetById(workoutId);
+            WorkoutModel workout = WorkoutRepository.GetById(workoutId, userId);
 
             if (workout == null)
             {
@@ -27,14 +27,14 @@ namespace FitnessTracker.Controller
             WorkoutRepository.Remove(workout);
         }
 
-        public WorkoutModel GetWorkoutById(long workoutId)
+        public WorkoutModel GetWorkoutById(long workoutId, long userId)
         {
-            return WorkoutRepository.GetById(workoutId);
+            return WorkoutRepository.GetById(workoutId, userId);
         }
 
         public WorkoutModel UpdateWorkout(WorkoutModel workout)
         {
-            WorkoutModel workoutModel = WorkoutRepository.GetById(workout.Id);
+            WorkoutModel workoutModel = WorkoutRepository.GetById(workout.Id, workout.Id);
 
             if (workoutModel == null)
             {

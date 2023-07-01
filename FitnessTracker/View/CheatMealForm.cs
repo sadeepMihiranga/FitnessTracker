@@ -12,12 +12,12 @@ namespace FitnessTracker.View
     {
         int currentPage = 0;
         public int pageSize = 7;
-        long LoggedUserId;
+        UserModel LoggedUser = null;
         private Panel panelMain;
 
-        public CheatMealForm(long loggedUserId, Panel panelMain)
+        public CheatMealForm(UserModel user, Panel panelMain)
         {
-            this.LoggedUserId = loggedUserId;
+            this.LoggedUser = user;
             this.panelMain = panelMain;
 
             InitializeComponent();
@@ -58,6 +58,7 @@ namespace FitnessTracker.View
 
             List<CheatMealUserControl> cheatMealCards = new List<CheatMealUserControl>();
 
+            cheatMealSearch.User = LoggedUser;
             List<CheatMealModel> cheatMealList = CheatMealRepository.Search(cheatMealSearch, page, size);
 
             if (cheatMealList.Count == 0)
@@ -68,7 +69,7 @@ namespace FitnessTracker.View
                 string imageUrl = ConfigurationManager.AppSettings.Get("MealSatisfactionImages") + @"\" + cheatMeal.CheatMealSatisfcation.ToString().ToLower() + ".png";
                 Image mealSatisfactionImage = Image.FromFile(imageUrl);
 
-                cheatMealCards.Add(new CheatMealUserControl(this.LoggedUserId, cheatMeal.Id, panelMain)
+                cheatMealCards.Add(new CheatMealUserControl(LoggedUser, cheatMeal.Id, panelMain)
                 {
                     Title = cheatMeal.CheatMealType.Name,
                     MealName = cheatMeal.Name,
@@ -123,7 +124,7 @@ namespace FitnessTracker.View
 
         private void btnLogWorkout_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ManageCheatMealForm(EventType.SAVE, 0), panelCheatMealMain);
+            FormsHandler.LoadForm(new ManageCheatMealForm(LoggedUser, EventType.SAVE, 0), panelCheatMealMain);
         }
 
         private void picbWorkoutFilter_Click(object sender, EventArgs e)
@@ -131,6 +132,7 @@ namespace FitnessTracker.View
             string mealType = (string)cmbMealTypeSearch.SelectedValue;
 
             CheatMealModel cheatMealSearch = new();
+            cheatMealSearch.User = LoggedUser;
 
             CheatMealTypeModel cheatMealType = null;
 

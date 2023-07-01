@@ -5,12 +5,14 @@ namespace FitnessTracker.Controller
 {
     internal class UsersController
     {
-        public long RegisterUser(UserModel user)
+        public UserModel RegisterUser(UserModel user)
         {
             user.Id = UserRepository.GetNextAvailableId();
             user.Status = Enums.CommonStatusEnum.ACTIVE;
 
-            return UserRepository.Save(user).Id;
+            UserRepository.Save(user);
+
+            return user;
         }
     }
 }

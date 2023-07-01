@@ -19,6 +19,7 @@ namespace FitnessTracker.Model
         public string RecurrsionDate { get; set; }
         public string Comment { get; set; }
         public CommonStatusEnum Status { get; set; }
+        public UserModel User { get; set; }
         #endregion
     }
 }

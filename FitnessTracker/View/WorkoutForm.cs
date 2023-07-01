@@ -12,14 +12,14 @@ namespace FitnessTracker.View
     {
         int currentPage = 0;
         public int pageSize = 7;
-        long LoggedUserId;
+        UserModel LoggedUser = null;
         private Panel panelMain;
 
         internal EventType WorkoutType { get; private set; }
 
-        public WorkoutForm(long loggedUserId, Panel panelMain)
+        public WorkoutForm(UserModel user, Panel panelMain)
         {
-            this.LoggedUserId = loggedUserId;
+            this.LoggedUser = user;
             this.panelMain = panelMain;
 
             InitializeComponent();
@@ -50,6 +50,7 @@ namespace FitnessTracker.View
 
             List<WorkoutCardUserControl> workoutCards = new List<WorkoutCardUserControl>();
 
+            workoutSearch.User = LoggedUser;
             List<WorkoutModel> workoutList = WorkoutRepository.Search(workoutSearch, page, size);
 
             if (workoutList.Count == 0)
@@ -60,7 +61,7 @@ namespace FitnessTracker.View
                 string imageUrl = ConfigurationManager.AppSettings.Get("WorkoutTypeImages") + @"\"+ workout.Type.Name.ToLower() + ".png";
                 Image workoutTypeImage = Image.FromFile(imageUrl);
 
-                workoutCards.Add(new WorkoutCardUserControl(this.LoggedUserId, workout.Id, panelMain)
+                workoutCards.Add(new WorkoutCardUserControl(LoggedUser, workout.Id, panelMain)
                 {
                     Title = workout.Type.Name,
                     Weigth = workout.Weight + " KG",
@@ -115,7 +116,7 @@ namespace FitnessTracker.View
 
         private void btnLogWorkout_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.SAVE, 0), panelWorkoutMain);
+            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.SAVE, 0, LoggedUser), panelWorkoutMain);
         }
 
         private void picbWorkoutFilter_Click(object sender, EventArgs e)
@@ -124,6 +125,7 @@ namespace FitnessTracker.View
 
             WorkoutTypeModel workoutTypeModel = null;
             WorkoutModel workoutSearch = new();
+            workoutSearch.User = LoggedUser;
 
             if (workoutType != null && !workoutType.Equals("NA"))
             {

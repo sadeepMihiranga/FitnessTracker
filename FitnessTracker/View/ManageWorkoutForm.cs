@@ -9,12 +9,15 @@ namespace FitnessTracker.View
     {
         EventType SelectedEventType = EventType.SAVE;
         long WorkoutId = 0;
+        UserModel LoggedUser = null;
 
-        public ManageWorkoutForm(EventType eventType, long workoutId)
+        public ManageWorkoutForm(EventType eventType, long workoutId, UserModel user)
         {
+            this.LoggedUser = user;
+
             InitializeComponent();
 
-            InitializeForm();      
+            InitializeForm();
 
             SelectedEventType = eventType;
             btnSaveWorkout.Visible = true;
@@ -120,7 +123,9 @@ namespace FitnessTracker.View
                         IsRecurring = isRecurring,
                         RecurringType = recurringType,
                         Comment = comment,
-                        RecurrsionDate = recursionDate
+                        RecurrsionDate = recursionDate,
+                        User = LoggedUser
+
                     };
 
                     workoutController.LogWorkout(workout);
@@ -223,7 +228,7 @@ namespace FitnessTracker.View
         private void LoadWorkoutInformation(long workoutId, bool isView)
         {
             WorkoutController workoutController = new();
-            WorkoutModel workout = workoutController.GetWorkoutById(workoutId);
+            WorkoutModel workout = workoutController.GetWorkoutById(workoutId, LoggedUser.Id);
 
             cmbWorkoutType.SelectedValue = workout.Type.Id.ToString();
             txtSets.Text = workout.Sets == 0 ? "" : workout.Sets.ToString();

@@ -9,8 +9,9 @@ namespace FitnessTracker.View
     {
         EventType SelectedEventType = EventType.SAVE;
         long CheatMealId = 0;
+        UserModel LoggedUser = null;
 
-        public ManageCheatMealForm(EventType eventType, long cheatMealId)
+        public ManageCheatMealForm(UserModel user, EventType eventType, long cheatMealId)
         {
             InitializeComponent();
             InitializeForm();
@@ -19,6 +20,7 @@ namespace FitnessTracker.View
             btnSaveCheatMeal.Visible = true;
             btnClearCheatMealInfo.Visible = true;
             CheatMealId = cheatMealId;
+            this.LoggedUser = user;
 
             if (SelectedEventType == EventType.EDIT && cheatMealId > 0)
             {
@@ -220,7 +222,7 @@ namespace FitnessTracker.View
         private void LoadCheatMealInformation(long cheatMealId, bool isView)
         {
             CheatMealController cheatMealController = new();
-            CheatMealModel cheatMeal = cheatMealController.GetCheatMealById(cheatMealId);
+            CheatMealModel cheatMeal = cheatMealController.GetCheatMealById(cheatMealId, LoggedUser.Id);
 
             int mealPortinSizeId = (int)cheatMeal.MealPortionSize;
             int mealSatisfcationId = (int)cheatMeal.CheatMealSatisfcation;

@@ -105,11 +105,11 @@ namespace FitnessTracker
                 };
 
                 UsersController usersController = new();
-                long userId = usersController.RegisterUser(user);
+                UserModel createdUser = usersController.RegisterUser(user);
 
-                if (userId > 0)
+                if (createdUser == null)
                 {
-                    FormsHandler.OperationSuccessMessage("Registration Success. Id : " + userId);
+                    FormsHandler.OperationSuccessMessage("Registration Success. Id : " + createdUser.Id);
                 }
                 else
                     return;

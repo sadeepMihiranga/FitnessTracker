@@ -16,9 +16,11 @@ namespace FitnessTracker
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            //Application.Run(new View.LoginForm());
-            Application.Run(new View.MainMenuForm(1));
+            Application.Run(new View.LoginForm());
+            //Application.Run(new View.MainMenuForm());
         }
+
+        static UserModel loggedUser = null;
 
         private static void InitData()
         {
@@ -43,7 +45,7 @@ namespace FitnessTracker
             };
 
             UsersController usersController = new();
-            usersController.RegisterUser(user);
+            loggedUser = usersController.RegisterUser(user);
         }
 
         private static void InsertWorkoutInfo()
@@ -88,7 +90,8 @@ namespace FitnessTracker
                 Weight = 70,
                 Reps = 10,
                 Sets = 3,
-                Comment = "Comment"
+                Comment = "Comment",
+                User = loggedUser
             };
             workoutController.LogWorkout(workout1);
 
@@ -100,7 +103,8 @@ namespace FitnessTracker
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
-                Weight = 70
+                Weight = 70,
+                User = loggedUser
             };
             workoutController.LogWorkout(workout2);
 
@@ -112,7 +116,8 @@ namespace FitnessTracker
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
-                Weight = 70
+                Weight = 70,
+                User = loggedUser
             };
             workoutController.LogWorkout(workout3);
 
@@ -124,7 +129,8 @@ namespace FitnessTracker
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
-                Weight = 70
+                Weight = 70,
+                User = loggedUser
             };
             workoutController.LogWorkout(workout4);
 
@@ -136,7 +142,8 @@ namespace FitnessTracker
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
-                Weight = 70
+                Weight = 70,
+                User = loggedUser
             };
             workoutController.LogWorkout(workout5);
 
@@ -148,7 +155,8 @@ namespace FitnessTracker
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
-                Weight = 70
+                Weight = 70,
+                User = loggedUser
             };
             workoutController.LogWorkout(workout6);
 
@@ -160,7 +168,8 @@ namespace FitnessTracker
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
-                Weight = 70
+                Weight = 70,
+                User = loggedUser
             };
             workoutController.LogWorkout(workout7);
 
@@ -172,7 +181,8 @@ namespace FitnessTracker
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now,
                 IsRecurring = false,
-                Weight = 70
+                Weight = 70,
+                User = loggedUser
             };
             workoutController.LogWorkout(workout8);
         }
@@ -280,7 +290,8 @@ namespace FitnessTracker
                 DateTimeTaken = new DateTime(2023, 02, 25),
                 MealPortionSize = Enums.MealPortionSizeEnum.Large,
                 CheatMealSatisfcation = Enums.CheatMealSatisfcationEnum.Sad,
-                Comment = "This is a comment"               
+                Comment = "This is a comment",
+                User = loggedUser
             };
             cheatMealController.LogCheatMeal(bbqBeef);
 
@@ -293,7 +304,8 @@ namespace FitnessTracker
                 DateTimeTaken = new DateTime(2023, 01, 25),
                 MealPortionSize = Enums.MealPortionSizeEnum.Medium,
                 CheatMealSatisfcation = Enums.CheatMealSatisfcationEnum.Happy,
-                Comment = "This is a comment"
+                Comment = "This is a comment",
+                User = loggedUser
             };
             cheatMealController.LogCheatMeal(pizzaHut);
 
@@ -306,7 +318,8 @@ namespace FitnessTracker
                 DateTimeTaken = new DateTime(2023, 04, 25),
                 MealPortionSize = Enums.MealPortionSizeEnum.ExtraLarge,
                 CheatMealSatisfcation = Enums.CheatMealSatisfcationEnum.Neutral,
-                Comment = "This is a comment"
+                Comment = "This is a comment",
+                User = loggedUser
             };
             cheatMealController.LogCheatMeal(officeParty);
         }

@@ -1,18 +1,19 @@
 ﻿using FitnessTracker.Controller;
 using FitnessTracker.Enums;
+using FitnessTracker.Model;
 using System.ComponentModel;
 
 namespace FitnessTracker.View.CustomUserControl
 {
     public partial class CheatMealUserControl : UserControl
     {
-        private long LoggedUserId;
+        private UserModel LoggedUser;
         private Panel PanelMain;
         private long CheatMealId;
 
-        public CheatMealUserControl(long logedUserId, long cheatMealId, Panel panelMain)
+        public CheatMealUserControl(UserModel user, long cheatMealId, Panel panelMain)
         {
-            this.LoggedUserId = logedUserId;
+            this.LoggedUser = user;
             this.PanelMain = panelMain;
             this.CheatMealId = cheatMealId;
 
@@ -62,7 +63,7 @@ namespace FitnessTracker.View.CustomUserControl
 
         private void pictureBoxEdit_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ManageCheatMealForm(EventType.EDIT, CheatMealId), PanelMain);
+            FormsHandler.LoadForm(new ManageCheatMealForm(LoggedUser, EventType.EDIT, CheatMealId), PanelMain);
         }
 
         private void pictureBoxRemove_Click(object sender, EventArgs e)
@@ -71,15 +72,15 @@ namespace FitnessTracker.View.CustomUserControl
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 CheatMealController cheatMealController = new();
-                cheatMealController.RemoveCheatMeal(CheatMealId);
+                cheatMealController.RemoveCheatMeal(CheatMealId, LoggedUser.Id);
 
-                FormsHandler.LoadForm(new CheatMealForm(this.LoggedUserId, PanelMain), PanelMain);
+                FormsHandler.LoadForm(new CheatMealForm(LoggedUser, PanelMain), PanelMain);
             }
         }
 
         private void pictureBoxView_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ManageCheatMealForm(EventType.VIEW, CheatMealId), PanelMain);
+            FormsHandler.LoadForm(new ManageCheatMealForm(LoggedUser, EventType.VIEW, CheatMealId), PanelMain);
         }
     }
 }

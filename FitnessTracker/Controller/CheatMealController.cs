@@ -14,9 +14,9 @@ namespace FitnessTracker.Controller
             return CheatMealRepository.Save(cheatMeal).Id;
         }
 
-        public void RemoveCheatMeal(long cheatMealId)
+        public void RemoveCheatMeal(long cheatMealId, long userId)
         {
-            CheatMealModel cheatMeal = CheatMealRepository.GetById(cheatMealId);
+            CheatMealModel cheatMeal = CheatMealRepository.GetById(cheatMealId, userId);
 
             if (cheatMeal == null)
             {
@@ -27,9 +27,9 @@ namespace FitnessTracker.Controller
             CheatMealRepository.Remove(cheatMeal);
         }
 
-        public CheatMealModel GetCheatMealById(long cheatMealId)
+        public CheatMealModel GetCheatMealById(long cheatMealId, long userId)
         {
-            return CheatMealRepository.GetById(cheatMealId);
+            return CheatMealRepository.GetById(cheatMealId, userId);
         }
     }
 }

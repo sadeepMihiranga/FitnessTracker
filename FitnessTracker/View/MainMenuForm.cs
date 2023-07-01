@@ -1,12 +1,14 @@
-﻿namespace FitnessTracker.View
+﻿using FitnessTracker.Model;
+
+namespace FitnessTracker.View
 {
     public partial class MainMenuForm : Form
     {
-        long LoggedUserId;
+        UserModel LoggedUser;
 
-        public MainMenuForm(long loggedUserId)
+        public MainMenuForm(UserModel user)
         {
-            this.LoggedUserId = loggedUserId;
+            this.LoggedUser = user;
             InitializeComponent();
         }
 
@@ -23,17 +25,17 @@
 
         private void btnNavWorkout_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new WorkoutForm(this.LoggedUserId, panelMain), panelMain);
+            FormsHandler.LoadForm(new WorkoutForm(LoggedUser, panelMain), panelMain);
         }
 
         private void btnNavCheatMeals_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new CheatMealForm(this.LoggedUserId, panelMain), panelMain);
+            FormsHandler.LoadForm(new CheatMealForm(LoggedUser, panelMain), panelMain);
         }
 
         private void btnNavReport_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ReportForm(), panelMain);
+            FormsHandler.LoadForm(new ReportForm(LoggedUser), panelMain);
         }
 
         private void btnNavPredictions_Click(object sender, EventArgs e)

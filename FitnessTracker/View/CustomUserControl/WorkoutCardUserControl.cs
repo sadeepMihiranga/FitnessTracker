@@ -1,18 +1,19 @@
 ﻿using FitnessTracker.Controller;
 using FitnessTracker.Enums;
+using FitnessTracker.Model;
 using System.ComponentModel;
 
 namespace FitnessTracker.View.CustomUserControl
 {
     public partial class WorkoutCardUserControl : UserControl
     {
-        private long LoggedUserId;
+        private UserModel LoggedUser;
         private Panel PanelMain;
         private long WorkoutId;
 
-        public WorkoutCardUserControl(long logedUserId, long workoutId, Panel panelMain)
+        public WorkoutCardUserControl(UserModel user, long workoutId, Panel panelMain)
         {
-            this.LoggedUserId = logedUserId;
+            this.LoggedUser = user;
             this.PanelMain = panelMain;
             this.WorkoutId = workoutId;
 
@@ -62,7 +63,7 @@ namespace FitnessTracker.View.CustomUserControl
 
         private void pictureBoxEdit_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.EDIT, WorkoutId), PanelMain);
+            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.EDIT, WorkoutId, LoggedUser), PanelMain);
         }
 
         private void pictureBoxRemove_Click(object sender, EventArgs e)
@@ -71,15 +72,15 @@ namespace FitnessTracker.View.CustomUserControl
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 WorkoutController workoutController = new();
-                workoutController.RemoveWorkout(WorkoutId);
+                workoutController.RemoveWorkout(WorkoutId, LoggedUser.Id);
 
-                FormsHandler.LoadForm(new WorkoutForm(this.LoggedUserId, PanelMain), PanelMain);
+                FormsHandler.LoadForm(new WorkoutForm(LoggedUser, PanelMain), PanelMain);
             }
         }
 
         private void pictureBoxView_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.VIEW, WorkoutId), PanelMain);
+            FormsHandler.LoadForm(new ManageWorkoutForm(EventType.VIEW, WorkoutId, LoggedUser), PanelMain);
         }
     }
 }
