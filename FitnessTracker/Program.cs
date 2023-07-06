@@ -5,6 +5,8 @@ namespace FitnessTracker
 {
     internal static class Program
     {
+        static UserModel loggedUser = null;
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -16,11 +18,10 @@ namespace FitnessTracker
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new View.LoginForm());
+            //Application.Run(new View.LoginForm());
+            Application.Run(new  View.PredictionForm(loggedUser));
             //Application.Run(new View.MainMenuForm());
         }
-
-        static UserModel loggedUser = null;
 
         private static void InitData()
         {
@@ -83,11 +84,11 @@ namespace FitnessTracker
                 Name = "Running 01",
                 Type = runningWorkoutType,
                 Date = new DateTime(2023, 01, 23),
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
+                StartTime = new DateTime(2023, 01, 23, 18, 00, 00),
+                EndTime = new DateTime(2023, 01, 23, 19, 00, 00),
                 IsRecurring = true,
                 RecurringType = "1",
-                Weight = 70,
+                Weight = 85,
                 Reps = 10,
                 Sets = 3,
                 Comment = "Comment",
@@ -99,11 +100,11 @@ namespace FitnessTracker
             {
                 Name = "Running 02",
                 Type = cyclingWorkoutType,
-                Date = new DateTime(2023, 01, 23),
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
+                Date = new DateTime(2023, 01, 24),
+                StartTime = new DateTime(2023, 01, 23, 18, 00, 00),
+                EndTime = new DateTime(2023, 01, 23, 19, 00, 00),
                 IsRecurring = false,
-                Weight = 70,
+                Weight = 85,
                 User = loggedUser
             };
             workoutController.LogWorkout(workout2);
@@ -112,11 +113,11 @@ namespace FitnessTracker
             {
                 Name = "Running 03",
                 Type = walkingWorkoutType,
-                Date = new DateTime(2023, 01, 23),
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
+                Date = new DateTime(2023, 01, 25),
+                StartTime = new DateTime(2023, 01, 23, 18, 00, 00),
+                EndTime = new DateTime(2023, 01, 23, 19, 00, 00),
                 IsRecurring = false,
-                Weight = 70,
+                Weight = 84,
                 User = loggedUser
             };
             workoutController.LogWorkout(workout3);
@@ -125,11 +126,11 @@ namespace FitnessTracker
             {
                 Name = "Running 04",
                 Type = swimmingWorkoutType,
-                Date = new DateTime(2023, 01, 23),
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
+                Date = new DateTime(2023, 01, 27),
+                StartTime = new DateTime(2023, 01, 23, 18, 00, 00),
+                EndTime = new DateTime(2023, 01, 23, 19, 00, 00),
                 IsRecurring = false,
-                Weight = 70,
+                Weight = 84,
                 User = loggedUser
             };
             workoutController.LogWorkout(workout4);
@@ -138,11 +139,11 @@ namespace FitnessTracker
             {
                 Name = "Running 05",
                 Type = runningWorkoutType,
-                Date = new DateTime(2023, 02, 25),
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
+                Date = new DateTime(2023, 01, 28),
+                StartTime = new DateTime(2023, 01, 23, 18, 00, 00),
+                EndTime = new DateTime(2023, 01, 23, 20, 00, 00),
                 IsRecurring = false,
-                Weight = 70,
+                Weight = 83,
                 User = loggedUser
             };
             workoutController.LogWorkout(workout5);
@@ -151,11 +152,11 @@ namespace FitnessTracker
             {
                 Name = "Running 06",
                 Type = runningWorkoutType,
-                Date = new DateTime(2023, 01, 13),
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
+                Date = new DateTime(2023, 02, 01),
+                StartTime = new DateTime(2023, 01, 23, 18, 00, 00),
+                EndTime = new DateTime(2023, 01, 23, 20, 00, 00),
                 IsRecurring = false,
-                Weight = 70,
+                Weight = 84,
                 User = loggedUser
             };
             workoutController.LogWorkout(workout6);
@@ -164,11 +165,11 @@ namespace FitnessTracker
             {
                 Name = "Running 07",
                 Type = swimmingWorkoutType,
-                Date = new DateTime(2023, 03, 23),
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
+                Date = new DateTime(2023, 02, 02),
+                StartTime = new DateTime(2023, 01, 23, 18, 00, 00),
+                EndTime = new DateTime(2023, 01, 23, 20, 00, 00),
                 IsRecurring = false,
-                Weight = 70,
+                Weight = 83,
                 User = loggedUser
             };
             workoutController.LogWorkout(workout7);
@@ -177,11 +178,11 @@ namespace FitnessTracker
             {
                 Name = "Running 08",
                 Type = cyclingWorkoutType,
-                Date = new DateTime(2023, 02, 23),
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
+                Date = new DateTime(2023, 02, 03),
+                StartTime = new DateTime(2023, 01, 23, 18, 00, 00),
+                EndTime = new DateTime(2023, 01, 23, 21, 00, 00),
                 IsRecurring = false,
-                Weight = 70,
+                Weight = 82,
                 User = loggedUser
             };
             workoutController.LogWorkout(workout8);

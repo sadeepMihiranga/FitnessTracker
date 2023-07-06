@@ -56,5 +56,10 @@ namespace FitnessTracker.Controller
 
             return workoutModel;
         }
+
+        public List<WorkoutModel> GetAllByUser(long userId)
+        {
+            return WorkoutRepository.GetAll(userId);
+        }
     }
 }

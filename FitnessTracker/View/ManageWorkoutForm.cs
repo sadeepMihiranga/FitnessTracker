@@ -230,6 +230,9 @@ namespace FitnessTracker.View
             WorkoutController workoutController = new();
             WorkoutModel workout = workoutController.GetWorkoutById(workoutId, LoggedUser.Id);
 
+            if (workout == null)
+                return;
+
             cmbWorkoutType.SelectedValue = workout.Type.Id.ToString();
             txtSets.Text = workout.Sets == 0 ? "" : workout.Sets.ToString();
             txtReps.Text = workout.Reps == 0 ? "" : workout.Reps.ToString();

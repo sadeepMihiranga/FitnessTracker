@@ -22,7 +22,7 @@ namespace FitnessTracker.Repository
                 .Where(u => u.Username.Equals(username))
                 .Where(u => u.Password.Equals(password))
                 .Where(u => u.Status == Enums.CommonStatusEnum.ACTIVE)
-                .First();
+                .FirstOrDefault();
         }
         #endregion
 

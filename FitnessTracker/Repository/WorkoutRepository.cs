@@ -40,7 +40,7 @@ namespace FitnessTracker.Repository
             return workouts
                  .Where(w => w.Id == workoutId)
                  .Where(w => w.User.Id == userId)
-                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).First();
+                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).FirstOrDefault();
         }
         #endregion
 
@@ -52,6 +52,16 @@ namespace FitnessTracker.Repository
                 .Where(w => w.Date < to)
                 .Where(w => w.User.Id == userId)
                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).ToList();
+        }
+        #endregion
+
+        #region Get All Workouts
+        public static List<WorkoutModel> GetAll(long userId)
+        {
+            return workouts
+                 .Where(w => w.User.Id == userId)
+                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE)
+                 .ToList();
         }
         #endregion
 

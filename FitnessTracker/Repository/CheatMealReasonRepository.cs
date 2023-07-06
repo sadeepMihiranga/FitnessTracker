@@ -24,7 +24,7 @@ namespace FitnessTracker.Repository
             return cheatMealReasons
                 .Where(wt => wt.Id == id)
                 //.Where(wt => wt.Status == Enums.CommonStatusEnum.ACTIVE)
-                .First();
+                .FirstOrDefault();
         }
         #endregion
 

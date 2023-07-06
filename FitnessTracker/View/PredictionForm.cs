@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using FitnessTracker.Controller;
+using FitnessTracker.Model;
 
 namespace FitnessTracker.View
 {
     public partial class PredictionForm : Form
     {
-        public PredictionForm()
+        private UserModel LoggedUser;
+        private PredictionController predictionController;
+
+        public PredictionForm(UserModel user)
         {
+            this.LoggedUser = user;
             InitializeComponent();
+
+            lblPredictedWeigth.Text = "-";
+            lblPredictedHealthStatus.Text = "-";
+
+            predictionController = new(this.LoggedUser);
         }
 
         private void pictureBoxMinimize_Click_1(object sender, EventArgs e)
@@ -26,6 +28,22 @@ namespace FitnessTracker.View
         {
             this.Close();
             Environment.Exit(0);
+        }
+
+        private void btnPredict_Click(object sender, EventArgs e)
+        {
+            DateTime futureDate = dtpFutureDate.Value;
+
+            double[] weigthResponse = predictionController.PredictWeight(futureDate);
+
+            if (weigthResponse[0] == 0)
+                return;
+
+            lblPredictedWeigth.Text = weigthResponse[0].ToString() + " KG";
+
+            string predictedHealthStatus = predictionController.PredictHealStatus(futureDate, weigthResponse);
+
+            lblPredictedHealthStatus.Text = predictedHealthStatus;
         }
     }
 }

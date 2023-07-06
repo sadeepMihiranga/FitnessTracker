@@ -1,5 +1,5 @@
-﻿using FitnessTracker.Model;
-using FitnessTracker.Repository;
+﻿using FitnessTracker.Controller;
+using FitnessTracker.Model;
 
 namespace FitnessTracker.View
 {
@@ -59,8 +59,10 @@ namespace FitnessTracker.View
 
             try
             {
+                UsersController usersController = new();
+
                 UserModel user = new();
-                user = UserRepository.FetchUserByUsernameAndPassword(Username, Password);
+                user = usersController.AuthenticateUser(Username, Password);
 
                 if (user != null && user.Id > 0)
                 {
@@ -76,7 +78,8 @@ namespace FitnessTracker.View
             }
             catch (Exception ex)
             {
-                FormsHandler.OperationFailedErrorMessage(ex.Message);
+                FormsHandler.OperationFailedErrorMessage("Error while logging");
+                return;
             }
             finally
             {

@@ -10,6 +10,7 @@ namespace FitnessTracker.View
         {
             this.LoggedUser = user;
             InitializeComponent();
+            FormsHandler.LoadForm(new WorkoutForm(LoggedUser, panelMain), panelMain);
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace FitnessTracker.View
 
         private void btnNavPredictions_Click(object sender, EventArgs e)
         {
-            FormsHandler.LoadForm(new PredictionForm(), panelMain);
+            FormsHandler.LoadForm(new PredictionForm(LoggedUser), panelMain);
         }
     }
 }

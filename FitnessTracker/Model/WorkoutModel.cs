@@ -9,7 +9,7 @@ namespace FitnessTracker.Model
         public string Name { get; set; }
         public WorkoutTypeModel Type { get; set; }
         public DateTime Date { get; set; }
-        public DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; } 
         public DateTime EndTime { get; set; }
         public int Weight { get; set; }
         public int Reps { get; set; }

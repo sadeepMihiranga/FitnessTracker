@@ -34,14 +34,13 @@ namespace FitnessTracker.Repository
         }
         #endregion
 
-
         #region Get Cheat Meal by ID
         public static CheatMealModel GetById(long cheatMealId, long userId)
         {
             return cheatMeals
                  .Where(w => w.Id == cheatMealId)
                  .Where(w => w.User.Id == userId)
-                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).First();
+                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).FirstOrDefault();
         }
         #endregion
 
@@ -53,6 +52,16 @@ namespace FitnessTracker.Repository
                 .Where(w => w.DateTimeTaken < to)
                 .Where(w => w.User.Id == userId)
                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE).ToList();
+        }
+        #endregion
+
+        #region Get All Cheat Meals
+        public static List<CheatMealModel> GetAll(long userId)
+        {
+            return cheatMeals
+                 .Where(w => w.User.Id == userId)
+                 .Where(w => w.Status == Enums.CommonStatusEnum.ACTIVE)
+                 .ToList();
         }
         #endregion
 

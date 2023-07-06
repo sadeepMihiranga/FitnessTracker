@@ -29,7 +29,20 @@ namespace FitnessTracker.Controller
 
         public CheatMealModel GetCheatMealById(long cheatMealId, long userId)
         {
-            return CheatMealRepository.GetById(cheatMealId, userId);
+            CheatMealModel cheatMeal = CheatMealRepository.GetById(cheatMealId, userId);
+
+            if (cheatMeal == null)
+            {
+                FormsHandler.OperationFailedErrorMessage("Cheat meal id invalid.");
+                return null;
+            }
+
+            return cheatMeal;
+        }
+
+        public List<CheatMealModel> GetAllByUser(long userId)
+        {
+            return CheatMealRepository.GetAll(userId);
         }
     }
 }
