@@ -29,31 +29,6 @@ namespace FitnessTracker.View
             form.Show();
         }
 
-        public static void ClearDataGridView(DataGridView dataGridView)
-        {
-            dataGridView.DataSource = null;
-            dataGridView.Rows.Clear();
-            dataGridView.Columns.Clear();
-            dataGridView.Refresh();
-        }
-
-        public static DataGridViewButtonColumn CreateDGVButton(string name, string text, Color backColor, Color foreColor, Font font)
-        {
-            DataGridViewButtonColumn dgvbutton = new()
-            {
-                UseColumnTextForButtonValue = true,
-                HeaderText = "",
-                Text = name,
-                Name = text
-            };
-            dgvbutton.DefaultCellStyle.Font = new Font(font, FontStyle.Bold);
-            dgvbutton.FlatStyle = FlatStyle.Flat;
-            dgvbutton.DefaultCellStyle.BackColor = backColor;
-            dgvbutton.DefaultCellStyle.ForeColor = foreColor;
-
-            return dgvbutton;
-        }
-
         public static void OperationSuccessMessage(string message)
         {
             MessageBox.Show(message, "Opertation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

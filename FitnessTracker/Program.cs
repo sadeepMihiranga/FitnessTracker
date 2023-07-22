@@ -18,8 +18,8 @@ namespace FitnessTracker
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            //Application.Run(new View.LoginForm());
-            Application.Run(new  View.PredictionForm(loggedUser));
+            Application.Run(new View.LoginForm());
+            //Application.Run(new  View.PredictionForm(loggedUser));
             //Application.Run(new View.MainMenuForm());
         }
 
