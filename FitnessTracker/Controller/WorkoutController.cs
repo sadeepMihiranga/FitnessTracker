@@ -32,6 +32,21 @@ namespace FitnessTracker.Controller
             return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
 
+        public APIResponseWrapper<List<WorkoutModel>> SearchForReport(long userId, DateTime from, DateTime to)
+        {
+            var queryParams = new Dictionary<string, string>
+            {
+                ["fromDate"] = from.ToString(),
+                ["toDate"] = to.ToString(),
+            };
+
+            HttpResponseMessage response = APIHandler
+                .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/" + userId + "/report", queryParams);
+
+            APIResponseWrapper<List<WorkoutModel>> responseWrapper = new APIResponseWrapper<List<WorkoutModel>>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
+        }
+
         public APIResponseWrapper<Object> RemoveWorkout(long workoutId, long userId)
         {
             HttpResponseMessage response = APIHandler
@@ -52,7 +67,7 @@ namespace FitnessTracker.Controller
 
         public WorkoutModel UpdateWorkout(WorkoutModel workout)
         {
-            WorkoutModel workoutModel = WorkoutRepository.GetById(workout.Id, workout.Id);
+            /*WorkoutModel workoutModel = WorkoutRepository.GetById(workout.Id, workout.Id);
 
             if (workoutModel == null)
             {
@@ -72,7 +87,9 @@ namespace FitnessTracker.Controller
             workoutModel.RecurrsionDate = workout.RecurrsionDate;
             workoutModel.Weight = workout.Weight;
 
-            return workoutModel;
+            return workoutModel;*/
+
+            return null;
         }
 
         public APIResponseWrapper<List<WorkoutModel>> GetAllByUser(long userId)

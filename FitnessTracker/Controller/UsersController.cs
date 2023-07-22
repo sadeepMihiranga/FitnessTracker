@@ -1,24 +1,15 @@
 ﻿using FitnessTracker.DTOs;
 using FitnessTracker.Model;
-using FitnessTracker.Repository;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace FitnessTracker.Controller
 {
     public class UsersController
     {
-        public UserModel RegisterUser(UserModel user)
+        public HttpResponseMessage RegisterUser(UserModel user)
         {
-            user.Id = UserRepository.GetNextAvailableId();
-            user.Status = Enums.CommonStatusEnum.ACTIVE;
-            user.Password = GetSha256Hashed(user.Password);
-
-            UserRepository.Save(user);
-
-            return user;
+            return APIHandler.DoPostXML("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/user", ref user);
         }
 
         public APIResponseWrapper<UserModel> AuthenticateUser(string username, string password)

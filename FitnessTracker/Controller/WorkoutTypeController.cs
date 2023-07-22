@@ -7,14 +7,6 @@ namespace FitnessTracker.Controller
 {
     internal class WorkoutTypeController
     {
-        public long InsertWorkoutType(WorkoutTypeModel workoutType)
-        {
-            workoutType.Id = WorkoutTypeRepository.GetNextAvailableId();
-            workoutType.Status = Enums.CommonStatusEnum.ACTIVE;
-
-            return WorkoutTypeRepository.Save(workoutType).Id;
-        }
-
         public List<ComboboxModel> ToComboboxList()
         {
             List<ComboboxModel>  comboboxList = new List<ComboboxModel>();

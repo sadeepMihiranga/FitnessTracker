@@ -62,21 +62,6 @@ namespace FitnessTracker.View
             {
                 UsersController usersController = new();
 
-                /*UserModel user = new();
-                user = usersController.AuthenticateUser(Username, Password);
-
-                if (user != null && user.Id > 0)
-                {
-                    MainMenuForm adminMenuForm = new(user);
-                    adminMenuForm.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    FormsHandler.OperationFailedErrorMessage("Username or Password invalid");
-                    return;
-                }*/
-
                 APIResponseWrapper<UserModel> response = usersController.AuthenticateUser(Username, Password);
 
                 if (response.Success == true)

@@ -1,7 +1,9 @@
 ﻿using FitnessTracker.Enums;
+using System.Xml.Serialization;
 
 namespace FitnessTracker.Model
 {
+    [XmlRoot(ElementName = "UserDTO")]
     public class UserModel
     {
         #region Attributes of User

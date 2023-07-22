@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.DTOs;
 using FitnessTracker.Model;
 using FitnessTracker.Repository;
 using System;
@@ -39,7 +40,40 @@ namespace FitnessTracker.View
             DateTime from = dtpWorkoutFrom.Value;
             DateTime to = dtpWorkoutTo.Value;
 
-            List<WorkoutModel> workouts =  WorkoutRepository.SearchForReport(from, to, LoggedUser.Id);
+            WorkoutController workoutController = new();
+            List<WorkoutModel> workouts = null;
+
+            try
+            {
+                APIResponseWrapper<List<WorkoutModel>> response = workoutController.SearchForReport(LoggedUser.Id, from, to);
+
+                if (response.Success == true)
+                {
+                    if (response.SuccessReponse != null)
+                    {
+                        workouts = response.SuccessReponse;
+                    }
+                    else
+                    {
+                        FormsHandler.OperationFailedErrorMessage("Error while fetching workouts");
+                        return;
+                    }
+                }
+                else
+                {
+                    FormsHandler.OperationFailedErrorMessage(response.ErrorResponse.Title);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                FormsHandler.OperationFailedErrorMessage("Error while fetching workouts");
+                return;
+            }
+            finally
+            {
+
+            }
 
             if (workouts.Count == 0) 
             {

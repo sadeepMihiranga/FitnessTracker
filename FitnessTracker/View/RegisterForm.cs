@@ -1,6 +1,8 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.DTOs;
 using FitnessTracker.Model;
 using FitnessTracker.View;
+using System.Xml;
 
 namespace FitnessTracker
 {
@@ -101,22 +103,39 @@ namespace FitnessTracker
                     Gender = Gender,
                     Address = Address,
                     Email = Email,
-                    MobileNumber = ContactNo
+                    MobileNumber = ContactNo,
+                    FirstName = Name
                 };
 
                 UsersController usersController = new();
-                UserModel createdUser = usersController.RegisterUser(user);
+                HttpResponseMessage response = usersController.RegisterUser(user);
 
-                if (createdUser == null)
+                if (response.IsSuccessStatusCode)
                 {
-                    FormsHandler.OperationSuccessMessage("Registration Success. Id : " + createdUser.Id);
+                    FormsHandler.OperationSuccessMessage("Registration Success");
                 }
                 else
-                    return;
+                {
+                    var content = response.Content.ReadAsStringAsync().Result;
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        var xmlDocument = new XmlDocument();
+                        xmlDocument.LoadXml(content);
+
+                        // Set up a namespace manager to handle the XML namespace (if any)
+                        XmlNamespaceManager nsManager = new XmlNamespaceManager(xmlDocument.NameTable);
+                        nsManager.AddNamespace("ns", "urn:ietf:rfc:7807");
+                        XmlNode xNode = xmlDocument.SelectSingleNode("//ns:title", nsManager);
+
+                        FormsHandler.OperationFailedErrorMessage(xNode.InnerText);
+                        return;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                FormsHandler.OperationFailedErrorMessage(ex.Message);
+                FormsHandler.OperationFailedErrorMessage("Error while registering user");
             }
             finally
             {

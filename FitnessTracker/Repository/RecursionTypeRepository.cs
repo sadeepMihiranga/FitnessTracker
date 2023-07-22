@@ -23,7 +23,6 @@ namespace FitnessTracker.Repository
         {
             return recursionTypes
                 .Where(cm => cm.Id == id)
-                //.Where(wt => wt.Status == Enums.CommonStatusEnum.ACTIVE)
                 .FirstOrDefault();
         }
         #endregion
