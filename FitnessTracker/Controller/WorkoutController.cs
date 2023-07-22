@@ -1,4 +1,5 @@
-﻿using FitnessTracker.Model;
+﻿using FitnessTracker.DTOs;
+using FitnessTracker.Model;
 using FitnessTracker.Repository;
 using FitnessTracker.View;
 
@@ -6,30 +7,47 @@ namespace FitnessTracker.Controller
 {
     internal class WorkoutController
     {
-        public long LogWorkout(WorkoutModel workout)
+        public APIResponseWrapper<WorkoutModel> LogWorkout(WorkoutModel workout)
         {
-            workout.Id = WorkoutRepository.GetNextAvailableId();
-            workout.Status = Enums.CommonStatusEnum.ACTIVE;
+            HttpResponseMessage response = APIHandler
+                .DoPost("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/"+workout.User.Id, ref workout);
 
-            return WorkoutRepository.Save(workout).Id;
+            APIResponseWrapper<WorkoutModel> responseWrapper = new APIResponseWrapper<WorkoutModel>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
 
-        public void RemoveWorkout(long workoutId, long userId)
+        public APIResponseWrapper<List<WorkoutModel>> Search(WorkoutModel workoutSearch, int page, int size)
         {
-            WorkoutModel workout = WorkoutRepository.GetById(workoutId, userId);
-
-            if (workout == null)
+            var queryParams = new Dictionary<string, string>
             {
-                FormsHandler.OperationFailedErrorMessage("Workout id invalid.");
-                return;
-            }
+                ["type"] = workoutSearch.Type == null ? "" : workoutSearch.Type.Name,
+                ["page"] = page.ToString(),
+                ["size"] = size.ToString(),
+            };
 
-            WorkoutRepository.Remove(workout);
+            HttpResponseMessage response = APIHandler
+                .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/"+workoutSearch.User.Id+"/search", queryParams);
+
+            APIResponseWrapper<List<WorkoutModel>> responseWrapper = new APIResponseWrapper<List<WorkoutModel>>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
 
-        public WorkoutModel GetWorkoutById(long workoutId, long userId)
+        public APIResponseWrapper<Object> RemoveWorkout(long workoutId, long userId)
         {
-            return WorkoutRepository.GetById(workoutId, userId);
+            HttpResponseMessage response = APIHandler
+                .DoDelete("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/"+userId+"/workouts/"+workoutId);
+
+            APIResponseWrapper<Object> responseWrapper = new APIResponseWrapper<Object>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, true);
+        }
+
+        public APIResponseWrapper<WorkoutModel> GetWorkoutById(long workoutId, long userId)
+        {
+            HttpResponseMessage response = APIHandler
+                .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/"+userId+"/workouts/"+workoutId);
+
+            APIResponseWrapper<WorkoutModel> responseWrapper = new APIResponseWrapper<WorkoutModel>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
 
         public WorkoutModel UpdateWorkout(WorkoutModel workout)
@@ -57,9 +75,13 @@ namespace FitnessTracker.Controller
             return workoutModel;
         }
 
-        public List<WorkoutModel> GetAllByUser(long userId)
+        public APIResponseWrapper<List<WorkoutModel>> GetAllByUser(long userId)
         {
-            return WorkoutRepository.GetAll(userId);
+            HttpResponseMessage response = APIHandler
+                .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/1"+userId);
+
+            APIResponseWrapper<List<WorkoutModel>> responseWrapper = new APIResponseWrapper<List<WorkoutModel>>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
     }
 }

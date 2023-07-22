@@ -1,4 +1,5 @@
-﻿using FitnessTracker.Model;
+﻿using FitnessTracker.DTOs;
+using FitnessTracker.Model;
 using FitnessTracker.View;
 using System.Diagnostics;
 
@@ -16,7 +17,18 @@ namespace FitnessTracker.Controller
             WorkoutController workoutController = new();
             CheatMealController cheatMealController = new();
 
-            this.Workouts = workoutController.GetAllByUser(user.Id);
+            APIResponseWrapper <List<WorkoutModel>> responseWrapper = workoutController.GetAllByUser(user.Id);
+
+            if (!responseWrapper.Success)
+            {
+                FormsHandler.InvalidValueMessage(responseWrapper.ErrorResponse.Title);
+                return;
+            }
+            else
+            {
+                this.Workouts = responseWrapper.SuccessReponse;
+            }
+
             this.CheatMeals = cheatMealController.GetAllByUser(user.Id);
         }
 

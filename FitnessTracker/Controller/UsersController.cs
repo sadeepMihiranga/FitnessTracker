@@ -1,7 +1,10 @@
-﻿using FitnessTracker.Model;
+﻿using FitnessTracker.DTOs;
+using FitnessTracker.Model;
 using FitnessTracker.Repository;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FitnessTracker.Controller
 {
@@ -18,10 +21,20 @@ namespace FitnessTracker.Controller
             return user;
         }
 
-        public UserModel AuthenticateUser(string username, string password)
+        public APIResponseWrapper<UserModel> AuthenticateUser(string username, string password)
         {
             string hashedPassword = GetSha256Hashed(password);
-            return UserRepository.FetchUserByUsernameAndPassword(username, hashedPassword); 
+
+            LoginRequestDTO logingRequest = new()
+            {
+                Username = username,
+                Password = password
+            };
+
+            HttpResponseMessage response = APIHandler.DoPost("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/user/login", ref logingRequest);
+
+            APIResponseWrapper<UserModel> responseWrapper = new APIResponseWrapper<UserModel>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
 
         static string GetSha256Hashed(string input)

@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.DTOs;
 using FitnessTracker.Enums;
 using FitnessTracker.Model;
 using FitnessTracker.View.Util;
@@ -125,12 +126,20 @@ namespace FitnessTracker.View
                         Comment = comment,
                         RecurrsionDate = recursionDate,
                         User = LoggedUser
-
                     };
 
-                    workoutController.LogWorkout(workout);
+                    APIResponseWrapper<WorkoutModel> responseWrapper = workoutController.LogWorkout(workout);
 
-                    FormsHandler.OperationSuccessMessage("Workout logged.");
+                    if (responseWrapper.Success)
+                    {
+                        FormsHandler.OperationSuccessMessage("Workout logged.");
+                        return;
+                    }
+                    else
+                    {
+                        FormsHandler.OperationSuccessMessage(responseWrapper.ErrorResponse.Title);
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -228,7 +237,39 @@ namespace FitnessTracker.View
         private void LoadWorkoutInformation(long workoutId, bool isView)
         {
             WorkoutController workoutController = new();
-            WorkoutModel workout = workoutController.GetWorkoutById(workoutId, LoggedUser.Id);
+            WorkoutModel workout = null;
+
+            try
+            {
+                APIResponseWrapper<WorkoutModel> response = workoutController.GetWorkoutById(workoutId, LoggedUser.Id);
+
+                if (response.Success == true)
+                {
+                    if (response.SuccessReponse != null)
+                    {
+                        workout = response.SuccessReponse;
+                    }
+                    else
+                    {
+                        FormsHandler.OperationFailedErrorMessage("Error while fetching workout");
+                        return;
+                    }
+                }
+                else
+                {
+                    FormsHandler.OperationFailedErrorMessage(response.ErrorResponse.Title);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                FormsHandler.OperationFailedErrorMessage("Error while fetching workout");
+                return;
+            }
+            finally
+            {
+
+            }
 
             if (workout == null)
                 return;

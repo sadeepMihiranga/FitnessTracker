@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.DTOs;
 using FitnessTracker.Enums;
 using FitnessTracker.Model;
 using System.ComponentModel;
@@ -68,14 +69,34 @@ namespace FitnessTracker.View.CustomUserControl
 
         private void pictureBoxRemove_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure want to remove this Workout ?", "Message",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            try
             {
-                WorkoutController workoutController = new();
-                workoutController.RemoveWorkout(WorkoutId, LoggedUser.Id);
+                APIResponseWrapper<Object> response = null;
 
-                FormsHandler.LoadForm(new WorkoutForm(LoggedUser, PanelMain), PanelMain);
+                if (MessageBox.Show("Are you sure want to remove this Workout ?", "Message",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    WorkoutController workoutController = new();
+                    response = workoutController.RemoveWorkout(WorkoutId, LoggedUser.Id);
+
+                    FormsHandler.LoadForm(new WorkoutForm(LoggedUser, PanelMain), PanelMain);
+                }
+
+                if (!response.Success)
+                {
+                    FormsHandler.OperationFailedErrorMessage(response.ErrorResponse.Title);
+                    return;
+                }
             }
+            catch (Exception ex)
+            {
+                FormsHandler.OperationFailedErrorMessage("Error while deleting workout");
+                return;
+            }
+            finally
+            {
+
+            }          
         }
 
         private void pictureBoxView_Click(object sender, EventArgs e)

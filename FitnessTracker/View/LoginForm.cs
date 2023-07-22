@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.DTOs;
 using FitnessTracker.Model;
 
 namespace FitnessTracker.View
@@ -61,7 +62,7 @@ namespace FitnessTracker.View
             {
                 UsersController usersController = new();
 
-                UserModel user = new();
+                /*UserModel user = new();
                 user = usersController.AuthenticateUser(Username, Password);
 
                 if (user != null && user.Id > 0)
@@ -73,6 +74,28 @@ namespace FitnessTracker.View
                 else
                 {
                     FormsHandler.OperationFailedErrorMessage("Username or Password invalid");
+                    return;
+                }*/
+
+                APIResponseWrapper<UserModel> response = usersController.AuthenticateUser(Username, Password);
+
+                if (response.Success == true)
+                {
+                    if (response.SuccessReponse != null)
+                    {
+                        MainMenuForm adminMenuForm = new(response.SuccessReponse);
+                        adminMenuForm.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        FormsHandler.OperationFailedErrorMessage("Error while logging");
+                        return;
+                    }
+                }
+                else
+                {
+                    FormsHandler.OperationFailedErrorMessage(response.ErrorResponse.Title);
                     return;
                 }
             }

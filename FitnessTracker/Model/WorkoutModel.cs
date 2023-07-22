@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Enums;
+using System.Text.Json.Serialization;
 
 namespace FitnessTracker.Model
 {
@@ -19,6 +20,8 @@ namespace FitnessTracker.Model
         public string RecurrsionDate { get; set; }
         public string Comment { get; set; }
         public CommonStatusEnum Status { get; set; }
+
+        [JsonIgnore]
         public UserModel User { get; set; }
         #endregion
     }

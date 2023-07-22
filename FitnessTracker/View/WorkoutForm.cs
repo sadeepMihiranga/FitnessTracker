@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.DTOs;
 using FitnessTracker.Enums;
 using FitnessTracker.Model;
 using FitnessTracker.Repository;
@@ -49,9 +50,42 @@ namespace FitnessTracker.View
                 flowLayoutPanelWorkoutList.Controls.Clear();
 
             List<WorkoutCardUserControl> workoutCards = new List<WorkoutCardUserControl>();
+            List<WorkoutModel> workoutList = new List<WorkoutModel>();
+            WorkoutController workoutController = new();
 
             workoutSearch.User = LoggedUser;
-            List<WorkoutModel> workoutList = WorkoutRepository.Search(workoutSearch, page, size);
+
+            try
+            {
+                APIResponseWrapper<List<WorkoutModel>> response = workoutController.Search(workoutSearch, page, size);
+
+                if (response.Success == true)
+                {
+                    if (response.SuccessReponse != null)
+                    {
+                        workoutList = response.SuccessReponse;
+                    }
+                    else
+                    {
+                        FormsHandler.OperationFailedErrorMessage("Error while fetching workouts");
+                        return;
+                    }
+                }
+                else
+                {
+                    FormsHandler.OperationFailedErrorMessage(response.ErrorResponse.Title);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                FormsHandler.OperationFailedErrorMessage("Error while fetching workouts");
+                return;
+            }
+            finally
+            {
+
+            }
 
             if (workoutList.Count == 0)
                 pictureBoxNext.Visible = false;
