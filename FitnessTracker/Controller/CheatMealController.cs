@@ -56,8 +56,8 @@ namespace FitnessTracker.Controller
         {
             var queryParams = new Dictionary<string, string>
             {
-                ["fromDate"] = from.ToString(),
-                ["toDate"] = to.ToString(),
+                ["fromDate"] = from.ToString("yyyy-MM-dd"),
+                ["toDate"] = to.ToString("yyyy-MM-dd"),
             };
 
             HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/cheat-meal/users/" + userId + "/report", queryParams);

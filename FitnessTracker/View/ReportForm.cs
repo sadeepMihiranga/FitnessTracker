@@ -2,15 +2,7 @@
 using FitnessTracker.DTOs;
 using FitnessTracker.Model;
 using FitnessTracker.Repository;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FitnessTracker.View
 {
@@ -119,7 +111,7 @@ namespace FitnessTracker.View
             DateTime from = dtpCheatMealFrom.Value;
             DateTime to = dtpCheatMealTo.Value;
 
-            CheatMealController cheatMealController = null;
+            CheatMealController cheatMealController = new();
             List<CheatMealModel> cheatMeals = null;
 
             try
