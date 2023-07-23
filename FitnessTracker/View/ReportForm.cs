@@ -119,7 +119,40 @@ namespace FitnessTracker.View
             DateTime from = dtpCheatMealFrom.Value;
             DateTime to = dtpCheatMealTo.Value;
 
-            List<CheatMealModel> cheatMeals = CheatMealRepository.SearchForReport(from, to, LoggedUser.Id);
+            CheatMealController cheatMealController = null;
+            List<CheatMealModel> cheatMeals = null;
+
+            try
+            {
+                APIResponseWrapper<List<CheatMealModel>> response = cheatMealController.SearchForReport(LoggedUser.Id, from, to);
+
+                if (response.Success == true)
+                {
+                    if (response.SuccessReponse != null)
+                    {
+                        cheatMeals = response.SuccessReponse;
+                    }
+                    else
+                    {
+                        FormsHandler.OperationFailedErrorMessage("Error while fetching cheat meals");
+                        return;
+                    }
+                }
+                else
+                {
+                    FormsHandler.OperationFailedErrorMessage(response.ErrorResponse.Title);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                FormsHandler.OperationFailedErrorMessage("Error while fetching cheat meals");
+                return;
+            }
+            finally
+            {
+
+            }
 
             if (cheatMeals.Count == 0)
             {
@@ -141,7 +174,7 @@ namespace FitnessTracker.View
                         foreach (CheatMealModel cheatMeal in cheatMeals)
                         {
                             stringBuilder.AppendLine(string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}",
-                                cheatMeal.CheatMealType.Name, cheatMeal.Name, cheatMeal.MealPortionSize, cheatMeal.CheatMealReason.Name, cheatMeal.CheatMealSatisfcation,
+                                cheatMeal.MealType.Name, cheatMeal.Name, cheatMeal.MealPortionSize, cheatMeal.MealReason.Name, cheatMeal.CheatMealSatisfcation,
                                 cheatMeal.CaloriesTaken, cheatMeal.DateTimeTaken, cheatMeal.Comment));
                         }
                         streamWriter.Write(stringBuilder.ToString());

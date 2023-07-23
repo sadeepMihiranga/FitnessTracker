@@ -1,7 +1,7 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.DTOs;
 using FitnessTracker.Enums;
 using FitnessTracker.Model;
-using FitnessTracker.Repository;
 using FitnessTracker.View.CustomUserControl;
 using FitnessTracker.View.Util;
 using System.Configuration;
@@ -22,6 +22,13 @@ namespace FitnessTracker.View
 
             InitializeComponent();
 
+            PopulateDropdowns();
+
+            LoadCheatMeals(0, pageSize, new CheatMealModel());
+        }
+
+        private void PopulateDropdowns()
+        {
             CheatMealTypeController cheatMealTypeController = new();
             DropDownListPopulator.PopulateCombobox(cheatMealTypeController.ToComboboxList(), cmbMealTypeSearch);
 
@@ -34,10 +41,8 @@ namespace FitnessTracker.View
             {
                 var mealPortionSizeName = (MealPortionSizeEnum)mealPortionSizeId;
                 comboboxModels.Add(new ComboboxModel(mealPortionSizeId, mealPortionSizeName.ToString()));
-            }       
+            }
             DropDownListPopulator.PopulateCombobox(comboboxModels, cmbPortionSize);
-
-            LoadCheatMeals(0, pageSize, new CheatMealModel());
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -57,9 +62,42 @@ namespace FitnessTracker.View
                 flowLayoutPanelMealList.Controls.Clear();
 
             List<CheatMealUserControl> cheatMealCards = new List<CheatMealUserControl>();
+            List<CheatMealModel> cheatMealList = null;
+            CheatMealController cheatMealController = new();
 
             cheatMealSearch.User = LoggedUser;
-            List<CheatMealModel> cheatMealList = CheatMealRepository.Search(cheatMealSearch, page, size);
+            
+            try
+            {
+                APIResponseWrapper<List<CheatMealModel>> response = cheatMealController.Search(cheatMealSearch, page, size);
+
+                if (response.Success == true)
+                {
+                    if (response.SuccessReponse != null)
+                    {
+                        cheatMealList = response.SuccessReponse;
+                    }
+                    else
+                    {
+                        FormsHandler.OperationFailedErrorMessage("Error while fetching cheat meals");
+                        return;
+                    }
+                }
+                else
+                {
+                    FormsHandler.OperationFailedErrorMessage(response.ErrorResponse.Title);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                FormsHandler.OperationFailedErrorMessage("Error while fetching cheat meals");
+                return;
+            }
+            finally
+            {
+
+            }
 
             if (cheatMealList.Count == 0)
                 pictureBoxNext.Visible = false;
@@ -71,7 +109,7 @@ namespace FitnessTracker.View
 
                 cheatMealCards.Add(new CheatMealUserControl(LoggedUser, cheatMeal.Id, panelMain)
                 {
-                    Title = cheatMeal.CheatMealType.Name,
+                    Title = cheatMeal.MealType.Name,
                     MealName = cheatMeal.Name,
                     PortionSize = cheatMeal.MealPortionSize + " Portion",
                     AddedTime = cheatMeal.DateTimeTaken.ToString(),
@@ -132,13 +170,12 @@ namespace FitnessTracker.View
             string mealType = (string)cmbMealTypeSearch.SelectedValue;
 
             CheatMealModel cheatMealSearch = new();
-            cheatMealSearch.User = LoggedUser;
-
-            CheatMealTypeModel cheatMealType = null;
+            cheatMealSearch.User = LoggedUser;        
 
             if (mealType != null && !mealType.Equals("NA"))
             {
                 CheatMealTypeController cheatMealTypeController = new();
+                CheatMealTypeModel cheatMealType = null;
 
                 cheatMealType = cheatMealTypeController.GetById(long.Parse(mealType));
 
@@ -148,7 +185,7 @@ namespace FitnessTracker.View
                     return;
                 }
 
-                cheatMealSearch.CheatMealType = cheatMealType;
+                cheatMealSearch.MealType = cheatMealType;
             }
 
             LoadCheatMeals(0, pageSize, cheatMealSearch);

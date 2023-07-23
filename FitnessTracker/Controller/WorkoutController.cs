@@ -1,16 +1,21 @@
 ﻿using FitnessTracker.DTOs;
 using FitnessTracker.Model;
-using FitnessTracker.Repository;
-using FitnessTracker.View;
+using System.Configuration;
 
 namespace FitnessTracker.Controller
 {
     internal class WorkoutController
     {
+        private string _BaseURL = "";
+
+        public WorkoutController()
+        {
+            _BaseURL = ConfigurationManager.AppSettings.Get("BaseURL");
+        }
+
         public APIResponseWrapper<WorkoutModel> LogWorkout(WorkoutModel workout)
         {
-            HttpResponseMessage response = APIHandler
-                .DoPost("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/"+workout.User.Id, ref workout);
+            HttpResponseMessage response = APIHandler.DoPost(_BaseURL + "/workout/users/" +workout.User.Id, ref workout);
 
             APIResponseWrapper<WorkoutModel> responseWrapper = new APIResponseWrapper<WorkoutModel>();
             return APIHandler.HandleAPIResponse(response, responseWrapper, false);
@@ -25,8 +30,7 @@ namespace FitnessTracker.Controller
                 ["size"] = size.ToString(),
             };
 
-            HttpResponseMessage response = APIHandler
-                .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/"+workoutSearch.User.Id+"/search", queryParams);
+            HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/workout/users/" + workoutSearch.User.Id+"/search", queryParams);
 
             APIResponseWrapper<List<WorkoutModel>> responseWrapper = new APIResponseWrapper<List<WorkoutModel>>();
             return APIHandler.HandleAPIResponse(response, responseWrapper, false);
@@ -40,8 +44,7 @@ namespace FitnessTracker.Controller
                 ["toDate"] = to.ToString(),
             };
 
-            HttpResponseMessage response = APIHandler
-                .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/" + userId + "/report", queryParams);
+            HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/workout/users/" + userId + "/report", queryParams);
 
             APIResponseWrapper<List<WorkoutModel>> responseWrapper = new APIResponseWrapper<List<WorkoutModel>>();
             return APIHandler.HandleAPIResponse(response, responseWrapper, false);
@@ -49,8 +52,7 @@ namespace FitnessTracker.Controller
 
         public APIResponseWrapper<Object> RemoveWorkout(long workoutId, long userId)
         {
-            HttpResponseMessage response = APIHandler
-                .DoDelete("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/"+userId+"/workouts/"+workoutId);
+            HttpResponseMessage response = APIHandler.DoDelete(_BaseURL + "/workout/users/" + userId+"/workouts/"+workoutId);
 
             APIResponseWrapper<Object> responseWrapper = new APIResponseWrapper<Object>();
             return APIHandler.HandleAPIResponse(response, responseWrapper, true);
@@ -58,8 +60,7 @@ namespace FitnessTracker.Controller
 
         public APIResponseWrapper<WorkoutModel> GetWorkoutById(long workoutId, long userId)
         {
-            HttpResponseMessage response = APIHandler
-                .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/"+userId+"/workouts/"+workoutId);
+            HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/workout/users/" + userId+"/workouts/"+workoutId);
 
             APIResponseWrapper<WorkoutModel> responseWrapper = new APIResponseWrapper<WorkoutModel>();
             return APIHandler.HandleAPIResponse(response, responseWrapper, false);
@@ -94,8 +95,7 @@ namespace FitnessTracker.Controller
 
         public APIResponseWrapper<List<WorkoutModel>> GetAllByUser(long userId)
         {
-            HttpResponseMessage response = APIHandler
-                .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout/users/1"+userId);
+            HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/workout/users/" + userId);
 
             APIResponseWrapper<List<WorkoutModel>> responseWrapper = new APIResponseWrapper<List<WorkoutModel>>();
             return APIHandler.HandleAPIResponse(response, responseWrapper, false);

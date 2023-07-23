@@ -17,19 +17,29 @@ namespace FitnessTracker.Controller
             WorkoutController workoutController = new();
             CheatMealController cheatMealController = new();
 
-            APIResponseWrapper <List<WorkoutModel>> responseWrapper = workoutController.GetAllByUser(user.Id);
+            APIResponseWrapper <List<WorkoutModel>> workoutsWrapper = workoutController.GetAllByUser(user.Id);
 
-            if (!responseWrapper.Success)
+            if (!workoutsWrapper.Success)
             {
-                FormsHandler.InvalidValueMessage(responseWrapper.ErrorResponse.Title);
+                FormsHandler.InvalidValueMessage(workoutsWrapper.ErrorResponse.Title);
                 return;
             }
             else
             {
-                this.Workouts = responseWrapper.SuccessReponse;
+                this.Workouts = workoutsWrapper.SuccessReponse;
             }
 
-            this.CheatMeals = cheatMealController.GetAllByUser(user.Id);
+            APIResponseWrapper<List<CheatMealModel>> cheatMealWrapper = cheatMealController.GetAllByUser(user.Id);
+
+            if (!cheatMealWrapper.Success)
+            {
+                FormsHandler.InvalidValueMessage(cheatMealWrapper.ErrorResponse.Title);
+                return;
+            }
+            else
+            {
+                this.CheatMeals = cheatMealWrapper.SuccessReponse;
+            }
         }
 
         private bool ValidateInputs(DateTime futureDate)

@@ -1,20 +1,26 @@
 ﻿using FitnessTracker.DTOs;
 using FitnessTracker.Model;
-using FitnessTracker.Repository;
 using FitnessTracker.View;
+using System.Configuration;
 
 namespace FitnessTracker.Controller
 {
     internal class WorkoutTypeController
     {
+        private string _BaseURL = "";
+
+        public WorkoutTypeController()
+        {
+            _BaseURL = ConfigurationManager.AppSettings.Get("BaseURL");
+        }
+
         public List<ComboboxModel> ToComboboxList()
         {
             List<ComboboxModel>  comboboxList = new List<ComboboxModel>();
 
             try
             {
-                HttpResponseMessage response = APIHandler
-                    .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout-type");
+                HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/workout-type");
 
                 APIResponseWrapper<List<WorkoutTypeModel>> responseWrapper = new APIResponseWrapper<List<WorkoutTypeModel>>();
                 responseWrapper = APIHandler.HandleAPIResponse(response, responseWrapper, false);
@@ -54,8 +60,7 @@ namespace FitnessTracker.Controller
         {
             try
             {
-                HttpResponseMessage response = APIHandler
-                    .DoGet("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/workout-type/"+id);
+                HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/workout-type/" + id);
 
                 APIResponseWrapper<WorkoutTypeModel> responseWrapper = new APIResponseWrapper<WorkoutTypeModel>();
                 responseWrapper = APIHandler.HandleAPIResponse(response, responseWrapper, false);

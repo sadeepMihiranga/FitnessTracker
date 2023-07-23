@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Controller;
+using FitnessTracker.DTOs;
 using FitnessTracker.Enums;
 using FitnessTracker.Model;
 using FitnessTracker.View.Util;
@@ -120,17 +121,28 @@ namespace FitnessTracker.View
                     CheatMealModel cheatMeal = new()
                     {
                         Name = name,
-                        CheatMealType = mealTypeModel,
+                        MealType = mealTypeModel,
                         DateTimeTaken = date,
                         CaloriesTaken = int.Parse(calories),
-                        CheatMealReason = cheatMealReason,
+                        MealReason = cheatMealReason,
                         CheatMealSatisfcation = cheatMealSatisfcation,
                         MealPortionSize = mealPortionSize,
                         Comment = comment,
+                        User = LoggedUser
                     };
 
-                    cheatMealController.LogCheatMeal(cheatMeal);
-                    FormsHandler.OperationSuccessMessage("Cheat Meal logged.");
+                    APIResponseWrapper<CheatMealModel> responseWrapper = cheatMealController.LogCheatMeal(cheatMeal);
+
+                    if (responseWrapper.Success)
+                    {
+                        FormsHandler.OperationSuccessMessage("Cheat Meal logged.");
+                        return;
+                    }
+                    else
+                    {
+                        FormsHandler.OperationSuccessMessage(responseWrapper.ErrorResponse.Title);
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -149,10 +161,10 @@ namespace FitnessTracker.View
                     {
                         Id = CheatMealId,
                         Name = name,
-                        CheatMealType = mealTypeModel,
+                        MealType = mealTypeModel,
                         DateTimeTaken = date,
                         CaloriesTaken = int.Parse(calories),
-                        CheatMealReason = cheatMealReason,
+                        MealReason = cheatMealReason,
                         CheatMealSatisfcation = cheatMealSatisfcation,
                         MealPortionSize = mealPortionSize,
                         Comment = comment,
@@ -222,15 +234,47 @@ namespace FitnessTracker.View
         private void LoadCheatMealInformation(long cheatMealId, bool isView)
         {
             CheatMealController cheatMealController = new();
-            CheatMealModel cheatMeal = cheatMealController.GetCheatMealById(cheatMealId, LoggedUser.Id);
+            CheatMealModel cheatMeal = null;
+
+            try
+            {
+                APIResponseWrapper<CheatMealModel> response = cheatMealController.GetCheatMealById(cheatMealId, LoggedUser.Id);
+
+                if (response.Success == true)
+                {
+                    if (response.SuccessReponse != null)
+                    {
+                        cheatMeal = response.SuccessReponse;
+                    }
+                    else
+                    {
+                        FormsHandler.OperationFailedErrorMessage("Error while fetching cheat meal");
+                        return;
+                    }
+                }
+                else
+                {
+                    FormsHandler.OperationFailedErrorMessage(response.ErrorResponse.Title);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                FormsHandler.OperationFailedErrorMessage("Error while fetching cheat meal");
+                return;
+            }
+            finally
+            {
+
+            }
 
             int mealPortinSizeId = (int)cheatMeal.MealPortionSize;
             int mealSatisfcationId = (int)cheatMeal.CheatMealSatisfcation;
 
             txtMealName.Text = cheatMeal.Name;
-            cmbMealType.SelectedValue = cheatMeal.CheatMealType.Id.ToString();
+            cmbMealType.SelectedValue = cheatMeal.MealType.Id.ToString();
             dtpMealTakeDate.Value = cheatMeal.DateTimeTaken;
-            cmbReasonTaken.SelectedValue = cheatMeal.CheatMealReason.Id.ToString();
+            cmbReasonTaken.SelectedValue = cheatMeal.MealReason.Id.ToString();
             txtCalories.Text = cheatMeal.CaloriesTaken == 0 ? "" : cheatMeal.CaloriesTaken.ToString();
             txtComment.Text = cheatMeal.Comment;
 

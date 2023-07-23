@@ -1,48 +1,77 @@
-﻿using FitnessTracker.Model;
-using FitnessTracker.Repository;
-using FitnessTracker.View;
+﻿using FitnessTracker.DTOs;
+using FitnessTracker.Model;
+using System.Configuration;
 
 namespace FitnessTracker.Controller
 {
     internal class CheatMealController
     {
-        public long LogCheatMeal(CheatMealModel cheatMeal)
-        {
-            cheatMeal.Id = CheatMealRepository.GetNextAvailableId();
-            cheatMeal.Status = Enums.CommonStatusEnum.ACTIVE;
+        private string _BaseURL = "";
 
-            return CheatMealRepository.Save(cheatMeal).Id;
+        public CheatMealController()
+        {
+            _BaseURL = ConfigurationManager.AppSettings.Get("BaseURL");
         }
 
-        public void RemoveCheatMeal(long cheatMealId, long userId)
+        public APIResponseWrapper<CheatMealModel> LogCheatMeal(CheatMealModel cheatMeal)
         {
-            CheatMealModel cheatMeal = CheatMealRepository.GetById(cheatMealId, userId);
+            HttpResponseMessage response = APIHandler.DoPost(_BaseURL + "/cheat-meal/users/" + cheatMeal.User.Id, ref cheatMeal);
 
-            if (cheatMeal == null)
+            APIResponseWrapper<CheatMealModel> responseWrapper = new APIResponseWrapper<CheatMealModel>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
+        }
+
+        public APIResponseWrapper<Object> RemoveCheatMeal(long cheatMealId, long userId)
+        {
+            HttpResponseMessage response = APIHandler.DoDelete(_BaseURL + "/cheat-meal/users/" + userId + "/cheat-meals/" + cheatMealId);
+
+            APIResponseWrapper<Object> responseWrapper = new APIResponseWrapper<Object>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, true);
+        }
+
+        public APIResponseWrapper<CheatMealModel> GetCheatMealById(long cheatMealId, long userId)
+        {
+            HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/cheat-meal/users/" + userId + "/cheat-meals/" + cheatMealId);
+
+            APIResponseWrapper<CheatMealModel> responseWrapper = new APIResponseWrapper<CheatMealModel>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
+        }
+
+        public APIResponseWrapper<List<CheatMealModel>> Search(CheatMealModel cheatMealSearch, int page, int size)
+        {
+            var queryParams = new Dictionary<string, string>
             {
-                FormsHandler.OperationFailedErrorMessage("Cheat meal id invalid.");
-                return;
-            }
+                ["type"] = cheatMealSearch.MealType == null ? "" : cheatMealSearch.MealType.Name,
+                ["page"] = page.ToString(),
+                ["size"] = size.ToString(),
+            };
 
-            CheatMealRepository.Remove(cheatMeal);
+            HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/cheat-meal/users/" + cheatMealSearch.User.Id + "/search", queryParams);
+
+            APIResponseWrapper<List<CheatMealModel>> responseWrapper = new APIResponseWrapper<List<CheatMealModel>>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
 
-        public CheatMealModel GetCheatMealById(long cheatMealId, long userId)
+        public APIResponseWrapper<List<CheatMealModel>> SearchForReport(long userId, DateTime from, DateTime to)
         {
-            CheatMealModel cheatMeal = CheatMealRepository.GetById(cheatMealId, userId);
-
-            if (cheatMeal == null)
+            var queryParams = new Dictionary<string, string>
             {
-                FormsHandler.OperationFailedErrorMessage("Cheat meal id invalid.");
-                return null;
-            }
+                ["fromDate"] = from.ToString(),
+                ["toDate"] = to.ToString(),
+            };
 
-            return cheatMeal;
+            HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/cheat-meal/users/" + userId + "/report", queryParams);
+
+            APIResponseWrapper<List<CheatMealModel>> responseWrapper = new APIResponseWrapper<List<CheatMealModel>>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
 
-        public List<CheatMealModel> GetAllByUser(long userId)
+        public APIResponseWrapper<List<CheatMealModel>> GetAllByUser(long userId)
         {
-            return CheatMealRepository.GetAll(userId);
+            HttpResponseMessage response = APIHandler.DoGet(_BaseURL + "/cheat-meal/users/" + userId);
+
+            APIResponseWrapper<List<CheatMealModel>> responseWrapper = new APIResponseWrapper<List<CheatMealModel>>();
+            return APIHandler.HandleAPIResponse(response, responseWrapper, false);
         }
     }
 }

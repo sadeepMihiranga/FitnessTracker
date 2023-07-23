@@ -1,5 +1,6 @@
 ﻿using FitnessTracker.DTOs;
 using FitnessTracker.Model;
+using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -7,9 +8,16 @@ namespace FitnessTracker.Controller
 {
     public class UsersController
     {
+        private string _BaseURL = "";
+
+        public UsersController()
+        {
+            _BaseURL = ConfigurationManager.AppSettings.Get("BaseURL");
+        }
+
         public HttpResponseMessage RegisterUser(UserModel user)
         {
-            return APIHandler.DoPostXML("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/user", ref user);
+            return APIHandler.DoPostXML(_BaseURL + "/user", ref user);
         }
 
         public APIResponseWrapper<UserModel> AuthenticateUser(string username, string password)
@@ -22,7 +30,7 @@ namespace FitnessTracker.Controller
                 Password = password
             };
 
-            HttpResponseMessage response = APIHandler.DoPost("https://everydayfitnessapi.azurewebsites.net/apigateway/v1/user/login", ref logingRequest);
+            HttpResponseMessage response = APIHandler.DoPost(_BaseURL + "/user/login", ref logingRequest);
 
             APIResponseWrapper<UserModel> responseWrapper = new APIResponseWrapper<UserModel>();
             return APIHandler.HandleAPIResponse(response, responseWrapper, false);
