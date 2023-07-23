@@ -49,6 +49,9 @@ namespace FitnessTracker.View
         /** login button click event */
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            WaitingForm waiting = new();
+            waiting.Show();
+
             string Username = txtUsername.Text;
             string Password = txtPassword.Text;
 
@@ -91,7 +94,7 @@ namespace FitnessTracker.View
             }
             finally
             {
-
+                waiting.Close();
             }
         }
 

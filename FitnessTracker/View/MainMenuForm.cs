@@ -26,22 +26,42 @@ namespace FitnessTracker.View
 
         private void btnNavWorkout_Click(object sender, EventArgs e)
         {
+            WaitingForm waiting = new();
+            waiting.Show();
+
             FormsHandler.LoadForm(new WorkoutForm(LoggedUser, panelMain), panelMain);
+
+            waiting.Close();
         }
 
         private void btnNavCheatMeals_Click(object sender, EventArgs e)
         {
+            WaitingForm waiting = new();
+            waiting.Show();
+
             FormsHandler.LoadForm(new CheatMealForm(LoggedUser, panelMain), panelMain);
+
+            waiting.Close();
         }
 
         private void btnNavReport_Click(object sender, EventArgs e)
         {
+            WaitingForm waiting = new();
+            waiting.Show();
+
             FormsHandler.LoadForm(new ReportForm(LoggedUser), panelMain);
+
+            waiting.Close();
         }
 
         private void btnNavPredictions_Click(object sender, EventArgs e)
         {
+            WaitingForm waiting = new();
+            waiting.Show();
+
             FormsHandler.LoadForm(new PredictionForm(LoggedUser), panelMain);
+
+            waiting.Close();
         }
     }
 }
