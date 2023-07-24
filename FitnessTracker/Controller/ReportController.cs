@@ -42,7 +42,6 @@ namespace FitnessTracker.Controller
             }
             finally
             {
-
             }
 
             if (workouts.Count == 0)
@@ -118,7 +117,6 @@ namespace FitnessTracker.Controller
             }
             finally
             {
-
             }
 
             if (cheatMeals.Count == 0)

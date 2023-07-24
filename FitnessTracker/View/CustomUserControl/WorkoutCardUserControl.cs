@@ -69,8 +69,10 @@ namespace FitnessTracker.View.CustomUserControl
 
         private void pictureBoxRemove_Click(object sender, EventArgs e)
         {
+            WaitingForm waiting = new();
             try
             {
+                waiting.Show();
                 APIResponseWrapper<Object> response = null;
 
                 if (MessageBox.Show("Are you sure want to remove this Workout ?", "Message",
@@ -94,9 +96,7 @@ namespace FitnessTracker.View.CustomUserControl
                 return;
             }
             finally
-            {
-
-            }          
+            { waiting.Close(); }          
         }
 
         private void pictureBoxView_Click(object sender, EventArgs e)

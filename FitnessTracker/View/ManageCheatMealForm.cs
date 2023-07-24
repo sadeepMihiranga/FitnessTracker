@@ -15,30 +15,41 @@ namespace FitnessTracker.View
         public ManageCheatMealForm(UserModel user, EventType eventType, long cheatMealId)
         {
             InitializeComponent();
-            InitializeForm();
+            WaitingForm waiting = new();
 
-            SelectedEventType = eventType;
-            btnSaveCheatMeal.Visible = true;
-            btnClearCheatMealInfo.Visible = true;
-            CheatMealId = cheatMealId;
-            this.LoggedUser = user;
-
-            if (SelectedEventType == EventType.EDIT && cheatMealId > 0)
+            try
             {
-                lblManageCheatMealTitle.Text = "Edit Cheat Meal Details";
-                btnSaveCheatMeal.Text = "Update";
+                waiting.Show();
 
-                LoadCheatMealInformation(cheatMealId, false);
+                InitializeForm();
+
+                SelectedEventType = eventType;
+                btnSaveCheatMeal.Visible = true;
+                btnClearCheatMealInfo.Visible = true;
+                CheatMealId = cheatMealId;
+                this.LoggedUser = user;
+
+                if (SelectedEventType == EventType.EDIT && cheatMealId > 0)
+                {
+                    lblManageCheatMealTitle.Text = "Edit Cheat Meal Details";
+                    btnSaveCheatMeal.Text = "Update";
+
+                    LoadCheatMealInformation(cheatMealId, false);
+                }
+
+                if (SelectedEventType == EventType.VIEW && cheatMealId > 0)
+                {
+                    lblManageCheatMealTitle.Text = "View Cheat Meal Details";
+                    btnSaveCheatMeal.Visible = false;
+                    btnClearCheatMealInfo.Visible = false;
+
+                    LoadCheatMealInformation(cheatMealId, true);
+                }
             }
-
-            if (SelectedEventType == EventType.VIEW && cheatMealId > 0)
-            {
-                lblManageCheatMealTitle.Text = "View Cheat Meal Details";
-                btnSaveCheatMeal.Visible = false;
-                btnClearCheatMealInfo.Visible = false;
-
-                LoadCheatMealInformation(cheatMealId, true);
-            }
+            catch (Exception ex)
+            { }
+            finally
+            { waiting.Close(); }       
         }
 
         private void pictureBoxMinimize_Click(object sender, EventArgs e)
@@ -109,9 +120,11 @@ namespace FitnessTracker.View
                 cheatMealSatisfcation = (CheatMealSatisfcationEnum)Int32.Parse(mealSatisfaction);
 
             CheatMealController cheatMealController = new();
+            WaitingForm waiting = new();
 
             if (SelectedEventType == EventType.SAVE)
             {
+                waiting.Show();
                 try
                 {
                     CheatMealModel cheatMeal = new()
@@ -145,12 +158,11 @@ namespace FitnessTracker.View
                     FormsHandler.OperationFailedErrorMessage(ex.Message);
                 }
                 finally
-                {
-
-                }
+                { waiting.Close(); }
             }
             else if (SelectedEventType == EventType.EDIT)
             {
+                waiting.Show();
                 try
                 {
                     CheatMealModel cheatMeal = new()
@@ -174,9 +186,7 @@ namespace FitnessTracker.View
                     FormsHandler.OperationFailedErrorMessage(ex.Message);
                 }
                 finally
-                {
-
-                }
+                { waiting.Close(); }
             }
         }
 

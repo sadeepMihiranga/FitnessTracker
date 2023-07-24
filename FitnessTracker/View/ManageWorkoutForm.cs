@@ -14,33 +14,43 @@ namespace FitnessTracker.View
 
         public ManageWorkoutForm(EventType eventType, long workoutId, UserModel user)
         {
-            this.LoggedUser = user;
-
+            this.LoggedUser = user;       
             InitializeComponent();
+            WaitingForm waiting = new();
 
-            InitializeForm();
+            try
+            {     
+                waiting.Show();
 
-            SelectedEventType = eventType;
-            btnSaveWorkout.Visible = true;
-            btnClearWorkoutInfo.Visible = true;
-            WorkoutId = workoutId;
+                InitializeForm();
 
-            if (SelectedEventType == EventType.EDIT && workoutId > 0)
-            {
-                lblManageVehicleTitle.Text = "Edit Workout Details";
-                btnSaveWorkout.Text = "Update";
+                SelectedEventType = eventType;
+                btnSaveWorkout.Visible = true;
+                btnClearWorkoutInfo.Visible = true;
+                WorkoutId = workoutId;
 
-                LoadWorkoutInformation(workoutId, false);
+                if (SelectedEventType == EventType.EDIT && workoutId > 0)
+                {
+                    lblManageVehicleTitle.Text = "Edit Workout Details";
+                    btnSaveWorkout.Text = "Update";
+
+                    LoadWorkoutInformation(workoutId, false);
+                }
+
+                if (SelectedEventType == EventType.VIEW && workoutId > 0)
+                {
+                    lblManageVehicleTitle.Text = "View Workout Details";
+                    btnSaveWorkout.Visible = false;
+                    btnClearWorkoutInfo.Visible = false;
+
+                    LoadWorkoutInformation(workoutId, true);
+                }
             }
-
-            if (SelectedEventType == EventType.VIEW && workoutId > 0)
+            catch (Exception e)
             {
-                lblManageVehicleTitle.Text = "View Workout Details";
-                btnSaveWorkout.Visible = false;
-                btnClearWorkoutInfo.Visible = false;
-
-                LoadWorkoutInformation(workoutId, true);
             }
+            finally
+            { waiting.Close(); }       
         }
 
         private void pictureBoxMinimize_Click(object sender, EventArgs e)
@@ -106,11 +116,15 @@ namespace FitnessTracker.View
                     return;
                 }
             }
-    
+
+            WaitingForm waiting = new();
+
             if (SelectedEventType == EventType.SAVE)
             {
                 try
-                {
+                {                   
+                    waiting.Show();
+
                     WorkoutModel workout = new()
                     {
                         Name = name,
@@ -147,13 +161,15 @@ namespace FitnessTracker.View
                 }
                 finally
                 {
-
+                    waiting.Close();
                 }
             }
             else if (SelectedEventType == EventType.EDIT)
             {
                 try
                 {
+                    waiting.Show();
+
                     WorkoutModel workout = new()
                     {
                         Id = WorkoutId,
@@ -181,7 +197,7 @@ namespace FitnessTracker.View
                 }
                 finally
                 {
-
+                    waiting.Close();
                 }
             }     
         }

@@ -12,11 +12,21 @@ namespace FitnessTracker.View
         {
             this.LoggedUser = user;
             InitializeComponent();
+            WaitingForm waiting = new();
 
-            lblPredictedWeigth.Text = "-";
-            lblPredictedHealthStatus.Text = "-";
+            try
+            {
+                waiting.Show();
 
-            predictionController = new(this.LoggedUser);
+                lblPredictedWeigth.Text = "-";
+                lblPredictedHealthStatus.Text = "-";
+
+                predictionController = new(this.LoggedUser);
+            }
+            catch (Exception ex)
+            { }
+            finally
+            { waiting.Close(); }         
         }
 
         private void pictureBoxMinimize_Click_1(object sender, EventArgs e)

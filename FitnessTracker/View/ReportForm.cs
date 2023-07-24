@@ -28,16 +28,34 @@ namespace FitnessTracker.View
         {
             DateTime from = dtpWorkoutFrom.Value;
             DateTime to = dtpWorkoutTo.Value;
+            WaitingForm waiting = new();
 
-            ReportController.GenerateWorkoutReport(LoggedUser.Id, from, to);
+            try
+            {
+                waiting.Show();
+                ReportController.GenerateWorkoutReport(LoggedUser.Id, from, to);
+            }
+            catch (Exception ex)
+            { }
+            finally
+            { waiting.Close(); }                    
         }
 
         private void btnDownloadCheatMealReport_Click(object sender, EventArgs e)
         {
             DateTime from = dtpCheatMealFrom.Value;
             DateTime to = dtpCheatMealTo.Value;
+            WaitingForm waiting = new();
 
-            ReportController.GenerateCheatMealReport(LoggedUser.Id, from, to);
+            try
+            {             
+                waiting.Show();
+                ReportController.GenerateCheatMealReport(LoggedUser.Id, from, to);
+            }
+            catch (Exception ex)
+            { }
+            finally
+            { waiting.Close(); }  
         }
     }
 }

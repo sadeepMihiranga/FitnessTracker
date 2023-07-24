@@ -68,14 +68,25 @@ namespace FitnessTracker.View.CustomUserControl
 
         private void pictureBoxRemove_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure want to remove this Cheat Meal ?", "Message",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                CheatMealController cheatMealController = new();
-                cheatMealController.RemoveCheatMeal(CheatMealId, LoggedUser.Id);
+            WaitingForm waiting = new();
 
-                FormsHandler.LoadForm(new CheatMealForm(LoggedUser, PanelMain), PanelMain);
+            try
+            {
+                waiting.Show();
+             
+                if (MessageBox.Show("Are you sure want to remove this Cheat Meal ?", "Message",
+                  MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    CheatMealController cheatMealController = new();
+                    cheatMealController.RemoveCheatMeal(CheatMealId, LoggedUser.Id);
+
+                    FormsHandler.LoadForm(new CheatMealForm(LoggedUser, PanelMain), PanelMain);
+                }
             }
+            catch (Exception ex)
+            { }
+            finally
+            { waiting.Close(); }      
         }
 
         private void pictureBoxView_Click(object sender, EventArgs e)
