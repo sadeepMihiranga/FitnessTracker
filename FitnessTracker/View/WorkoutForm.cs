@@ -84,7 +84,6 @@ namespace FitnessTracker.View
             }
             finally
             {
-
             }
 
             if (workoutList.Count == 0)

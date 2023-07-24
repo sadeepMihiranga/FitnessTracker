@@ -89,7 +89,6 @@ namespace FitnessTracker
                 return;
             }
 
-
             DateTime DobDateTime = DateTime.ParseExact(DobString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
 
             try

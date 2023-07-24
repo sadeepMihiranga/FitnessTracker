@@ -64,7 +64,6 @@ namespace FitnessTracker.View
             List<CheatMealUserControl> cheatMealCards = new List<CheatMealUserControl>();
             List<CheatMealModel> cheatMealList = null;
             CheatMealController cheatMealController = new();
-
             cheatMealSearch.User = LoggedUser;
             
             try
@@ -74,9 +73,7 @@ namespace FitnessTracker.View
                 if (response.Success == true)
                 {
                     if (response.SuccessReponse != null)
-                    {
                         cheatMealList = response.SuccessReponse;
-                    }
                     else
                     {
                         FormsHandler.OperationFailedErrorMessage("Error while fetching cheat meals");

@@ -15,7 +15,6 @@ namespace FitnessTracker.Controller
         public static HttpResponseMessage DoGet(string url, Dictionary<string, string> queryParams)
         {
             HttpClient client = HttpClientFactory.Create();
-
             HttpResponseMessage response = client.GetAsync(QueryHelpers.AddQueryString(url, queryParams)).Result;
 
             client.Dispose();
@@ -25,7 +24,6 @@ namespace FitnessTracker.Controller
         public static HttpResponseMessage DoGet(string url)
         {
             HttpClient client = HttpClientFactory.Create();
-
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             client.Dispose();
@@ -35,7 +33,6 @@ namespace FitnessTracker.Controller
         public static HttpResponseMessage DoDelete(string url)
         {
             HttpClient client = HttpClientFactory.Create();
-
             HttpResponseMessage response = client.DeleteAsync(url).Result;
 
             client.Dispose();

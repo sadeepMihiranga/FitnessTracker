@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FitnessTracker.DTOs
+﻿namespace FitnessTracker.DTOs
 {
     public class APIResponseWrapper<T>
     {
@@ -13,3 +7,5 @@ namespace FitnessTracker.DTOs
         public bool Success { get; set; }
     }
 }
+
+

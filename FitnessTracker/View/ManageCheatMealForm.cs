@@ -101,16 +101,12 @@ namespace FitnessTracker.View
             MealPortionSizeEnum mealPortionSize = MealPortionSizeEnum.NA;
 
             if (!String.IsNullOrEmpty(portionSize) || !portionSize.Equals("NA"))
-            {
                 mealPortionSize = (MealPortionSizeEnum)Int32.Parse(portionSize);
-            }
 
             CheatMealSatisfcationEnum cheatMealSatisfcation = CheatMealSatisfcationEnum.NA;
 
             if (!String.IsNullOrEmpty(mealSatisfaction) || !mealSatisfaction.Equals("NA"))
-            {
                 cheatMealSatisfcation = (CheatMealSatisfcationEnum)Int32.Parse(mealSatisfaction);
-            }
 
             CheatMealController cheatMealController = new();
 

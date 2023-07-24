@@ -362,8 +362,7 @@ namespace FitnessTracker.View
             string recursionType = Convert.ToString(cmbRecursionType.SelectedValue);
 
             if (recursionType.Equals("NA")) 
-                return;
-               
+                return;             
 
             if (recursionType.Equals("2")) // weekly
             {

@@ -7,10 +7,10 @@ namespace FitnessTracker.Controller
 {
     public class PredictionController
     {
-        List<WorkoutModel> Workouts;
-        List<CheatMealModel> CheatMeals;
-        WorkoutModel LatestRecodedWorkout;
-        WorkoutModel FirstRecodedWorkout;
+        private List<WorkoutModel> Workouts;
+        private List<CheatMealModel> CheatMeals;
+        private WorkoutModel LatestRecodedWorkout;
+        private WorkoutModel FirstRecodedWorkout;
 
         public PredictionController(UserModel user)
         {
@@ -77,9 +77,7 @@ namespace FitnessTracker.Controller
             double[] response = { 0, 0 };
 
             if (!IsValidated)
-            {
                 return response;
-            }
 
             double startedWeigth = (double)FirstRecodedWorkout.Weight;
             double workoutCount = (double)Workouts.Count;
@@ -126,9 +124,7 @@ namespace FitnessTracker.Controller
             bool isValidated = ValidateInputs(futureDate);
 
             if (!isValidated)
-            {
                 return null;
-            }
 
             if (weigths[0] < weigths[1])
                 return "Good";
